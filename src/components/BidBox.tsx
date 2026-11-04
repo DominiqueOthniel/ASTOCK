@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
-import { buyNowAction, placeBidAction } from "@/app/actions/bidding";
+import { placeBidAction, requestPurchaseAction } from "@/app/actions/bidding";
 import { Countdown } from "@/components/Countdown";
 import { formatCurrency } from "@/lib/format";
 import type { Lot } from "@/lib/types";
@@ -18,6 +18,7 @@ export function BidBox({
   const minBid = lot.currentBid + 25;
   const [amount, setAmount] = useState(String(minBid));
   const [message, setMessage] = useState<string | null>(null);
+  const [mailto, setMailto] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
   const parsed = useMemo(() => Number(amount.replace(/[^0-9.]/g, "")), [amount]);
@@ -49,24 +50,26 @@ export function BidBox({
     });
   }
 
-  function onBuyNow() {
+  function onRequestPurchase() {
     if (!signedIn) {
-      setMessage("Sign in to buy this lot.");
+      setMessage("Sign in to request this purchase.");
       return;
     }
     const formData = new FormData();
     formData.set("slug", lot.slug);
     startTransition(async () => {
-      const result = await buyNowAction(formData);
+      const result = await requestPurchaseAction(formData);
       if (!result.ok) {
         setMessage(result.error);
+        setMailto(null);
         return;
       }
-      if (result.checkoutUrl) {
-        window.location.href = result.checkoutUrl;
-        return;
-      }
-      setMessage("Checkout could not start. Try again.");
+      setMailto(result.mailto);
+      setMessage(
+        result.emailed
+          ? `Order sent. We emailed ops and confirmed to you for ${formatCurrency(result.amount)}. We will follow up by email.`
+          : `Order recorded for ${formatCurrency(result.amount)}. Open your email client to notify ops, or we will follow up from your account email.`,
+      );
     });
   }
 
@@ -143,10 +146,10 @@ export function BidBox({
         <button
           type="button"
           className="btn btn-primary mt-5 w-full"
-          onClick={onBuyNow}
+          onClick={onRequestPurchase}
           disabled={pending}
         >
-          {pending ? "Starting checkout…" : "Buy now"}
+          {pending ? "Sending request…" : "Request purchase"}
         </button>
       ) : (
         <Link href={loginHref} className="btn btn-primary mt-5 w-full">
@@ -155,12 +158,17 @@ export function BidBox({
       )}
 
       {message ? (
-        <p className="mt-4 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
-          {message}
-        </p>
+        <div className="mt-4 space-y-2 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
+          <p>{message}</p>
+          {mailto ? (
+            <a href={mailto} className="font-semibold text-accent-deep hover:underline">
+              Open email to ops
+            </a>
+          ) : null}
+        </div>
       ) : (
         <p className="mt-4 text-xs leading-relaxed text-steel">
-          Bids are binding once placed. Buy now opens Stripe Checkout when payments are enabled.
+          Bids are binding once placed. Purchase requests are confirmed by email with Astock ops.
         </p>
       )}
     </aside>

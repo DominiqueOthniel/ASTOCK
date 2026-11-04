@@ -4,12 +4,17 @@ import { getDashboardCounts, listAllLotsAdmin } from "@/lib/lot-service";
 import { prisma } from "@/lib/prisma";
 
 export default async function AdminDashboardPage() {
-  const [counts, lots, recentInquiries] = await Promise.all([
+  const [counts, lots, recentInquiries, recentOrders] = await Promise.all([
     getDashboardCounts(),
     listAllLotsAdmin(),
     prisma.sellInquiry.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
+    }),
+    prisma.order.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 5,
+      include: { lot: true },
     }),
   ]);
 
@@ -94,6 +99,32 @@ export default async function AdminDashboardPage() {
           </ul>
         </section>
       </div>
+
+      <section className="border border-line bg-white p-5 shadow-[var(--shadow)]">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-display text-xl font-semibold">Purchase requests</h2>
+          <Link href="/admin/orders" className="text-sm font-semibold text-accent hover:text-accent-deep">
+            Orders
+          </Link>
+        </div>
+        <ul className="mt-4 divide-y divide-line">
+          {recentOrders.length === 0 ? (
+            <li className="py-6 text-sm text-steel">No purchase requests yet.</li>
+          ) : (
+            recentOrders.map((order) => (
+              <li key={order.id} className="flex items-start justify-between gap-3 py-3 text-sm">
+                <div>
+                  <p className="font-medium text-ink">{order.lot.title}</p>
+                  <p className="text-steel">
+                    {order.userEmail} · {order.status}
+                  </p>
+                </div>
+                <p className="font-semibold">{formatCurrency(order.amount)}</p>
+              </li>
+            ))
+          )}
+        </ul>
+      </section>
     </div>
   );
 }

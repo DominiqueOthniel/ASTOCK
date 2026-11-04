@@ -4,6 +4,7 @@ const nav = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/lots", label: "Lots" },
   { href: "/admin/lots/new", label: "New lot" },
+  { href: "/admin/orders", label: "Orders" },
   { href: "/admin/inquiries", label: "Inquiries" },
 ];
 

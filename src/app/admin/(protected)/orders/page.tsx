@@ -1,0 +1,60 @@
+import Link from "next/link";
+import { formatCurrency } from "@/lib/format";
+import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
+
+export default async function AdminOrdersPage() {
+  const orders = await prisma.order.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 100,
+    include: { lot: true },
+  });
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">Inbox</p>
+        <h1 className="mt-2 font-display text-3xl font-semibold text-ink">Purchase requests</h1>
+        <p className="mt-2 max-w-2xl text-sm text-steel">
+          Email-based buy requests from authenticated buyers. Follow up by email to confirm the sale.
+        </p>
+      </div>
+
+      {orders.length === 0 ? (
+        <p className="border border-line bg-white p-6 text-sm text-steel shadow-[var(--shadow)]">
+          No purchase requests yet.
+        </p>
+      ) : (
+        <ul className="divide-y divide-line border border-line bg-white shadow-[var(--shadow)]">
+          {orders.map((order) => (
+            <li key={order.id} className="flex flex-col gap-2 p-5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="font-medium text-ink">{order.lot.title}</p>
+                <p className="mt-1 text-sm text-steel">
+                  {order.userEmail} · {order.status} · {new Date(order.createdAt).toLocaleString()}
+                </p>
+                <p className="mt-1 text-xs text-steel">Order {order.id}</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <p className="font-display text-lg font-semibold">{formatCurrency(order.amount)}</p>
+                <Link
+                  href={`/lots/${order.lot.slug}`}
+                  className="text-sm font-semibold text-accent hover:text-accent-deep"
+                >
+                  View lot
+                </Link>
+                <a
+                  href={`mailto:${order.userEmail}?subject=${encodeURIComponent(`Astock order ${order.id}`)}`}
+                  className="text-sm font-semibold text-accent hover:text-accent-deep"
+                >
+                  Email buyer
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}

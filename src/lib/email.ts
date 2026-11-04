@@ -95,3 +95,45 @@ export async function notifySellInquiry(opts: {
     text: `Thanks ${opts.company}. We received your seller inquiry and will follow up about manifests, grades, and pickup.`,
   });
 }
+
+export async function notifyOrderRequest(opts: {
+  opsEmail: string;
+  buyerEmail: string;
+  lotTitle: string;
+  slug: string;
+  amount: number;
+  orderId: string;
+}) {
+  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astock-one.vercel.app";
+  const ops = await sendTransactionalEmail({
+    to: opts.opsEmail,
+    subject: `Order request: ${opts.lotTitle}`,
+    text: [
+      `New Astock purchase request.`,
+      ``,
+      `Order ID: ${opts.orderId}`,
+      `Lot: ${opts.lotTitle}`,
+      `Slug: ${opts.slug}`,
+      `Amount: $${opts.amount.toLocaleString()}`,
+      `Buyer: ${opts.buyerEmail}`,
+      `Lot URL: ${site}/lots/${opts.slug}`,
+      ``,
+      `Confirm with the buyer by email to complete the sale.`,
+    ].join("\n"),
+  });
+
+  await sendTransactionalEmail({
+    to: opts.buyerEmail,
+    subject: `We received your order request: ${opts.lotTitle}`,
+    text: [
+      `Thanks for your interest in "${opts.lotTitle}".`,
+      ``,
+      `We recorded your request for $${opts.amount.toLocaleString()} (order ${opts.orderId}).`,
+      `An Astock operator will confirm next steps by email.`,
+      ``,
+      `Lot: ${site}/lots/${opts.slug}`,
+    ].join("\n"),
+  });
+
+  return ops;
+}

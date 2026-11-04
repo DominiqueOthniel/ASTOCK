@@ -38,7 +38,7 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <div className="site-grid flex flex-col gap-2 py-5 text-xs text-white/45 sm:flex-row sm:justify-between">
           <p>© 2026 Astock. Bulk liquidation marketplace.</p>
-          <p>Secure checkout powered by Stripe when enabled.</p>
+          <p>Purchase requests are confirmed by email with Astock ops.</p>
         </div>
       </div>
     </footer>
