@@ -1,6 +1,6 @@
 # Astock
 
-Astock is a bulk liquidation marketplace for selling and buying retail returns, overstock, pallets, and truckloads. It includes a public site and an admin back office backed by PostgreSQL via Prisma.
+Astock is a bulk liquidation marketplace for selling and buying retail returns, overstock, pallets, and truckloads. It includes a public site and an admin back office backed by **Supabase Postgres** via Prisma.
 
 ## Features
 
@@ -17,22 +17,32 @@ Demo bidding and buy-now update the database. No real payments are processed.
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
-- Prisma + PostgreSQL (Prisma Postgres, Neon, Vercel Postgres, etc.)
-- jose session cookies + bcryptjs passwords
+- Prisma + Supabase Postgres
+- jose session cookies + bcryptjs for `/admin` (Supabase Auth not required yet)
+- Optional `@supabase/supabase-js` scaffold in `src/lib/supabase.ts` for Auth/Storage later
 
 ## Environment
 
-Copy `.env.example` to `.env` and set a PostgreSQL `DATABASE_URL`:
+Copy `.env.example` to `.env`. For Supabase you need **both** pooled and direct database URLs:
 
 ```bash
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/postgres?sslmode=require"
+# Transaction pooler (Vercel / serverless) — port 6543
+DATABASE_URL="postgresql://postgres.PROJECT_REF:PASSWORD@aws-0-REGION.pooler.supabase.com:6543/postgres?pgbouncer=true"
+# Direct (migrations / db push) — port 5432
+DIRECT_URL="postgresql://postgres.PROJECT_REF:PASSWORD@aws-0-REGION.pooler.supabase.com:5432/postgres"
+
+NEXT_PUBLIC_SUPABASE_URL="https://PROJECT_REF.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+
 ADMIN_EMAIL="admin@astock.market"
 ADMIN_PASSWORD="astock-admin-demo"
 SESSION_SECRET="astock-dev-session-secret-change-in-production"
 COOKIE_SECURE="false"
 ```
 
-Set `COOKIE_SECURE=true` behind HTTPS in production. On Vercel also set the same vars for Production.
+Find connection strings in Supabase → **Project Settings → Database → Connection string**.
+
+Set `COOKIE_SECURE=true` on Vercel. Also set `DATABASE_URL`, `DIRECT_URL`, admin vars, and the public Supabase URL/anon key on the Vercel project.
 
 ### Admin defaults
 
@@ -47,24 +57,18 @@ pnpm db:setup
 pnpm dev
 ```
 
-`pnpm db:setup` runs `prisma db push` and seeds 22 lots plus the admin user from `prisma/seed-lots.json`.
+`pnpm db:setup` runs `prisma db push` (uses `DIRECT_URL`) and seeds 22 lots plus the admin user from `prisma/seed-lots.json`.
 
 Open [http://localhost:3000](http://localhost:3000). Admin: [http://localhost:3000/admin/login](http://localhost:3000/admin/login).
 
-Also works with npm:
+## Production (Vercel + Supabase)
 
-```bash
-npm install
-npm run db:setup
-npm run dev
-```
+1. Create/link a Supabase project and copy pooled + direct Postgres URLs.
+2. Set env on Vercel project `astock` (domain `astock-one.vercel.app`).
+3. From a machine with the URLs: `pnpm db:setup`.
+4. Deploy: `vercel deploy --prod` (Git auto-deploy may be disabled on the project).
 
-Production build:
-
-```bash
-pnpm build
-pnpm exec next start -H 0.0.0.0 -p 3000
-```
+Live: [https://astock-one.vercel.app](https://astock-one.vercel.app)
 
 ## Project layout
 
@@ -72,7 +76,7 @@ pnpm exec next start -H 0.0.0.0 -p 3000
 - `src/app/admin` login + protected dashboard, lots, inquiries
 - `src/app/api/admin` login, logout, lots, inquiries mutations
 - `src/components` site UI and `admin/` shell, login, lot form
-- `src/lib` prisma, auth, lot service/mapper, format helpers
+- `src/lib` prisma, auth, supabase scaffold, lot service/mapper, format helpers
 - `prisma/schema.prisma`, `prisma/seed.ts`, `prisma/seed-lots.json`
 
 ## License
