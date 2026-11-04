@@ -1,6 +1,6 @@
 # Astock
 
-Astock is a bulk liquidation marketplace for selling and buying retail returns, overstock, pallets, and truckloads. It includes a public site and an admin back office backed by SQLite via Prisma.
+Astock is a bulk liquidation marketplace for selling and buying retail returns, overstock, pallets, and truckloads. It includes a public site and an admin back office backed by PostgreSQL via Prisma.
 
 ## Features
 
@@ -17,22 +17,22 @@ Demo bidding and buy-now update the database. No real payments are processed.
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
-- Prisma + SQLite
+- Prisma + PostgreSQL (Prisma Postgres, Neon, Vercel Postgres, etc.)
 - jose session cookies + bcryptjs passwords
 
 ## Environment
 
-Copy `.env.example` to `.env` (a local `.env` is already present for development):
+Copy `.env.example` to `.env` and set a PostgreSQL `DATABASE_URL`:
 
 ```bash
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/postgres?sslmode=require"
 ADMIN_EMAIL="admin@astock.market"
 ADMIN_PASSWORD="astock-admin-demo"
 SESSION_SECRET="astock-dev-session-secret-change-in-production"
 COOKIE_SECURE="false"
 ```
 
-Set `COOKIE_SECURE=true` only behind HTTPS.
+Set `COOKIE_SECURE=true` behind HTTPS in production. On Vercel also set the same vars for Production.
 
 ### Admin defaults
 
