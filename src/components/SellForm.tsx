@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { submitSellInquiryAction } from "@/app/actions/inquiries";
+import { TermsAgree } from "@/components/TermsAgree";
 
 export function SellForm({ signedIn, defaultEmail }: { signedIn: boolean; defaultEmail?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -15,7 +17,12 @@ export function SellForm({ signedIn, defaultEmail }: { signedIn: boolean; defaul
       setError("Sign in to submit a seller inquiry.");
       return;
     }
+    if (!termsAccepted) {
+      setError("Agree to the Terms & Conditions and Privacy Policy to continue.");
+      return;
+    }
     const formData = new FormData(event.currentTarget);
+    formData.set("termsAccepted", "true");
     setError(null);
     startTransition(async () => {
       const result = await submitSellInquiryAction(formData);
@@ -118,12 +125,15 @@ export function SellForm({ signedIn, defaultEmail }: { signedIn: boolean; defaul
           disabled={!signedIn}
         />
       </label>
+      {signedIn ? (
+        <TermsAgree checked={termsAccepted} onChange={setTermsAccepted} id="sell-terms" />
+      ) : null}
       {error ? (
         <p className="border border-warn/30 bg-warn/10 px-3 py-2 text-sm text-ink-soft">{error}</p>
       ) : null}
       <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
         {signedIn ? (
-          <button type="submit" className="btn btn-primary" disabled={pending}>
+          <button type="submit" className="btn btn-primary" disabled={pending || !termsAccepted}>
             {pending ? "Sending…" : "Request seller intro"}
           </button>
         ) : (

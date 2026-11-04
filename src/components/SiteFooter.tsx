@@ -29,9 +29,21 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
-            Contact
+            Legal
           </p>
-          <p className="mt-4 text-sm text-white/80">sellers@astock.market</p>
+          <ul className="mt-4 space-y-2 text-sm text-white/80">
+            <li>
+              <Link href="/terms" className="hover:text-white">
+                Terms &amp; Conditions
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
+          </ul>
+          <p className="mt-5 text-sm text-white/80">sellers@astock.market</p>
           <p className="mt-1 text-sm text-white/80">buyers@astock.market</p>
         </div>
       </div>

@@ -17,8 +17,8 @@ export default async function AdminLotsPage() {
         </Link>
       </div>
 
-      <div className="overflow-x-auto border border-line bg-white shadow-[var(--shadow)]">
-        <table className="min-w-full text-left text-sm">
+      <div className="table-scroll border border-line bg-white shadow-[var(--shadow)]">
+        <table className="min-w-[40rem] w-full text-left text-sm">
           <thead className="border-b border-line bg-mist/60 text-xs uppercase tracking-[0.12em] text-steel">
             <tr>
               <th className="px-4 py-3 font-semibold">Title</th>

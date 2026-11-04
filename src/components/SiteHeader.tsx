@@ -21,7 +21,7 @@ export function SiteHeader({ email }: { email?: string | null }) {
         onDark ? "text-white" : "text-ink"
       }`}
     >
-      <div className="site-grid flex items-center justify-between py-5">
+      <div className="site-grid flex items-center justify-between gap-3 py-4 sm:py-5">
         <Link
           href="/"
           className="font-display text-xl font-bold tracking-tight md:text-2xl"
@@ -30,7 +30,7 @@ export function SiteHeader({ email }: { email?: string | null }) {
           Astock
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -47,13 +47,13 @@ export function SiteHeader({ email }: { email?: string | null }) {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center border border-current/30 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center border border-current/30 md:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen((value) => !value)}
         >
           <span className="sr-only">Menu</span>
-          <span className="flex w-4 flex-col gap-1">
+          <span className="flex w-4 flex-col gap-1.5">
             <span className="block h-px bg-current" />
             <span className="block h-px bg-current" />
             <span className="block h-px bg-current" />
@@ -66,21 +66,23 @@ export function SiteHeader({ email }: { email?: string | null }) {
           className={`border-t md:hidden ${
             onDark
               ? "border-white/20 bg-ink/95 text-white"
-              : "border-line bg-paper text-ink"
+              : "border-line bg-paper/95 text-ink backdrop-blur"
           }`}
         >
-          <div className="site-grid flex flex-col gap-4 py-5">
+          <div className="site-grid flex flex-col gap-1 py-3">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-base font-medium"
+                className="flex min-h-12 items-center text-base font-medium"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <AccountMenu email={email ?? null} onDark={onDark} />
+            <div className="border-t border-current/15 py-3">
+              <AccountMenu email={email ?? null} onDark={onDark} />
+            </div>
           </div>
         </div>
       ) : null}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { placeBidAction, requestPurchaseAction } from "@/app/actions/bidding";
 import { Countdown } from "@/components/Countdown";
+import { TermsAgree } from "@/components/TermsAgree";
 import { formatCurrency } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
@@ -19,6 +20,7 @@ export function BidBox({
   const [amount, setAmount] = useState(String(minBid));
   const [message, setMessage] = useState<string | null>(null);
   const [mailto, setMailto] = useState<string | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
 
   const parsed = useMemo(() => Number(amount.replace(/[^0-9.]/g, "")), [amount]);
@@ -55,8 +57,13 @@ export function BidBox({
       setMessage("Sign in to request this purchase.");
       return;
     }
+    if (!termsAccepted) {
+      setMessage("Agree to the Terms & Conditions and Privacy Policy to continue.");
+      return;
+    }
     const formData = new FormData();
     formData.set("slug", lot.slug);
+    formData.set("termsAccepted", "true");
     startTransition(async () => {
       const result = await requestPurchaseAction(formData);
       if (!result.ok) {
@@ -74,9 +81,9 @@ export function BidBox({
   }
 
   return (
-    <aside className="border border-line bg-white p-5 shadow-[var(--shadow)]">
-      <div className="flex items-start justify-between gap-4">
-        <div>
+    <aside className="w-full min-w-0 border border-line bg-white p-4 shadow-[var(--shadow)] sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
           <p className="text-xs uppercase tracking-[0.14em] text-steel">
             {lot.status === "sold"
               ? "Sold"
@@ -84,13 +91,13 @@ export function BidBox({
                 ? "Fixed price"
                 : "Live auction"}
           </p>
-          <p className="mt-2 font-display text-3xl font-bold text-ink">
+          <p className="mt-2 break-words font-display text-3xl font-bold text-ink">
             {formatCurrency(
               lot.saleType === "Buy Now" ? lot.buyNowPrice ?? lot.currentBid : lot.currentBid,
             )}
           </p>
         </div>
-        <div className="text-right">
+        <div className="text-left sm:text-right">
           <p className="text-xs uppercase tracking-[0.14em] text-steel">Ends in</p>
           <Countdown endsAt={lot.endsAt} className="mt-2 block text-lg font-semibold text-warn" />
         </div>
@@ -143,14 +150,21 @@ export function BidBox({
           )}
         </form>
       ) : signedIn ? (
-        <button
-          type="button"
-          className="btn btn-primary mt-5 w-full"
-          onClick={onRequestPurchase}
-          disabled={pending}
-        >
-          {pending ? "Sending request…" : "Request purchase"}
-        </button>
+        <div className="mt-5 space-y-4">
+          <TermsAgree
+            checked={termsAccepted}
+            onChange={setTermsAccepted}
+            id={`purchase-terms-${lot.id}`}
+          />
+          <button
+            type="button"
+            className="btn btn-primary w-full"
+            onClick={onRequestPurchase}
+            disabled={pending || !termsAccepted}
+          >
+            {pending ? "Sending request…" : "Request purchase"}
+          </button>
+        </div>
       ) : (
         <Link href={loginHref} className="btn btn-primary mt-5 w-full">
           Sign in to buy

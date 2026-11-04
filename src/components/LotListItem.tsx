@@ -7,13 +7,13 @@ import type { Lot } from "@/lib/types";
 export function LotListItem({ lot }: { lot: Lot }) {
   return (
     <Link href={`/lots/${lot.slug}`} className="lot-row group">
-      <div className="relative aspect-[4/3] overflow-hidden bg-mist md:aspect-square md:h-[72px] md:w-[96px]">
+      <div className="relative aspect-[16/10] overflow-hidden bg-mist sm:aspect-[4/3] md:aspect-square md:h-[72px] md:w-[96px]">
         <Image
           src={lot.images[0] ?? "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"}
           alt={`Photo of ${lot.title}`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-          sizes="96px"
+          sizes="(max-width: 768px) 100vw, 96px"
         />
       </div>
       <div className="min-w-0">
@@ -24,7 +24,7 @@ export function LotListItem({ lot }: { lot: Lot }) {
           <span aria-hidden="true">·</span>
           <span>{formatCondition(lot.condition)}</span>
         </div>
-        <h3 className="mt-1 font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-accent-deep md:text-lg">
+        <h3 className="mt-1 break-words font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-accent-deep md:text-lg">
           {lot.title}
         </h3>
         <p className="mt-0.5 text-sm text-steel">
@@ -32,7 +32,7 @@ export function LotListItem({ lot }: { lot: Lot }) {
           {lot.saleType === "Buy Now" ? " · Buy now" : ` · ${lot.bidCount} bids`}
         </p>
       </div>
-      <div className="flex items-end justify-between gap-6 md:flex-col md:items-end md:text-right">
+      <div className="flex items-end justify-between gap-4 sm:gap-6 md:flex-col md:items-end md:text-right">
         <div>
           <p className="text-[11px] uppercase tracking-[0.12em] text-steel">
             {lot.saleType === "Buy Now" ? "Buy now" : "Current bid"}

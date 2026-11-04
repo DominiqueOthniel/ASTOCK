@@ -60,18 +60,19 @@ model Bid {
 }
 
 model Order {
-  id                    String   @id @default(cuid())
+  id                    String    @id @default(cuid())
   lotId                 String
-  lot                   Lot      @relation(fields: [lotId], references: [id], onDelete: Restrict)
+  lot                   Lot       @relation(fields: [lotId], references: [id], onDelete: Restrict)
   userId                String
   userEmail             String
   amount                Float
-  currency              String   @default("usd")
-  status                String   @default("pending")
-  stripeSessionId       String?  @unique
+  currency              String    @default("usd")
+  status                String    @default("pending")
+  stripeSessionId       String?   @unique
   stripePaymentIntentId String?
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  termsAcceptedAt       DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 
   @@index([userId])
   @@index([lotId])
@@ -79,18 +80,19 @@ model Order {
 }
 
 model SellInquiry {
-  id            String   @id @default(cuid())
-  company       String
-  contactName   String
-  email         String
-  phone         String?
-  inventoryType String
-  categories    String?
-  cities        String?
-  volume        String
-  userId        String?
-  handled       Boolean  @default(false)
-  createdAt     DateTime @default(now())
+  id              String    @id @default(cuid())
+  company         String
+  contactName     String
+  email           String
+  phone           String?
+  inventoryType   String
+  categories      String?
+  cities          String?
+  volume          String
+  userId          String?
+  handled         Boolean   @default(false)
+  termsAcceptedAt DateTime?
+  createdAt       DateTime  @default(now())
 }
 
 model AdminUser {

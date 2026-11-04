@@ -15,6 +15,14 @@ export async function submitSellInquiryAction(formData: FormData) {
     };
   }
 
+  const termsAccepted = String(formData.get("termsAccepted") ?? "") === "true";
+  if (!termsAccepted) {
+    return {
+      ok: false as const,
+      error: "Agree to the Terms & Conditions and Privacy Policy to continue.",
+    };
+  }
+
   const company = String(formData.get("company") ?? "").trim();
   const contactName = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim() || user.email;
@@ -39,6 +47,7 @@ export async function submitSellInquiryAction(formData: FormData) {
       cities,
       volume,
       userId: user.id,
+      termsAcceptedAt: new Date(),
     },
   });
 

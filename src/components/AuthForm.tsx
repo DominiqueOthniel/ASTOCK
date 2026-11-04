@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
+import { TermsAgree } from "@/components/TermsAgree";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
@@ -10,6 +11,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const next = search.get("next") || "/browse";
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -20,12 +22,24 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     setError(null);
     setMessage(null);
 
+    if (mode === "signup" && !termsAccepted) {
+      setError("Agree to the Terms & Conditions and Privacy Policy to continue.");
+      return;
+    }
+
     startTransition(async () => {
       const supabase = createSupabaseBrowserClient();
       if (mode === "signup") {
+        const acceptedAt = new Date().toISOString();
         const { error: signUpError } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              terms_accepted_at: acceptedAt,
+              privacy_accepted_at: acceptedAt,
+            },
+          },
         });
         if (signUpError) {
           setError(signUpError.message);
@@ -53,7 +67,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="space-y-4 border border-line bg-white p-6 shadow-[var(--shadow)]"
+      className="space-y-4 border border-line bg-white p-5 shadow-[var(--shadow)] sm:p-6"
     >
       <label className="block text-sm">
         <span className="mb-1.5 block font-medium">Email</span>
@@ -70,7 +84,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           autoComplete={mode === "login" ? "current-password" : "new-password"}
         />
       </label>
-      <button type="submit" className="btn btn-primary w-full" disabled={pending}>
+      {mode === "signup" ? (
+        <TermsAgree checked={termsAccepted} onChange={setTermsAccepted} id="signup-terms" />
+      ) : null}
+      <button
+        type="submit"
+        className="btn btn-primary w-full"
+        disabled={pending || (mode === "signup" && !termsAccepted)}
+      >
         {pending ? "Working…" : mode === "login" ? "Sign in" : "Create account"}
       </button>
       {error ? <p className="text-sm text-warn">{error}</p> : null}

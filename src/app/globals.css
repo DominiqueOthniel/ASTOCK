@@ -16,6 +16,7 @@
   --radius: 0.35rem;
   --font-display: var(--font-syne), ui-sans-serif, sans-serif;
   --font-body: var(--font-manrope), ui-sans-serif, sans-serif;
+  --page-pad: 1rem;
 }
 
 @theme inline {
@@ -40,10 +41,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   background:
     radial-gradient(1200px 600px at 10% -10%, rgb(15 122 108 / 10%), transparent 55%),
     radial-gradient(900px 500px at 100% 0%, rgb(74 101 120 / 12%), transparent 50%),
@@ -51,6 +54,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-feature-settings: "ss01" on;
+  -webkit-text-size-adjust: 100%;
 }
 
 ::selection {
@@ -63,13 +67,24 @@ a {
   text-decoration: none;
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
 .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.03em;
 }
 
 .site-grid {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1120px, calc(100% - (var(--page-pad) * 2)));
+  margin-inline: auto;
+}
+
+.admin-shell {
+  width: min(1100px, calc(100% - (var(--page-pad) * 2)));
   margin-inline: auto;
 }
 
@@ -166,6 +181,7 @@ a {
   border: 1px solid transparent;
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.2;
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
@@ -175,6 +191,12 @@ a {
 
 .btn:hover {
   transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn-primary {
@@ -209,6 +231,7 @@ a {
 
 .field {
   width: 100%;
+  max-width: 100%;
   min-height: 2.75rem;
   padding: 0.65rem 0.85rem;
   border: 1px solid var(--line);
@@ -216,6 +239,18 @@ a {
   background: white;
   color: var(--ink);
   font: inherit;
+  appearance: none;
+}
+
+select.field {
+  background-image: linear-gradient(45deg, transparent 50%, var(--steel) 50%),
+    linear-gradient(135deg, var(--steel) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
 }
 
 .field:focus {
@@ -240,7 +275,7 @@ a {
 
 @media (min-width: 768px) {
   .lot-row {
-    grid-template-columns: 96px 1fr auto;
+    grid-template-columns: 96px minmax(0, 1fr) auto;
     align-items: center;
   }
 }
@@ -269,7 +304,67 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   min-height: inherit;
-  padding: 7rem 0 4.5rem;
+  padding: 6.5rem 0 3.5rem;
+}
+
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.min-w-0 {
+  min-width: 0;
+}
+
+.prose-legal {
+  color: var(--ink-soft);
+}
+
+.prose-legal h1,
+.prose-legal h2 {
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.prose-legal strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-pad: 1rem;
+  }
+
+  .hero-plane {
+    min-height: min(88vh, 720px);
+  }
+
+  .hero-content {
+    padding: 5.75rem 0 3rem;
+  }
+
+  .btn {
+    min-height: 2.85rem;
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --page-pad: 1.25rem;
+  }
+
+  .hero-content {
+    padding: 7rem 0 4.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

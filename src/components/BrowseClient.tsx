@@ -20,6 +20,7 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
   const [lotType, setLotType] = useState("All");
   const [endingSoon, setEndingSoon] = useState(false);
   const [sort, setSort] = useState<SortOption>("ending");
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const now = Date.now();
@@ -54,9 +55,91 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
     lotType !== "All" ||
     endingSoon;
 
+  const filterControls = (
+    <div className="space-y-4">
+      <label className="block text-sm">
+        <span className="mb-1.5 block font-medium text-ink-soft">Search</span>
+        <input
+          className="field"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Title, city, lot slug"
+        />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1.5 block font-medium text-ink-soft">Category</span>
+        <select className="field" value={category} onChange={(event) => setCategory(event.target.value)}>
+          <option>All</option>
+          {categories.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1.5 block font-medium text-ink-soft">Condition grade</span>
+        <select
+          className="field"
+          value={condition}
+          onChange={(event) => setCondition(event.target.value)}
+        >
+          <option>All</option>
+          {conditionGrades.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1.5 block font-medium text-ink-soft">Lot type</span>
+        <select className="field" value={lotType} onChange={(event) => setLotType(event.target.value)}>
+          <option>All</option>
+          {lotTypes.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </label>
+      <label className="flex min-h-11 items-center gap-3 text-sm font-medium text-ink-soft">
+        <input
+          type="checkbox"
+          checked={endingSoon}
+          onChange={(event) => setEndingSoon(event.target.checked)}
+          className="size-5 accent-[var(--accent)]"
+        />
+        Ending within 24 hours
+      </label>
+    </div>
+  );
+
   return (
-    <div className="grid gap-8 lg:grid-cols-[250px_1fr]">
-      <aside className="h-fit border border-line bg-white p-4 shadow-[var(--shadow)]">
+    <div className="grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
+      <div className="lg:hidden">
+        <button
+          type="button"
+          className="btn btn-secondary w-full"
+          aria-expanded={filtersOpen}
+          onClick={() => setFiltersOpen((value) => !value)}
+        >
+          {filtersOpen ? "Hide filters" : hasFilters ? "Filters (active)" : "Show filters"}
+        </button>
+        {filtersOpen ? (
+          <aside className="mt-3 border border-line bg-white p-4 shadow-[var(--shadow)]">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="font-display text-lg font-semibold">Filters</h2>
+              {hasFilters ? (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="min-h-10 text-xs font-semibold text-accent transition-colors hover:text-accent-deep"
+                >
+                  Clear
+                </button>
+              ) : null}
+            </div>
+            {filterControls}
+          </aside>
+        ) : null}
+      </div>
+
+      <aside className="hidden h-fit border border-line bg-white p-4 shadow-[var(--shadow)] lg:block">
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-display text-lg font-semibold">Filters</h2>
           {hasFilters ? (
@@ -69,69 +152,19 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
             </button>
           ) : null}
         </div>
-        <div className="mt-4 space-y-4">
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium text-ink-soft">Search</span>
-            <input
-              className="field"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Title, city, lot slug"
-            />
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium text-ink-soft">Category</span>
-            <select className="field" value={category} onChange={(event) => setCategory(event.target.value)}>
-              <option>All</option>
-              {categories.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium text-ink-soft">Condition grade</span>
-            <select
-              className="field"
-              value={condition}
-              onChange={(event) => setCondition(event.target.value)}
-            >
-              <option>All</option>
-              {conditionGrades.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium text-ink-soft">Lot type</span>
-            <select className="field" value={lotType} onChange={(event) => setLotType(event.target.value)}>
-              <option>All</option>
-              {lotTypes.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-2 text-sm font-medium text-ink-soft">
-            <input
-              type="checkbox"
-              checked={endingSoon}
-              onChange={(event) => setEndingSoon(event.target.checked)}
-              className="size-4 accent-[var(--accent)]"
-            />
-            Ending within 24 hours
-          </label>
-        </div>
+        <div className="mt-4">{filterControls}</div>
       </aside>
 
-      <div>
+      <div className="min-w-0">
         <div className="flex flex-col gap-3 border-b border-line pb-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-steel">
             {filtered.length} lot{filtered.length === 1 ? "" : "s"}
             {hasFilters ? " matching filters" : " live"}
           </p>
-          <label className="flex items-center gap-2 text-sm text-steel">
-            <span className="whitespace-nowrap">Sort</span>
+          <label className="flex w-full items-center gap-2 text-sm text-steel sm:w-auto">
+            <span className="shrink-0">Sort</span>
             <select
-              className="field !min-h-9 !py-1.5"
+              className="field !min-h-10 !py-1.5 sm:min-w-[11rem]"
               value={sort}
               onChange={(event) => setSort(event.target.value as SortOption)}
             >

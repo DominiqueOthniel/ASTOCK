@@ -47,26 +47,26 @@ export default async function LotDetailPage({ params }: LotPageProps) {
           ← Back to browse
         </Link>
 
-        <div className="mt-6 grid gap-10 lg:grid-cols-[1.4fr_0.8fr]">
-          <div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-steel">
+        <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)] lg:gap-10">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-steel">
               <span>{lot.category}</span>
               <span aria-hidden="true">·</span>
               <span>{lot.lotType}</span>
               <span aria-hidden="true">·</span>
               <span>{formatCondition(lot.condition)}</span>
               <span aria-hidden="true">·</span>
-              <span>{lot.slug.toUpperCase()}</span>
+              <span className="break-all">{lot.slug.toUpperCase()}</span>
             </div>
-            <h1 className="mt-3 max-w-3xl font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
+            <h1 className="mt-3 max-w-3xl break-words font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
               {lot.title}
             </h1>
-            <p className="mt-3 text-steel">
+            <p className="mt-3 text-pretty text-steel">
               {lot.location} · {lot.unitCount.toLocaleString()} units · Est. retail{" "}
               {formatCurrency(lot.estimatedRetail)}
             </p>
 
-            <div className="mt-8">
+            <div className="mt-8 min-w-0">
               <LotGallery images={lot.images} title={lot.title} />
             </div>
 
@@ -102,7 +102,7 @@ export default async function LotDetailPage({ params }: LotPageProps) {
             </section>
           </div>
 
-          <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
             <BidBox lot={lot} signedIn={Boolean(user)} />
           </div>
         </div>

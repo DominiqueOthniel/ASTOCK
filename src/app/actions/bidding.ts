@@ -45,11 +45,20 @@ export async function requestPurchaseAction(formData: FormData) {
     };
   }
 
+  const termsAccepted = String(formData.get("termsAccepted") ?? "") === "true";
+  if (!termsAccepted) {
+    return {
+      ok: false as const,
+      error: "Agree to the Terms & Conditions and Privacy Policy to continue.",
+    };
+  }
+
   const slug = String(formData.get("slug") ?? "");
   const result = await createEmailOrder({
     slug,
     userId: user.id,
     userEmail: user.email,
+    termsAcceptedAt: new Date(),
   });
   if (!result.ok) {
     return { ok: false as const, error: result.error };

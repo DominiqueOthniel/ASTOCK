@@ -40,6 +40,7 @@ export async function createEmailOrder(opts: {
   slug: string;
   userId: string;
   userEmail: string;
+  termsAcceptedAt: Date;
 }): Promise<
   | {
       ok: true;
@@ -69,6 +70,7 @@ export async function createEmailOrder(opts: {
       userEmail: opts.userEmail,
       amount,
       status: "email_pending",
+      termsAcceptedAt: opts.termsAcceptedAt,
     },
   });
 
