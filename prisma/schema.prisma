@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lot {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  category         String
+  condition        String
+  lotType          String
+  saleType         String
+  currentBid       Float
+  buyNowPrice      Float?
+  startingBid      Float
+  reserveMet       Boolean  @default(false)
+  bidCount         Int      @default(0)
+  unitCount        Int
+  estimatedRetail  Float
+  location         String
+  endsAt           DateTime
+  featured         Boolean  @default(false)
+  published        Boolean  @default(false)
+  imagesJson       String
+  manifestSummary  String
+  conditionNotes   String
+  sellerNotes      String
+  shipping         String
+  pickup           String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model SellInquiry {
+  id            String   @id @default(cuid())
+  company       String
+  contactName   String
+  email         String
+  phone         String?
+  inventoryType String
+  categories    String?
+  cities        String?
+  volume        String
+  handled       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

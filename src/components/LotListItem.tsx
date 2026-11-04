@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Countdown } from "@/components/Countdown";
-import { formatCondition, formatCurrency } from "@/lib/lots";
+import { formatCondition, formatCurrency } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
 export function LotListItem({ lot }: { lot: Lot }) {
   return (
-    <Link href={`/lots/${lot.id}`} className="lot-row group">
+    <Link href={`/lots/${lot.slug}`} className="lot-row group">
       <div className="relative aspect-[4/3] overflow-hidden bg-mist md:aspect-square md:h-[72px] md:w-[96px]">
         <Image
-          src={lot.images[0]}
+          src={lot.images[0] ?? "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"}
           alt={`Photo of ${lot.title}`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"

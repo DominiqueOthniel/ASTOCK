@@ -4,19 +4,21 @@ import { notFound } from "next/navigation";
 import { BidBox } from "@/components/BidBox";
 import { LotGallery } from "@/components/LotGallery";
 import { LotListItem } from "@/components/LotListItem";
-import { formatCondition, formatCurrency, getLotById, lots } from "@/lib/lots";
+import { formatCondition, formatCurrency } from "@/lib/format";
+import {
+  getPublishedLotBySlug,
+  getRelatedLots,
+} from "@/lib/lot-service";
+
+export const dynamic = "force-dynamic";
 
 type LotPageProps = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return lots.map((lot) => ({ id: lot.id }));
-}
-
 export async function generateMetadata({ params }: LotPageProps): Promise<Metadata> {
-  const { id } = await params;
-  const lot = getLotById(id);
+  const { slug } = await params;
+  const lot = await getPublishedLotBySlug(slug);
   if (!lot) return { title: "Lot not found" };
   return {
     title: lot.title,
@@ -25,13 +27,11 @@ export async function generateMetadata({ params }: LotPageProps): Promise<Metada
 }
 
 export default async function LotDetailPage({ params }: LotPageProps) {
-  const { id } = await params;
-  const lot = getLotById(id);
+  const { slug } = await params;
+  const lot = await getPublishedLotBySlug(slug);
   if (!lot) notFound();
 
-  const related = lots
-    .filter((item) => item.id !== lot.id && item.category === lot.category)
-    .slice(0, 3);
+  const related = await getRelatedLots(lot, 3);
 
   return (
     <div className="pt-24 pb-20">
@@ -49,7 +49,7 @@ export default async function LotDetailPage({ params }: LotPageProps) {
               <span aria-hidden="true">·</span>
               <span>{formatCondition(lot.condition)}</span>
               <span aria-hidden="true">·</span>
-              <span>{lot.id.toUpperCase()}</span>
+              <span>{lot.slug.toUpperCase()}</span>
             </div>
             <h1 className="mt-3 max-w-3xl font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
               {lot.title}

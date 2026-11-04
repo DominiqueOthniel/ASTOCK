@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { BrowseClient } from "@/components/BrowseClient";
+import { listPublishedLots } from "@/lib/lot-service";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Browse lots",
   description: "Search Astock bulk lots by category, condition grade, lot type, and ending time.",
 };
 
-export default function BrowsePage() {
+export default async function BrowsePage() {
+  const lots = await listPublishedLots();
+
   return (
     <div className="pt-24 pb-20">
       <div className="site-grid">
@@ -18,7 +23,7 @@ export default function BrowsePage() {
         </p>
         <div className="mt-10">
           <Suspense fallback={<p className="text-steel">Loading lots…</p>}>
-            <BrowseClient />
+            <BrowseClient lots={lots} />
           </Suspense>
         </div>
       </div>

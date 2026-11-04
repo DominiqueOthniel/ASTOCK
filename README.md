@@ -1,36 +1,61 @@
 # Astock
 
-Astock is a bulk liquidation marketplace front end for selling and buying retail returns, overstock, pallets, and truckloads. It is inspired by the category of B-Stock style platforms, with original branding and mock data only.
+Astock is a bulk liquidation marketplace for selling and buying retail returns, overstock, pallets, and truckloads. It includes a public site and an admin back office backed by SQLite via Prisma.
 
 ## Features
 
 - Marketing landing page with full-bleed warehouse hero
-- Browse lots with search, filters, and sort
-- Lot detail pages with gallery, manifest, condition notes, shipping/pickup, and mock bid or buy-now UI
-- Sell with us intake form (demo only)
-- Realistic mock catalog across electronics, apparel, home goods, grocery, sporting goods, toys, office, and mixed pallets
+- Browse lots with search, filters, and sort (live from the database)
+- Lot detail pages with gallery, manifest, condition notes, shipping/pickup, and bid or buy-now actions
+- Sell with us intake that stores inquiries for admin review
+- Admin back office at `/admin` for lots CRUD, publish controls, and inquiry inbox
 
-No real payments or authentication in this demo.
+Demo bidding and buy-now update the database. No real payments are processed.
 
 ## Stack
 
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
+- Prisma + SQLite
+- jose session cookies + bcryptjs passwords
+
+## Environment
+
+Copy `.env.example` to `.env` (a local `.env` is already present for development):
+
+```bash
+DATABASE_URL="file:./dev.db"
+ADMIN_EMAIL="admin@astock.market"
+ADMIN_PASSWORD="astock-admin-demo"
+SESSION_SECRET="astock-dev-session-secret-change-in-production"
+COOKIE_SECURE="false"
+```
+
+Set `COOKIE_SECURE=true` only behind HTTPS.
+
+### Admin defaults
+
+- Email: `admin@astock.market`
+- Password: `astock-admin-demo`
 
 ## Run locally
 
 ```bash
 pnpm install
+pnpm db:setup
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+`pnpm db:setup` runs `prisma db push` and seeds 22 lots plus the admin user from `prisma/seed-lots.json`.
+
+Open [http://localhost:3000](http://localhost:3000). Admin: [http://localhost:3000/admin/login](http://localhost:3000/admin/login).
 
 Also works with npm:
 
 ```bash
 npm install
+npm run db:setup
 npm run dev
 ```
 
@@ -43,9 +68,12 @@ pnpm exec next start -H 0.0.0.0 -p 3000
 
 ## Project layout
 
-- `src/app` routes: `/`, `/browse`, `/lots/[id]`, `/sell`
-- `src/components` UI pieces (header, footer, browse filters, bid box, gallery)
-- `src/lib/lots.ts` mock catalog and helpers
+- `src/app/(site)` public routes: `/`, `/browse`, `/lots/[slug]`, `/sell`
+- `src/app/admin` login + protected dashboard, lots, inquiries
+- `src/app/api/admin` login, logout, lots, inquiries mutations
+- `src/components` site UI and `admin/` shell, login, lot form
+- `src/lib` prisma, auth, lot service/mapper, format helpers
+- `prisma/schema.prisma`, `prisma/seed.ts`, `prisma/seed-lots.json`
 
 ## License
 

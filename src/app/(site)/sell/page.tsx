@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SellForm } from "@/components/SellForm";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Sell with us",
   description: "List retail returns, overstock, and liquidation lots on Astock.",
@@ -53,7 +55,7 @@ export default function SellPage() {
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">Request a seller intro</h2>
             <p className="mt-3 text-sm leading-relaxed text-steel">
-              Tell us what you move each month. This is a demo form, so nothing is emailed, but the flow mirrors a real Astock intake.
+              Tell us what you move each month. Your inquiry is saved for the Astock seller team.
             </p>
             <p className="mt-6 text-sm text-steel">
               Already buying?{" "}

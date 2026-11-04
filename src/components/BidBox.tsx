@@ -1,30 +1,54 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
+import { buyNowAction, placeBidAction } from "@/app/actions/bidding";
 import { Countdown } from "@/components/Countdown";
-import { formatCurrency } from "@/lib/lots";
+import { formatCurrency } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
 export function BidBox({ lot }: { lot: Lot }) {
   const minBid = lot.currentBid + 25;
   const [amount, setAmount] = useState(String(minBid));
   const [message, setMessage] = useState<string | null>(null);
+  const [pending, startTransition] = useTransition();
 
   const parsed = useMemo(() => Number(amount.replace(/[^0-9.]/g, "")), [amount]);
 
-  function placeBid(event: React.FormEvent) {
+  function onPlaceBid(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (Number.isNaN(parsed) || parsed < minBid) {
       setMessage(`Enter at least ${formatCurrency(minBid)}.`);
       return;
     }
-    setMessage(`Mock bid of ${formatCurrency(parsed)} recorded. No payment processed.`);
+
+    const formData = new FormData();
+    formData.set("slug", lot.slug);
+    formData.set("amount", String(parsed));
+
+    startTransition(async () => {
+      const result = await placeBidAction(formData);
+      if (!result.ok) {
+        setMessage(result.error);
+        return;
+      }
+      setMessage(`Bid of ${formatCurrency(parsed)} recorded. Demo only; no payment processed.`);
+      setAmount(String(result.lot.currentBid + 25));
+    });
   }
 
-  function buyNow() {
-    setMessage(
-      `Mock purchase started at ${formatCurrency(lot.buyNowPrice ?? lot.currentBid)}. No payment processed.`,
-    );
+  function onBuyNow() {
+    const formData = new FormData();
+    formData.set("slug", lot.slug);
+    startTransition(async () => {
+      const result = await buyNowAction(formData);
+      if (!result.ok) {
+        setMessage(result.error);
+        return;
+      }
+      setMessage(
+        `Purchase started at ${formatCurrency(lot.buyNowPrice ?? lot.currentBid)}. Demo only; no payment processed.`,
+      );
+    });
   }
 
   return (
@@ -66,7 +90,7 @@ export function BidBox({ lot }: { lot: Lot }) {
       </dl>
 
       {lot.saleType === "Auction" ? (
-        <form className="mt-5 space-y-3" onSubmit={placeBid}>
+        <form className="mt-5 space-y-3" onSubmit={onPlaceBid}>
           <label className="block text-sm font-medium text-ink-soft" htmlFor="bid-amount">
             Your bid (USD)
           </label>
@@ -76,14 +100,20 @@ export function BidBox({ lot }: { lot: Lot }) {
             inputMode="decimal"
             value={amount}
             onChange={(event) => setAmount(event.target.value)}
+            disabled={pending}
           />
-          <button type="submit" className="btn btn-primary w-full">
-            Place bid
+          <button type="submit" className="btn btn-primary w-full" disabled={pending}>
+            {pending ? "Placing bid…" : "Place bid"}
           </button>
         </form>
       ) : (
-        <button type="button" className="btn btn-primary mt-5 w-full" onClick={buyNow}>
-          Buy now
+        <button
+          type="button"
+          className="btn btn-primary mt-5 w-full"
+          onClick={onBuyNow}
+          disabled={pending}
+        >
+          {pending ? "Processing…" : "Buy now"}
         </button>
       )}
 

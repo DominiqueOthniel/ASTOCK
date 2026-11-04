@@ -3,18 +3,11 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { LotListItem } from "@/components/LotListItem";
-import { categories, conditionGrades, lotTypes, lots, sortLots } from "@/lib/lots";
-import type { SortOption } from "@/lib/types";
+import { categories, conditionGrades, lotTypes, sortLabels } from "@/lib/constants";
+import { sortLots } from "@/lib/format";
+import type { Lot, SortOption } from "@/lib/types";
 
-const sortLabels: Record<SortOption, string> = {
-  ending: "Ending soon",
-  "bid-high": "Bid: high to low",
-  "bid-low": "Bid: low to high",
-  retail: "Est. retail",
-  newest: "Newest listed",
-};
-
-export function BrowseClient() {
+export function BrowseClient({ lots }: { lots: Lot[] }) {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category");
   const [query, setQuery] = useState("");
@@ -31,7 +24,7 @@ export function BrowseClient() {
   const filtered = useMemo(() => {
     const now = Date.now();
     const list = lots.filter((lot) => {
-      const haystack = `${lot.title} ${lot.category} ${lot.location} ${lot.id}`.toLowerCase();
+      const haystack = `${lot.title} ${lot.category} ${lot.location} ${lot.slug} ${lot.id}`.toLowerCase();
       if (query && !haystack.includes(query.toLowerCase())) return false;
       if (category !== "All" && lot.category !== category) return false;
       if (condition !== "All" && lot.condition !== condition) return false;
@@ -43,7 +36,7 @@ export function BrowseClient() {
       return true;
     });
     return sortLots(list, sort);
-  }, [query, category, condition, lotType, endingSoon, sort]);
+  }, [lots, query, category, condition, lotType, endingSoon, sort]);
 
   function clearFilters() {
     setQuery("");
@@ -83,7 +76,7 @@ export function BrowseClient() {
               className="field"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Title, city, lot id"
+              placeholder="Title, city, lot slug"
             />
           </label>
           <label className="block text-sm">
@@ -158,7 +151,7 @@ export function BrowseClient() {
             <div className="border-b border-line py-16 text-center">
               <p className="font-display text-xl font-semibold text-ink">No lots match</p>
               <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-steel">
-                Try clearing filters or searching a different city, category, or lot id. New liquidation lots post throughout the week.
+                Try clearing filters or searching a different city, category, or slug. New liquidation lots post throughout the week.
               </p>
               <button type="button" className="btn btn-secondary mt-6" onClick={clearFilters}>
                 Reset filters

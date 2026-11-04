@@ -16,6 +16,7 @@ export type SaleType = "Auction" | "Buy Now";
 
 export interface Lot {
   id: string;
+  slug: string;
   title: string;
   category: Category;
   condition: ConditionGrade;
@@ -23,6 +24,7 @@ export interface Lot {
   saleType: SaleType;
   currentBid: number;
   buyNowPrice?: number;
+  startingBid: number;
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
@@ -36,6 +38,14 @@ export interface Lot {
   shipping: string;
   pickup: string;
   featured?: boolean;
+  published?: boolean;
 }
 
 export type SortOption = "ending" | "bid-high" | "bid-low" | "retail" | "newest";
+
+export type DashboardCounts = {
+  publishedLots: number;
+  draftLots: number;
+  openInquiries: number;
+  totalLots: number;
+};

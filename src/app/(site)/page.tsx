@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { LotListItem } from "@/components/LotListItem";
 import { Reveal } from "@/components/Reveal";
-import { categories, formatCurrency, getFeaturedLots, lots } from "@/lib/lots";
+import { categories } from "@/lib/constants";
+import { formatCurrency } from "@/lib/format";
+import {
+  getFeaturedPublishedLots,
+  listPublishedLots,
+} from "@/lib/lot-service";
+
+export const dynamic = "force-dynamic";
 
 const heroImage =
   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80";
@@ -37,8 +44,11 @@ const sellerSteps = [
   },
 ];
 
-export default function HomePage() {
-  const featured = getFeaturedLots();
+export default async function HomePage() {
+  const [lots, featured] = await Promise.all([
+    listPublishedLots(),
+    getFeaturedPublishedLots(),
+  ]);
   const sampleLots = [...lots]
     .sort((a, b) => new Date(a.endsAt).getTime() - new Date(b.endsAt).getTime())
     .slice(0, 8);

@@ -1,22 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { submitSellInquiryAction } from "@/app/actions/inquiries";
 
 export function SellForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [pending, startTransition] = useTransition();
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const formData = new FormData(event.currentTarget);
+    setError(null);
+    startTransition(async () => {
+      const result = await submitSellInquiryAction(formData);
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setSubmitted(true);
+    });
   }
 
   if (submitted) {
     return (
       <div className="border border-accent-soft bg-white p-6 shadow-[var(--shadow)] md:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Demo complete</p>
-        <h2 className="mt-2 font-display text-2xl font-semibold">Request received</h2>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Request received</p>
+        <h2 className="mt-2 font-display text-2xl font-semibold">Thanks for reaching out</h2>
         <p className="mt-3 max-w-xl text-steel leading-relaxed">
-          Thanks. This is a demo form, so nothing was sent. In production, an Astock seller manager would follow up with next steps for manifests, grades, and pickup.
+          Your seller inquiry is saved. An Astock seller manager would follow up with next steps for manifests, grades, and pickup.
         </p>
         <button type="button" className="btn btn-secondary mt-6" onClick={() => setSubmitted(false)}>
           Submit another request
@@ -84,11 +96,14 @@ export function SellForm() {
           placeholder="Pallets or truckloads per month, lot types, any constraints"
         />
       </label>
+      {error ? (
+        <p className="border border-warn/30 bg-warn/10 px-3 py-2 text-sm text-ink-soft">{error}</p>
+      ) : null}
       <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
-        <button type="submit" className="btn btn-primary">
-          Request seller intro
+        <button type="submit" className="btn btn-primary" disabled={pending}>
+          {pending ? "Sending…" : "Request seller intro"}
         </button>
-        <p className="text-xs text-steel">No payment or account required for this demo.</p>
+        <p className="text-xs text-steel">No payment required for this demo intake.</p>
       </div>
     </form>
   );

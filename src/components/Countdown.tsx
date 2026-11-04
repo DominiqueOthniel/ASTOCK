@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatCountdown } from "@/lib/lots";
+import { formatCountdown } from "@/lib/format";
 
 export function Countdown({ endsAt, className = "" }: { endsAt: string; className?: string }) {
   const [label, setLabel] = useState("…");
