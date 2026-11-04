@@ -1,21 +1,34 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { buyNowAction, placeBidAction } from "@/app/actions/bidding";
 import { Countdown } from "@/components/Countdown";
 import { formatCurrency } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
-export function BidBox({ lot }: { lot: Lot }) {
+export function BidBox({
+  lot,
+  signedIn,
+}: {
+  lot: Lot;
+  signedIn: boolean;
+}) {
+  const closed = lot.status === "sold" || new Date(lot.endsAt).getTime() <= Date.now();
   const minBid = lot.currentBid + 25;
   const [amount, setAmount] = useState(String(minBid));
   const [message, setMessage] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
   const parsed = useMemo(() => Number(amount.replace(/[^0-9.]/g, "")), [amount]);
+  const loginHref = `/login?next=${encodeURIComponent(`/lots/${lot.slug}`)}`;
 
   function onPlaceBid(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!signedIn) {
+      setMessage("Sign in to place a bid.");
+      return;
+    }
     if (Number.isNaN(parsed) || parsed < minBid) {
       setMessage(`Enter at least ${formatCurrency(minBid)}.`);
       return;
@@ -31,12 +44,16 @@ export function BidBox({ lot }: { lot: Lot }) {
         setMessage(result.error);
         return;
       }
-      setMessage(`Bid of ${formatCurrency(parsed)} recorded. Demo only; no payment processed.`);
+      setMessage(`Bid of ${formatCurrency(parsed)} recorded.`);
       setAmount(String(result.lot.currentBid + 25));
     });
   }
 
   function onBuyNow() {
+    if (!signedIn) {
+      setMessage("Sign in to buy this lot.");
+      return;
+    }
     const formData = new FormData();
     formData.set("slug", lot.slug);
     startTransition(async () => {
@@ -45,9 +62,11 @@ export function BidBox({ lot }: { lot: Lot }) {
         setMessage(result.error);
         return;
       }
-      setMessage(
-        `Purchase started at ${formatCurrency(lot.buyNowPrice ?? lot.currentBid)}. Demo only; no payment processed.`,
-      );
+      if (result.checkoutUrl) {
+        window.location.href = result.checkoutUrl;
+        return;
+      }
+      setMessage("Checkout could not start. Try again.");
     });
   }
 
@@ -56,7 +75,11 @@ export function BidBox({ lot }: { lot: Lot }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.14em] text-steel">
-            {lot.saleType === "Buy Now" ? "Fixed price" : "Live auction"}
+            {lot.status === "sold"
+              ? "Sold"
+              : lot.saleType === "Buy Now"
+                ? "Fixed price"
+                : "Live auction"}
           </p>
           <p className="mt-2 font-display text-3xl font-bold text-ink">
             {formatCurrency(
@@ -89,7 +112,11 @@ export function BidBox({ lot }: { lot: Lot }) {
         </div>
       </dl>
 
-      {lot.saleType === "Auction" ? (
+      {closed ? (
+        <p className="mt-5 text-sm text-steel">
+          {lot.status === "sold" ? "This lot has been sold." : "This listing has ended."}
+        </p>
+      ) : lot.saleType === "Auction" ? (
         <form className="mt-5 space-y-3" onSubmit={onPlaceBid}>
           <label className="block text-sm font-medium text-ink-soft" htmlFor="bid-amount">
             Your bid (USD)
@@ -100,21 +127,31 @@ export function BidBox({ lot }: { lot: Lot }) {
             inputMode="decimal"
             value={amount}
             onChange={(event) => setAmount(event.target.value)}
-            disabled={pending}
+            disabled={pending || !signedIn}
           />
-          <button type="submit" className="btn btn-primary w-full" disabled={pending}>
-            {pending ? "Placing bid…" : "Place bid"}
-          </button>
+          {signedIn ? (
+            <button type="submit" className="btn btn-primary w-full" disabled={pending}>
+              {pending ? "Placing bid…" : "Place bid"}
+            </button>
+          ) : (
+            <Link href={loginHref} className="btn btn-primary w-full">
+              Sign in to bid
+            </Link>
+          )}
         </form>
-      ) : (
+      ) : signedIn ? (
         <button
           type="button"
           className="btn btn-primary mt-5 w-full"
           onClick={onBuyNow}
           disabled={pending}
         >
-          {pending ? "Processing…" : "Buy now"}
+          {pending ? "Starting checkout…" : "Buy now"}
         </button>
+      ) : (
+        <Link href={loginHref} className="btn btn-primary mt-5 w-full">
+          Sign in to buy
+        </Link>
       )}
 
       {message ? (
@@ -123,7 +160,7 @@ export function BidBox({ lot }: { lot: Lot }) {
         </p>
       ) : (
         <p className="mt-4 text-xs leading-relaxed text-steel">
-          Demo bidding only. Astock does not process payments in this preview.
+          Bids are binding once placed. Buy now opens Stripe Checkout when payments are enabled.
         </p>
       )}
     </aside>

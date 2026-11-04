@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BidBox } from "@/components/BidBox";
+import { BidHistory } from "@/components/BidHistory";
 import { LotGallery } from "@/components/LotGallery";
 import { LotListItem } from "@/components/LotListItem";
 import { formatCondition, formatCurrency } from "@/lib/format";
 import {
   getPublishedLotBySlug,
   getRelatedLots,
+  listBidsForLot,
 } from "@/lib/lot-service";
+import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +34,11 @@ export default async function LotDetailPage({ params }: LotPageProps) {
   const lot = await getPublishedLotBySlug(slug);
   if (!lot) notFound();
 
-  const related = await getRelatedLots(lot, 3);
+  const [related, bids, user] = await Promise.all([
+    getRelatedLots(lot, 3),
+    listBidsForLot(lot.id),
+    getMarketplaceUser(),
+  ]);
 
   return (
     <div className="pt-24 pb-20">
@@ -78,6 +85,11 @@ export default async function LotDetailPage({ params }: LotPageProps) {
               <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft">{lot.sellerNotes}</p>
             </section>
 
+            <section className="mt-10">
+              <h2 className="font-display text-2xl font-semibold">Bid history</h2>
+              <BidHistory bids={bids} />
+            </section>
+
             <section className="mt-10 grid gap-8 border-t border-line pt-10 md:grid-cols-2">
               <div>
                 <h2 className="font-display text-xl font-semibold">Shipping</h2>
@@ -91,7 +103,7 @@ export default async function LotDetailPage({ params }: LotPageProps) {
           </div>
 
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <BidBox lot={lot} />
+            <BidBox lot={lot} signedIn={Boolean(user)} />
           </div>
         </div>
 

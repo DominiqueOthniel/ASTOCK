@@ -34,7 +34,10 @@ type SeedLot = {
 
 async function main() {
   const email = process.env.ADMIN_EMAIL ?? "admin@astock.market";
-  const password = process.env.ADMIN_PASSWORD ?? "astock-admin-demo";
+  const password = process.env.ADMIN_PASSWORD;
+  if (!password) {
+    throw new Error("ADMIN_PASSWORD must be set to seed the admin user");
+  }
   const passwordHash = await hash(password, 10);
 
   await prisma.adminUser.upsert({

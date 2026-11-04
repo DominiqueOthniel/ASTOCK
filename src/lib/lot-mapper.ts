@@ -47,5 +47,7 @@ export function mapDbLot(lot: DbLot): Lot {
     pickup: lot.pickup,
     featured: lot.featured,
     published: lot.published,
+    status: (lot.status as Lot["status"]) ?? "open",
+    soldAt: lot.soldAt ? lot.soldAt.toISOString() : undefined,
   };
 }

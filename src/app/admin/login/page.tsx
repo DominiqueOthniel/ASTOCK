@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
         <p className="font-display text-3xl font-bold text-ink">Astock</p>
         <h1 className="mt-2 font-display text-2xl font-semibold text-ink">Admin sign in</h1>
         <p className="mt-2 text-sm text-steel">
-          Back office access for marketplace operators. Demo defaults are in the README.
+          Back office access for marketplace operators. Use the production admin credentials from your environment.
         </p>
         <div className="mt-8">
           <LoginForm />

@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AccountMenu } from "@/components/AccountMenu";
 
 const links = [
   { href: "/browse", label: "Browse lots" },
   { href: "/sell", label: "Sell with us" },
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ email }: { email?: string | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const onDark = pathname === "/";
@@ -41,12 +42,7 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/browse"
-            className={`btn ${onDark ? "btn-ghost" : "btn-primary"} !min-h-10 !px-4 text-sm`}
-          >
-            Browse marketplace
-          </Link>
+          <AccountMenu email={email ?? null} onDark={onDark} />
         </nav>
 
         <button
@@ -84,13 +80,7 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/browse"
-              className={`btn ${onDark ? "btn-ghost" : "btn-primary"}`}
-              onClick={() => setOpen(false)}
-            >
-              Browse marketplace
-            </Link>
+            <AccountMenu email={email ?? null} onDark={onDark} />
           </div>
         </div>
       ) : null}

@@ -1,3 +1,4 @@
+import { ImageUploadField } from "@/components/ImageUploadField";
 import { categories, conditionGrades, lotTypes, saleTypes } from "@/lib/constants";
 import type { Lot } from "@/lib/types";
 
@@ -19,7 +20,12 @@ export function LotForm({
   const imagesValue = lot?.images.join("\n") ?? "";
 
   return (
-    <form method="post" action={action} className="space-y-5 border border-line bg-white p-6 shadow-[var(--shadow)]">
+    <form
+      method="post"
+      action={action}
+      className="space-y-5 border border-line bg-white p-6 shadow-[var(--shadow)]"
+      encType="application/x-www-form-urlencoded"
+    >
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block text-sm md:col-span-2">
           <span className="mb-1.5 block font-medium">Title</span>
@@ -176,16 +182,7 @@ export function LotForm({
         </label>
       </div>
 
-      <label className="block text-sm">
-        <span className="mb-1.5 block font-medium">Image URLs (one per line)</span>
-        <textarea
-          className="field min-h-28"
-          name="images"
-          required
-          defaultValue={imagesValue}
-          placeholder="https://images.unsplash.com/..."
-        />
-      </label>
+      <ImageUploadField name="images" defaultValue={imagesValue} />
       <label className="block text-sm">
         <span className="mb-1.5 block font-medium">Manifest summary</span>
         <textarea className="field min-h-28" name="manifestSummary" required defaultValue={lot?.manifestSummary ?? ""} />

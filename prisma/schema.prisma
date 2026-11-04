@@ -12,8 +12,8 @@ datasource db {
 }
 
 model Lot {
-  id               String   @id @default(cuid())
-  slug             String   @unique
+  id               String    @id @default(cuid())
+  slug             String    @unique
   title            String
   category         String
   condition        String
@@ -22,22 +22,60 @@ model Lot {
   currentBid       Float
   buyNowPrice      Float?
   startingBid      Float
-  reserveMet       Boolean  @default(false)
-  bidCount         Int      @default(0)
+  reserveMet       Boolean   @default(false)
+  bidCount         Int       @default(0)
   unitCount        Int
   estimatedRetail  Float
   location         String
   endsAt           DateTime
-  featured         Boolean  @default(false)
-  published        Boolean  @default(false)
+  featured         Boolean   @default(false)
+  published        Boolean   @default(false)
+  status           String    @default("open")
+  soldAt           DateTime?
+  winnerUserId     String?
+  winnerEmail      String?
   imagesJson       String
   manifestSummary  String
   conditionNotes   String
   sellerNotes      String
   shipping         String
   pickup           String
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  bids             Bid[]
+  orders           Order[]
+}
+
+model Bid {
+  id        String   @id @default(cuid())
+  lotId     String
+  lot       Lot      @relation(fields: [lotId], references: [id], onDelete: Cascade)
+  userId    String
+  userEmail String
+  amount    Float
+  createdAt DateTime @default(now())
+
+  @@index([lotId, createdAt])
+  @@index([userId])
+}
+
+model Order {
+  id                    String   @id @default(cuid())
+  lotId                 String
+  lot                   Lot      @relation(fields: [lotId], references: [id], onDelete: Restrict)
+  userId                String
+  userEmail             String
+  amount                Float
+  currency              String   @default("usd")
+  status                String   @default("pending")
+  stripeSessionId       String?  @unique
+  stripePaymentIntentId String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([userId])
+  @@index([lotId])
+  @@index([status])
 }
 
 model SellInquiry {
@@ -50,6 +88,7 @@ model SellInquiry {
   categories    String?
   cities        String?
   volume        String
+  userId        String?
   handled       Boolean  @default(false)
   createdAt     DateTime @default(now())
 }

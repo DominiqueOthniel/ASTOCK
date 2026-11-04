@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SellForm } from "@/components/SellForm";
+import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +29,9 @@ const valueProps = [
   },
 ];
 
-export default function SellPage() {
+export default async function SellPage() {
+  const user = await getMarketplaceUser();
+
   return (
     <div className="pt-24 pb-20">
       <div className="site-grid">
@@ -64,7 +67,7 @@ export default function SellPage() {
               </Link>
             </p>
           </div>
-          <SellForm />
+          <SellForm signedIn={Boolean(user)} defaultEmail={user?.email} />
         </div>
       </div>
     </div>

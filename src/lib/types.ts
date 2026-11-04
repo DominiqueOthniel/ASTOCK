@@ -39,6 +39,8 @@ export interface Lot {
   pickup: string;
   featured?: boolean;
   published?: boolean;
+  status?: "open" | "sold" | "ended";
+  soldAt?: string;
 }
 
 export type SortOption = "ending" | "bid-high" | "bid-low" | "retail" | "newest";

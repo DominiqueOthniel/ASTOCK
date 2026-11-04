@@ -1,12 +1,23 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { notifySellInquiry } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
+import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export async function submitSellInquiryAction(formData: FormData) {
+  const user = await getMarketplaceUser();
+  if (!user?.email) {
+    return {
+      ok: false as const,
+      error: "Sign in to submit a seller inquiry.",
+      authRequired: true as const,
+    };
+  }
+
   const company = String(formData.get("company") ?? "").trim();
   const contactName = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim() || user.email;
   const phone = String(formData.get("phone") ?? "").trim() || null;
   const inventoryType = String(formData.get("inventory") ?? "").trim();
   const categories = String(formData.get("categories") ?? "").trim() || null;
@@ -27,8 +38,11 @@ export async function submitSellInquiryAction(formData: FormData) {
       categories,
       cities,
       volume,
+      userId: user.id,
     },
   });
+
+  void notifySellInquiry({ email, company });
 
   revalidatePath("/admin/inquiries");
   revalidatePath("/admin");
