@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -34,7 +35,7 @@ export function CartCheckout({
 
   function onCheckout() {
     if (!signedIn) {
-      setMessage("Sign in to place your order.");
+      setMessage("Sign in to request your order.");
       return;
     }
     if (!termsAccepted) {
@@ -53,8 +54,8 @@ export function CartCheckout({
       setMailto(result.mailto);
       setMessage(
         result.emailed
-          ? `Order placed for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}). We emailed ops and will follow up.`
-          : `Order recorded for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}). Open email to ops if needed.`,
+          ? `Order requested for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}).`
+          : `Order recorded for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}).`,
       );
       router.refresh();
     });
@@ -62,9 +63,9 @@ export function CartCheckout({
 
   if (lots.length === 0 && !message) {
     return (
-      <div className="border border-line bg-white p-8 text-center shadow-[var(--shadow)]">
-        <p className="font-display text-xl font-semibold text-ink">Your cart is empty</p>
-        <p className="mt-2 text-sm text-steel">Add lots from the catalog.</p>
+      <div className="border border-line bg-surface px-6 py-14 text-center shadow-[var(--shadow)]">
+        <p className="font-display text-2xl font-semibold text-ink">Cart is empty</p>
+        <p className="mt-2 text-sm text-steel">Find a lot and add it.</p>
         <Link href="/browse" className="btn btn-primary mt-6">
           Browse lots
         </Link>
@@ -73,13 +74,28 @@ export function CartCheckout({
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
       <div className="space-y-3">
         {lots.map((lot) => (
           <div
             key={lot.id}
-            className="flex flex-col gap-3 border border-line bg-white p-4 shadow-[var(--shadow)] sm:flex-row sm:items-center sm:justify-between"
+            className="grid gap-4 border border-line bg-surface p-3 shadow-[var(--shadow)] sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-center"
           >
+            <Link
+              href={`/lots/${lot.slug}`}
+              className="relative aspect-[4/3] overflow-hidden bg-mist sm:aspect-square sm:h-[88px] sm:w-[88px]"
+            >
+              <Image
+                src={
+                  lot.images[0] ??
+                  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
+                }
+                alt=""
+                fill
+                className="object-cover"
+                sizes="88px"
+              />
+            </Link>
             <div className="min-w-0">
               <Link
                 href={`/lots/${lot.slug}`}
@@ -90,29 +106,27 @@ export function CartCheckout({
               <p className="mt-1 text-sm text-steel">
                 {lot.location} · {lot.unitCount.toLocaleString()} units
               </p>
-            </div>
-            <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
-              <p className="font-display text-lg font-semibold">
-                {formatCurrency(lotPrice(lot))}
-              </p>
               <button
                 type="button"
-                className="text-sm font-semibold text-warn hover:underline"
+                className="mt-2 text-sm font-semibold text-warn hover:underline"
                 onClick={() => onRemove(lot.slug)}
                 disabled={pending}
               >
                 Remove
               </button>
             </div>
+            <p className="font-display text-lg font-semibold sm:text-right">
+              {formatCurrency(lotPrice(lot))}
+            </p>
           </div>
         ))}
       </div>
 
-      <aside className="h-fit border border-line bg-white p-5 shadow-[var(--shadow)]">
-        <p className="text-xs uppercase tracking-[0.14em] text-steel">Checkout</p>
+      <aside className="h-fit border border-line bg-surface p-5 shadow-[var(--shadow)]">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">Order</p>
         <p className="mt-2 font-display text-3xl font-bold text-ink">{formatCurrency(total)}</p>
         <p className="mt-1 text-sm text-steel">
-          {lots.length} lot{lots.length === 1 ? "" : "s"} · email order
+          {lots.length} lot{lots.length === 1 ? "" : "s"}
         </p>
 
         {signedIn ? (
@@ -128,7 +142,7 @@ export function CartCheckout({
               onClick={onCheckout}
               disabled={pending || !termsAccepted || lots.length === 0}
             >
-              {pending ? "Placing order…" : "Place order"}
+              {pending ? "Sending…" : "Request order"}
             </button>
           </div>
         ) : (
@@ -149,13 +163,11 @@ export function CartCheckout({
               </a>
             ) : null}
             <Link href="/account" className="block font-semibold text-accent-deep hover:underline">
-              View account orders
+              View orders
             </Link>
           </div>
         ) : (
-          <p className="mt-4 text-xs leading-relaxed text-steel">
-            We record your order and notify Astock ops by email. No card checkout.
-          </p>
+          <p className="mt-4 text-xs text-steel">Email confirmation from Astock ops. No card charge.</p>
         )}
       </aside>
     </div>

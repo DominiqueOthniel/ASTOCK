@@ -28,7 +28,7 @@ export default async function AccountPage({
   });
 
   return (
-    <div className="site-grid pt-28 pb-20">
+    <div className="site-grid py-14 md:py-16">
       <h1 className="font-display text-4xl font-semibold text-ink">Your orders</h1>
       <p className="mt-2 text-steel">{user.email}</p>
       {params.success ? (

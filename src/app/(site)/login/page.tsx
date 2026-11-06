@@ -12,9 +12,9 @@ export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   return (
-    <div className="site-grid flex min-h-[70vh] flex-col justify-center pt-28 pb-20">
+    <div className="site-grid flex min-h-[70vh] flex-col justify-center py-14">
       <h1 className="font-display text-4xl font-semibold text-ink">Sign in</h1>
-      <p className="mt-3 max-w-md text-steel">Welcome back.</p>
+      <p className="mt-2 text-steel">Welcome back.</p>
       <div className="mt-8 max-w-md">
         <Suspense fallback={<p className="text-sm text-steel">Loading…</p>}>
           <AuthForm mode="login" />

@@ -62,53 +62,36 @@ export function BuyBox({
       setMailto(result.mailto);
       setMessage(
         result.emailed
-          ? `Order sent for ${formatCurrency(result.amount)}. We emailed ops and will follow up.`
-          : `Order recorded for ${formatCurrency(result.amount)}. Open email to ops if needed.`,
+          ? `Order sent for ${formatCurrency(result.amount)}.`
+          : `Order recorded for ${formatCurrency(result.amount)}.`,
       );
     });
   }
 
   return (
-    <aside className="w-full min-w-0 border border-line bg-white p-4 shadow-[var(--shadow)] sm:p-5">
-      <p className="text-xs uppercase tracking-[0.14em] text-steel">
-        {lot.status === "sold" ? "Sold" : closed ? "Unavailable" : "Asking price"}
+    <aside className="w-full min-w-0 border border-line bg-surface p-5 shadow-[var(--shadow)]">
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">
+        {lot.status === "sold" ? "Sold" : closed ? "Unavailable" : "Price"}
       </p>
-      <p className="mt-2 break-words font-display text-3xl font-bold text-ink">
-        {formatCurrency(price)}
+      <p className="mt-2 font-display text-4xl font-bold text-ink">{formatCurrency(price)}</p>
+      <p className="mt-2 text-sm text-steel">
+        {lot.unitCount.toLocaleString()} units · {lot.location}
       </p>
-
-      <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-line py-4 text-sm">
-        <div>
-          <dt className="text-steel">Units</dt>
-          <dd className="mt-1 font-semibold">{lot.unitCount.toLocaleString()}</dd>
-        </div>
-        <div>
-          <dt className="text-steel">Est. retail</dt>
-          <dd className="mt-1 font-semibold">{formatCurrency(lot.estimatedRetail)}</dd>
-        </div>
-        <div className="col-span-2">
-          <dt className="text-steel">Location</dt>
-          <dd className="mt-1 font-semibold">{lot.location}</dd>
-        </div>
-      </dl>
 
       {closed ? (
-        <p className="mt-5 text-sm text-steel">
-          {lot.status === "sold" ? "This lot has been sold." : "This listing is no longer available."}
+        <p className="mt-6 text-sm text-steel">
+          {lot.status === "sold" ? "This lot has been sold." : "This listing is unavailable."}
         </p>
       ) : (
-        <div className="mt-5 space-y-3">
+        <div className="mt-6 space-y-3">
           <button
             type="button"
-            className="btn btn-secondary w-full"
+            className="btn btn-primary w-full"
             onClick={onAddToCart}
             disabled={pending}
           >
             {pending ? "Adding…" : "Add to cart"}
           </button>
-          <Link href="/cart" className="btn btn-secondary w-full">
-            View cart
-          </Link>
           {signedIn ? (
             <>
               <TermsAgree
@@ -118,7 +101,7 @@ export function BuyBox({
               />
               <button
                 type="button"
-                className="btn btn-primary w-full"
+                className="btn btn-secondary w-full"
                 onClick={onRequestPurchase}
                 disabled={pending || !termsAccepted}
               >
@@ -126,7 +109,7 @@ export function BuyBox({
               </button>
             </>
           ) : (
-            <Link href={loginHref} className="btn btn-primary w-full">
+            <Link href={loginHref} className="btn btn-secondary w-full">
               Sign in to order
             </Link>
           )}
@@ -143,15 +126,11 @@ export function BuyBox({
           ) : null}
           {message.toLowerCase().includes("cart") ? (
             <Link href="/cart" className="block font-semibold text-accent-deep hover:underline">
-              Go to cart
+              View cart
             </Link>
           ) : null}
         </div>
-      ) : (
-        <p className="mt-4 text-xs leading-relaxed text-steel">
-          Fixed price. Add to cart or request purchase. Astock confirms by email.
-        </p>
-      )}
+      ) : null}
     </aside>
   );
 }

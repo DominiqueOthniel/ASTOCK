@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BuyBox } from "@/components/BuyBox";
-import { LotGallery } from "@/components/LotGallery";
 import { LotCard } from "@/components/LotCard";
+import { LotGallery } from "@/components/LotGallery";
 import { formatCondition, formatCurrency } from "@/lib/format";
 import { getPublishedLotBySlug, getRelatedLots } from "@/lib/lot-service";
+import { lotPrice } from "@/lib/pricing";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: LotPageProps): Promise<Metada
   if (!lot) return { title: "Lot not found" };
   return {
     title: lot.title,
-    description: lot.manifestSummary,
+    description: `${lot.category} · ${formatCurrency(lotPrice(lot))}`,
   };
 }
 
@@ -35,72 +36,85 @@ export default async function LotDetailPage({ params }: LotPageProps) {
   ]);
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-8 pb-16 md:pt-10 md:pb-20">
       <div className="site-grid">
         <Link
           href="/browse"
           className="text-sm font-medium text-steel transition-colors hover:text-accent-deep"
         >
-          ← Back to browse
+          ← Browse
         </Link>
 
-        <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)] lg:gap-10">
+        <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.75fr)] lg:gap-10">
           <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-steel">
-              <span>{lot.category}</span>
-              <span aria-hidden="true">·</span>
-              <span>{lot.lotType}</span>
-              <span aria-hidden="true">·</span>
-              <span>{formatCondition(lot.condition)}</span>
-            </div>
-            <h1 className="mt-3 max-w-3xl break-words font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
+            <p className="text-sm text-steel">
+              {lot.category} · {formatCondition(lot.condition)} · {lot.lotType}
+            </p>
+            <h1 className="mt-2 max-w-3xl break-words font-display text-3xl font-semibold leading-tight text-ink md:text-4xl">
               {lot.title}
             </h1>
-            <p className="mt-3 text-pretty text-steel">
-              {lot.location} · {lot.unitCount.toLocaleString()} units · Est. retail{" "}
-              {formatCurrency(lot.estimatedRetail)}
-            </p>
 
-            <div className="mt-8 min-w-0">
+            <div className="mt-6 min-w-0">
               <LotGallery images={lot.images} title={lot.title} />
             </div>
 
-            <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold">Manifest summary</h2>
-              <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft">{lot.manifestSummary}</p>
-            </section>
-
-            <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold">Condition</h2>
-              <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft">{lot.conditionNotes}</p>
-            </section>
-
-            <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold">Seller notes</h2>
-              <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft">{lot.sellerNotes}</p>
-            </section>
-
-            <section className="mt-10 grid gap-8 border-t border-line pt-10 md:grid-cols-2">
-              <div>
-                <h2 className="font-display text-xl font-semibold">Shipping</h2>
-                <p className="mt-3 leading-relaxed text-ink-soft">{lot.shipping}</p>
+            <dl className="fact-grid mt-8 border-y border-line py-5">
+              <div className="fact-item">
+                <dt>Location</dt>
+                <dd>{lot.location}</dd>
               </div>
-              <div>
-                <h2 className="font-display text-xl font-semibold">Pickup</h2>
-                <p className="mt-3 leading-relaxed text-ink-soft">{lot.pickup}</p>
+              <div className="fact-item">
+                <dt>Units</dt>
+                <dd>{lot.unitCount.toLocaleString()}</dd>
               </div>
-            </section>
+              <div className="fact-item">
+                <dt>Est. retail</dt>
+                <dd>{formatCurrency(lot.estimatedRetail)}</dd>
+              </div>
+              <div className="fact-item">
+                <dt>Grade</dt>
+                <dd>{formatCondition(lot.condition)}</dd>
+              </div>
+            </dl>
+
+            <details className="details-panel mt-2">
+              <summary>Details</summary>
+              <div className="space-y-5 pb-5 pt-2 text-sm leading-relaxed text-ink-soft">
+                <div>
+                  <p className="font-semibold text-ink">Manifest</p>
+                  <p className="mt-1">{lot.manifestSummary}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-ink">Condition</p>
+                  <p className="mt-1">{lot.conditionNotes}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-ink">Seller notes</p>
+                  <p className="mt-1">{lot.sellerNotes}</p>
+                </div>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <p className="font-semibold text-ink">Shipping</p>
+                    <p className="mt-1">{lot.shipping}</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-ink">Pickup</p>
+                    <p className="mt-1">{lot.pickup}</p>
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
 
-          <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
+          <div className="min-w-0 lg:sticky lg:top-[calc(var(--header-h)+1rem)] lg:self-start">
             <BuyBox lot={lot} signedIn={Boolean(user)} />
           </div>
         </div>
 
         {related.length > 0 ? (
-          <section className="mt-16 border-t border-line pt-12">
+          <section className="mt-14 border-t border-line pt-10">
             <h2 className="font-display text-2xl font-semibold">More in {lot.category}</h2>
-            <div className="mt-6 lot-grid">
+            <div className="mt-5 lot-grid">
               {related.map((item) => (
                 <LotCard key={item.id} lot={item} />
               ))}
