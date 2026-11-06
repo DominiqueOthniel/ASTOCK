@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { LotListItem } from "@/components/LotListItem";
+import { LotCard } from "@/components/LotCard";
 import { categories, conditionGrades, lotTypes, sortLabels } from "@/lib/constants";
 import { sortLots } from "@/lib/format";
 import type { Lot, SortOption } from "@/lib/types";
@@ -20,7 +20,6 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
   const [lotType, setLotType] = useState("All");
   const [endingSoon, setEndingSoon] = useState(false);
   const [sort, setSort] = useState<SortOption>("ending");
-  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const now = Date.now();
@@ -48,125 +47,111 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
     setSort("ending");
   }
 
-  const hasFilters =
-    query !== "" ||
-    category !== "All" ||
-    condition !== "All" ||
-    lotType !== "All" ||
-    endingSoon;
+  const activeChips: { key: string; label: string; clear: () => void }[] = [];
+  if (category !== "All") {
+    activeChips.push({ key: "category", label: category, clear: () => setCategory("All") });
+  }
+  if (condition !== "All") {
+    activeChips.push({ key: "condition", label: `Grade ${condition}`, clear: () => setCondition("All") });
+  }
+  if (lotType !== "All") {
+    activeChips.push({ key: "lotType", label: lotType, clear: () => setLotType("All") });
+  }
+  if (endingSoon) {
+    activeChips.push({
+      key: "ending",
+      label: "Ending soon",
+      clear: () => setEndingSoon(false),
+    });
+  }
+  if (query) {
+    activeChips.push({
+      key: "query",
+      label: `Search: ${query}`,
+      clear: () => setQuery(""),
+    });
+  }
 
-  const filterControls = (
-    <div className="space-y-4">
-      <label className="block text-sm">
-        <span className="mb-1.5 block font-medium text-ink-soft">Search</span>
-        <input
-          className="field"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Title, city, lot slug"
-        />
-      </label>
-      <label className="block text-sm">
-        <span className="mb-1.5 block font-medium text-ink-soft">Category</span>
-        <select className="field" value={category} onChange={(event) => setCategory(event.target.value)}>
-          <option>All</option>
-          {categories.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-        </select>
-      </label>
-      <label className="block text-sm">
-        <span className="mb-1.5 block font-medium text-ink-soft">Condition grade</span>
-        <select
-          className="field"
-          value={condition}
-          onChange={(event) => setCondition(event.target.value)}
-        >
-          <option>All</option>
-          {conditionGrades.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-        </select>
-      </label>
-      <label className="block text-sm">
-        <span className="mb-1.5 block font-medium text-ink-soft">Lot type</span>
-        <select className="field" value={lotType} onChange={(event) => setLotType(event.target.value)}>
-          <option>All</option>
-          {lotTypes.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-        </select>
-      </label>
-      <label className="flex min-h-11 items-center gap-3 text-sm font-medium text-ink-soft">
-        <input
-          type="checkbox"
-          checked={endingSoon}
-          onChange={(event) => setEndingSoon(event.target.checked)}
-          className="size-5 accent-[var(--accent)]"
-        />
-        Ending within 24 hours
-      </label>
-    </div>
-  );
+  const hasFilters = activeChips.length > 0;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
-      <div className="lg:hidden">
-        <button
-          type="button"
-          className="btn btn-secondary w-full"
-          aria-expanded={filtersOpen}
-          onClick={() => setFiltersOpen((value) => !value)}
-        >
-          {filtersOpen ? "Hide filters" : hasFilters ? "Filters (active)" : "Show filters"}
-        </button>
-        {filtersOpen ? (
-          <aside className="mt-3 border border-line bg-white p-4 shadow-[var(--shadow)]">
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <h2 className="font-display text-lg font-semibold">Filters</h2>
-              {hasFilters ? (
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  className="min-h-10 text-xs font-semibold text-accent transition-colors hover:text-accent-deep"
-                >
-                  Clear
-                </button>
-              ) : null}
-            </div>
-            {filterControls}
-          </aside>
-        ) : null}
-      </div>
-
-      <aside className="hidden h-fit border border-line bg-white p-4 shadow-[var(--shadow)] lg:block">
-        <div className="flex items-center justify-between gap-3">
-          <h2 className="font-display text-lg font-semibold">Filters</h2>
-          {hasFilters ? (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="text-xs font-semibold text-accent transition-colors hover:text-accent-deep"
-            >
-              Clear
-            </button>
-          ) : null}
-        </div>
-        <div className="mt-4">{filterControls}</div>
-      </aside>
-
-      <div className="min-w-0">
-        <div className="flex flex-col gap-3 border-b border-line pb-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-steel">
-            {filtered.length} lot{filtered.length === 1 ? "" : "s"}
-            {hasFilters ? " matching filters" : " live"}
-          </p>
-          <label className="flex w-full items-center gap-2 text-sm text-steel sm:w-auto">
-            <span className="shrink-0">Sort</span>
+    <div className="space-y-4">
+      <div className="browse-sticky">
+        <div className="browse-filter-bar">
+          <label className="browse-field browse-field-search">
+            <span className="sr-only">Search</span>
+            <input
+              className="field !min-h-10 !py-1.5"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search lots"
+              aria-label="Search lots"
+            />
+          </label>
+          <label className="browse-field">
+            <span className="sr-only">Category</span>
             <select
-              className="field !min-h-10 !py-1.5 sm:min-w-[11rem]"
+              className="field !min-h-10 !py-1.5"
+              value={category}
+              onChange={(event) => setCategory(event.target.value)}
+              aria-label="Category"
+            >
+              <option value="All">All categories</option>
+              {categories.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="browse-field">
+            <span className="sr-only">Condition grade</span>
+            <select
+              className="field !min-h-10 !py-1.5"
+              value={condition}
+              onChange={(event) => setCondition(event.target.value)}
+              aria-label="Condition grade"
+            >
+              <option value="All">All grades</option>
+              {conditionGrades.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="browse-field">
+            <span className="sr-only">Lot type</span>
+            <select
+              className="field !min-h-10 !py-1.5"
+              value={lotType}
+              onChange={(event) => setLotType(event.target.value)}
+              aria-label="Lot type"
+            >
+              <option value="All">All lot types</option>
+              {lotTypes.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="browse-ending">
+            <input
+              type="checkbox"
+              checked={endingSoon}
+              onChange={(event) => setEndingSoon(event.target.checked)}
+              className="size-4 accent-[var(--accent)]"
+            />
+            <span>Ending soon</span>
+          </label>
+          <label className="browse-field browse-field-sort">
+            <span className="sr-only">Sort</span>
+            <select
+              className="field !min-h-10 !py-1.5"
               value={sort}
               onChange={(event) => setSort(event.target.value as SortOption)}
+              aria-label="Sort"
             >
               {(Object.keys(sortLabels) as SortOption[]).map((key) => (
                 <option key={key} value={key}>
@@ -176,23 +161,77 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
             </select>
           </label>
         </div>
-        <div>
-          {filtered.map((lot) => (
-            <LotListItem key={lot.id} lot={lot} />
+
+        <div className="category-strip scroll-x" role="tablist" aria-label="Category shortcuts">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={category === "All"}
+            className={`category-chip ${category === "All" ? "is-active" : ""}`}
+            onClick={() => setCategory("All")}
+          >
+            All
+          </button>
+          {categories.map((item) => (
+            <button
+              key={item}
+              type="button"
+              role="tab"
+              aria-selected={category === item}
+              className={`category-chip ${category === item ? "is-active" : ""}`}
+              onClick={() => setCategory(item)}
+            >
+              {item}
+            </button>
           ))}
-          {filtered.length === 0 ? (
-            <div className="border-b border-line py-16 text-center">
-              <p className="font-display text-xl font-semibold text-ink">No lots match</p>
-              <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-steel">
-                Try clearing filters or searching a different city, category, or slug. New liquidation lots post throughout the week.
-              </p>
-              <button type="button" className="btn btn-secondary mt-6" onClick={clearFilters}>
-                Reset filters
-              </button>
-            </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <p className="text-sm text-steel">
+            {filtered.length} lot{filtered.length === 1 ? "" : "s"}
+            {hasFilters ? " matching" : " live"}
+          </p>
+          {activeChips.map((chip) => (
+            <button
+              key={chip.key}
+              type="button"
+              className="active-filter-chip"
+              onClick={chip.clear}
+            >
+              {chip.label}
+              <span aria-hidden="true">×</span>
+            </button>
+          ))}
+          {hasFilters ? (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="text-xs font-semibold text-accent transition-colors hover:text-accent-deep"
+            >
+              Clear all
+            </button>
           ) : null}
         </div>
       </div>
+
+      <div className="lot-grid">
+        {filtered.map((lot) => (
+          <LotCard key={lot.id} lot={lot} />
+        ))}
+      </div>
+
+      {filtered.length === 0 ? (
+        <div className="border border-line bg-white/70 py-16 text-center">
+          <p className="font-display text-xl font-semibold text-ink">No lots match</p>
+          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-steel">
+            Try clearing filters or searching a different city, category, or slug. New liquidation
+            lots post throughout the week.
+          </p>
+          <button type="button" className="btn btn-secondary mt-6" onClick={clearFilters}>
+            Reset filters
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

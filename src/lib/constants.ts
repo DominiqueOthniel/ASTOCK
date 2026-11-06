@@ -8,6 +8,8 @@ export const categories: Category[] = [
   "Sporting Goods",
   "Toys",
   "Office",
+  "Christmas",
+  "Tools",
   "Mixed Pallets",
 ];
 

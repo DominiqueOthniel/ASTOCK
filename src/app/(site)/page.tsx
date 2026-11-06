@@ -134,10 +134,27 @@ export default async function HomePage() {
               Featured lot categories
             </h2>
             <p className="mt-3 max-w-xl text-steel">
-              {liveCount} live lots across electronics, apparel, home, grocery, sporting, office, toys, and mixed pallets.
+              {liveCount} live lots across electronics, apparel, home, grocery, sporting, office,
+              toys, Christmas, tools, and mixed pallets.
             </p>
           </Reveal>
-          <Reveal className="mt-10">
+          <Reveal className="mt-8">
+            <div className="category-strip scroll-x" aria-label="Browse by category">
+              <Link href="/browse" className="category-chip">
+                All
+              </Link>
+              {categories.map((category) => (
+                <Link
+                  key={`chip-${category}`}
+                  href={`/browse?category=${encodeURIComponent(category)}`}
+                  className="category-chip"
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal className="mt-6">
             <ul className="divide-y divide-line border-y border-line">
               {categories.map((category) => {
                 const count = lots.filter((lot) => lot.category === category).length;

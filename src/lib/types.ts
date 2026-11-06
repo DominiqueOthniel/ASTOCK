@@ -6,6 +6,8 @@ export type Category =
   | "Sporting Goods"
   | "Toys"
   | "Office"
+  | "Christmas"
+  | "Tools"
   | "Mixed Pallets";
 
 export type ConditionGrade = "A" | "B" | "C" | "Customer Returns" | "Shelf Pulls";

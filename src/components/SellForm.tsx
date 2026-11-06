@@ -106,7 +106,10 @@ export function SellForm({ signedIn, defaultEmail }: { signedIn: boolean; defaul
             <option>Home Goods</option>
             <option>Grocery</option>
             <option>Sporting Goods</option>
+            <option>Toys</option>
             <option>Office</option>
+            <option>Christmas</option>
+            <option>Tools</option>
             <option>Mixed / multi-category</option>
           </select>
         </label>

@@ -19,7 +19,8 @@ export default async function BrowsePage() {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">Marketplace</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-ink md:text-5xl">Browse lots</h1>
         <p className="mt-3 max-w-2xl text-steel">
-          Filter liquidation inventory by category, grade, pallet or truckload, and auctions ending soon.
+          Filter by category, grade, lot type, and ending soon. Use Christmas and Tools shortcuts for
+          seasonal and hardware surplus.
         </p>
         <div className="mt-10">
           <Suspense fallback={<p className="text-steel">Loading lots…</p>}>
