@@ -14,7 +14,7 @@ export type ConditionGrade = "A" | "B" | "C" | "Customer Returns" | "Shelf Pulls
 
 export type LotType = "Pallet" | "Truckload" | "Mixed";
 
-export type SaleType = "Auction" | "Buy Now";
+export type SaleType = "Buy Now";
 
 export interface Lot {
   id: string;
@@ -45,7 +45,7 @@ export interface Lot {
   soldAt?: string;
 }
 
-export type SortOption = "ending" | "bid-high" | "bid-low" | "retail" | "newest";
+export type SortOption = "newest" | "price-high" | "price-low" | "retail";
 
 export type DashboardCounts = {
   publishedLots: number;

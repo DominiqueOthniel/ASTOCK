@@ -5,7 +5,7 @@
     "category": "Electronics",
     "condition": "Customer Returns",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1850,
     "reserveMet": true,
     "bidCount": 14,
@@ -27,7 +27,8 @@
     "pickup": "Dallas DC, Mon through Fri, 8am to 3pm CT. Dock appointment required 24 hours ahead. Bring BOL and photo ID. Forklift on site for loading.",
     "slug": "ast-2401",
     "startingBid": 1295,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1850
   },
   {
     "id": "ast-2402",
@@ -35,7 +36,7 @@
     "category": "Apparel",
     "condition": "A",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 9200,
     "reserveMet": false,
     "bidCount": 7,
@@ -56,7 +57,8 @@
     "pickup": "Columbus metro warehouse. Appointment 48 hours ahead. Trailer must be dry van. Live load window 2 hours.",
     "slug": "ast-2402",
     "startingBid": 6440,
-    "published": true
+    "published": true,
+    "buyNowPrice": 9200
   },
   {
     "id": "ast-2403",
@@ -94,7 +96,7 @@
     "category": "Grocery",
     "condition": "Shelf Pulls",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1100,
     "reserveMet": true,
     "bidCount": 21,
@@ -115,7 +117,8 @@
     "pickup": "Atlanta DC. Forklift available. Appointment required. Food-handler credentials not required for pickup, but recommended for resale compliance.",
     "slug": "ast-2404",
     "startingBid": 770,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1100
   },
   {
     "id": "ast-2405",
@@ -123,7 +126,7 @@
     "category": "Sporting Goods",
     "condition": "Customer Returns",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 14500,
     "reserveMet": true,
     "bidCount": 9,
@@ -143,7 +146,8 @@
     "pickup": "Reno distribution hub. Photo ID and BOL required. Appointment window 7am to 2pm PT.",
     "slug": "ast-2405",
     "startingBid": 10150,
-    "published": true
+    "published": true,
+    "buyNowPrice": 14500
   },
   {
     "id": "ast-2406",
@@ -151,7 +155,7 @@
     "category": "Toys",
     "condition": "A",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 980,
     "reserveMet": false,
     "bidCount": 5,
@@ -171,7 +175,8 @@
     "pickup": "Chicago South warehouse. Dock level loading. Appointment same week if available.",
     "slug": "ast-2406",
     "startingBid": 686,
-    "published": true
+    "published": true,
+    "buyNowPrice": 980
   },
   {
     "id": "ast-2407",
@@ -179,7 +184,7 @@
     "category": "Electronics",
     "condition": "C",
     "lotType": "Mixed",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 420,
     "reserveMet": true,
     "bidCount": 11,
@@ -199,7 +204,8 @@
     "pickup": "Newark cross-dock. Appointment same day possible before 1pm ET.",
     "slug": "ast-2407",
     "startingBid": 294,
-    "published": true
+    "published": true,
+    "buyNowPrice": 420
   },
   {
     "id": "ast-2408",
@@ -207,7 +213,7 @@
     "category": "Home Goods",
     "condition": "Customer Returns",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1320,
     "reserveMet": true,
     "bidCount": 16,
@@ -227,7 +233,8 @@
     "pickup": "Buyer must bring pallet jack if using own truck without liftgate. Dock hours 8am to 4pm CT.",
     "slug": "ast-2408",
     "startingBid": 924,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1320
   },
   {
     "id": "ast-2409",
@@ -265,7 +272,7 @@
     "category": "Toys",
     "condition": "Shelf Pulls",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 760,
     "reserveMet": false,
     "bidCount": 3,
@@ -285,7 +292,8 @@
     "pickup": "Charlotte DC with forklift assist. Appointment preferred morning slots.",
     "slug": "ast-2410",
     "startingBid": 532,
-    "published": true
+    "published": true,
+    "buyNowPrice": 760
   },
   {
     "id": "ast-2411",
@@ -293,7 +301,7 @@
     "category": "Office",
     "condition": "Customer Returns",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 6800,
     "reserveMet": true,
     "bidCount": 6,
@@ -314,7 +322,8 @@
     "pickup": "Indy industrial park. Trailer must accept tall cartons (up to 84 in). Appointment 72 hours ahead.",
     "slug": "ast-2411",
     "startingBid": 4760,
-    "published": true
+    "published": true,
+    "buyNowPrice": 6800
   },
   {
     "id": "ast-2412",
@@ -351,7 +360,7 @@
     "category": "Mixed Pallets",
     "condition": "B",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 890,
     "reserveMet": true,
     "bidCount": 18,
@@ -372,7 +381,8 @@
     "pickup": "Houston South DC. Dock appointment Mon through Fri.",
     "slug": "ast-2413",
     "startingBid": 623,
-    "published": true
+    "published": true,
+    "buyNowPrice": 890
   },
   {
     "id": "ast-2414",
@@ -380,7 +390,7 @@
     "category": "Electronics",
     "condition": "A",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 18500,
     "reserveMet": false,
     "bidCount": 4,
@@ -400,7 +410,8 @@
     "pickup": "Portland metro 3PL. Background-checked drivers preferred. Appointment 48 hours ahead.",
     "slug": "ast-2414",
     "startingBid": 12950,
-    "published": true
+    "published": true,
+    "buyNowPrice": 18500
   },
   {
     "id": "ast-2415",
@@ -408,7 +419,7 @@
     "category": "Apparel",
     "condition": "B",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 2100,
     "reserveMet": true,
     "bidCount": 12,
@@ -428,7 +439,8 @@
     "pickup": "Nashville warehouse. Appointment required. Softgoods carts available for count-out.",
     "slug": "ast-2415",
     "startingBid": 1470,
-    "published": true
+    "published": true,
+    "buyNowPrice": 2100
   },
   {
     "id": "ast-2416",
@@ -436,7 +448,7 @@
     "category": "Home Goods",
     "condition": "A",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 11200,
     "reserveMet": true,
     "bidCount": 8,
@@ -456,7 +468,8 @@
     "pickup": "Allentown DC. Live load. Appointment 24 hours ahead.",
     "slug": "ast-2416",
     "startingBid": 7840,
-    "published": true
+    "published": true,
+    "buyNowPrice": 11200
   },
   {
     "id": "ast-2417",
@@ -493,7 +506,7 @@
     "category": "Sporting Goods",
     "condition": "B",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1540,
     "reserveMet": false,
     "bidCount": 6,
@@ -513,7 +526,8 @@
     "pickup": "Denver metro 3PL. High altitude dock; allow extra time for wrapping.",
     "slug": "ast-2418",
     "startingBid": 1078,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1540
   },
   {
     "id": "ast-2419",
@@ -521,7 +535,7 @@
     "category": "Office",
     "condition": "Shelf Pulls",
     "lotType": "Mixed",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 390,
     "reserveMet": true,
     "bidCount": 9,
@@ -541,7 +555,8 @@
     "pickup": "Minneapolis DC. Forklift required for loading.",
     "slug": "ast-2419",
     "startingBid": 273,
-    "published": true
+    "published": true,
+    "buyNowPrice": 390
   },
   {
     "id": "ast-2420",
@@ -549,7 +564,7 @@
     "category": "Mixed Pallets",
     "condition": "Customer Returns",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 16800,
     "reserveMet": true,
     "bidCount": 11,
@@ -571,7 +586,8 @@
     "pickup": "Not available for buyer pickup this week; freight-out only unless prearranged with seller ops.",
     "slug": "ast-2420",
     "startingBid": 11760,
-    "published": true
+    "published": true,
+    "buyNowPrice": 16800
   },
   {
     "id": "ast-2421",
@@ -579,7 +595,7 @@
     "category": "Electronics",
     "condition": "A",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1180,
     "reserveMet": true,
     "bidCount": 10,
@@ -599,7 +615,8 @@
     "pickup": "Salt Lake DC. Appointment Mon through Fri mornings.",
     "slug": "ast-2421",
     "startingBid": 826,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1180
   },
   {
     "id": "ast-2422",
@@ -607,7 +624,7 @@
     "category": "Apparel",
     "condition": "A",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1420,
     "reserveMet": false,
     "bidCount": 4,
@@ -627,7 +644,8 @@
     "pickup": "Seattle metro warehouse. Appointment 24 hours ahead.",
     "slug": "ast-2422",
     "startingBid": 994,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1420
   },
   {
     "id": "ast-2423",
@@ -635,7 +653,7 @@
     "category": "Christmas",
     "condition": "B",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 980,
     "reserveMet": true,
     "bidCount": 9,
@@ -656,7 +674,8 @@
     "pickup": "Memphis DC, Mon through Fri 8am to 3pm CT. Dock appointment 24 hours ahead.",
     "slug": "ast-2423",
     "startingBid": 686,
-    "published": true
+    "published": true,
+    "buyNowPrice": 980
   },
   {
     "id": "ast-2424",
@@ -664,7 +683,7 @@
     "category": "Christmas",
     "condition": "A",
     "lotType": "Truckload",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 12400,
     "reserveMet": false,
     "bidCount": 5,
@@ -685,7 +704,8 @@
     "pickup": "Freight preferred; buyer pickup by appointment only with seller ops.",
     "slug": "ast-2424",
     "startingBid": 8680,
-    "published": true
+    "published": true,
+    "buyNowPrice": 12400
   },
   {
     "id": "ast-2425",
@@ -722,7 +742,7 @@
     "category": "Christmas",
     "condition": "Customer Returns",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 760,
     "reserveMet": true,
     "bidCount": 12,
@@ -742,7 +762,8 @@
     "pickup": "Indianapolis warehouse. Mon through Fri mornings.",
     "slug": "ast-2426",
     "startingBid": 532,
-    "published": true
+    "published": true,
+    "buyNowPrice": 760
   },
   {
     "id": "ast-2427",
@@ -750,7 +771,7 @@
     "category": "Tools",
     "condition": "C",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1650,
     "reserveMet": true,
     "bidCount": 16,
@@ -771,7 +792,8 @@
     "pickup": "Chicago south DC. Appointment and photo ID required.",
     "slug": "ast-2427",
     "startingBid": 1155,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1650
   },
   {
     "id": "ast-2428",
@@ -779,7 +801,7 @@
     "category": "Tools",
     "condition": "A",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 890,
     "reserveMet": false,
     "bidCount": 6,
@@ -799,7 +821,8 @@
     "pickup": "Kansas City DC. Dock appointment 24 hours ahead.",
     "slug": "ast-2428",
     "startingBid": 623,
-    "published": true
+    "published": true,
+    "buyNowPrice": 890
   },
   {
     "id": "ast-2429",
@@ -836,7 +859,7 @@
     "category": "Tools",
     "condition": "B",
     "lotType": "Mixed",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 5400,
     "reserveMet": true,
     "bidCount": 8,
@@ -856,7 +879,8 @@
     "pickup": "Houston north DC. Appointment Mon through Fri.",
     "slug": "ast-2430",
     "startingBid": 3780,
-    "published": true
+    "published": true,
+    "buyNowPrice": 5400
   },
   {
     "id": "ast-2431",
@@ -864,7 +888,7 @@
     "category": "Grocery",
     "condition": "A",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 640,
     "reserveMet": true,
     "bidCount": 7,
@@ -884,7 +908,8 @@
     "pickup": "Phoenix DC. Appointment required. Food safety paperwork on file.",
     "slug": "ast-2431",
     "startingBid": 448,
-    "published": true
+    "published": true,
+    "buyNowPrice": 640
   },
   {
     "id": "ast-2432",
@@ -892,7 +917,7 @@
     "category": "Sporting Goods",
     "condition": "B",
     "lotType": "Pallet",
-    "saleType": "Auction",
+    "saleType": "Buy Now",
     "currentBid": 1280,
     "reserveMet": false,
     "bidCount": 4,
@@ -912,6 +937,7 @@
     "pickup": "Denver metro warehouse. Appointment 24 hours ahead.",
     "slug": "ast-2432",
     "startingBid": 896,
-    "published": true
+    "published": true,
+    "buyNowPrice": 1280
   }
 ]

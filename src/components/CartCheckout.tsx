@@ -6,6 +6,7 @@ import { useState, useTransition } from "react";
 import { checkoutCartAction, removeFromCartAction } from "@/app/actions/cart";
 import { TermsAgree } from "@/components/TermsAgree";
 import { formatCurrency } from "@/lib/format";
+import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
 export function CartCheckout({
@@ -20,10 +21,7 @@ export function CartCheckout({
   const [message, setMessage] = useState<string | null>(null);
   const [mailto, setMailto] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
-  const total = lots.reduce(
-    (sum, lot) => sum + (lot.buyNowPrice ?? lot.currentBid),
-    0,
-  );
+  const total = lots.reduce((sum, lot) => sum + lotPrice(lot), 0);
 
   function onRemove(slug: string) {
     const formData = new FormData();
@@ -66,7 +64,7 @@ export function CartCheckout({
     return (
       <div className="border border-line bg-white p-8 text-center shadow-[var(--shadow)]">
         <p className="font-display text-xl font-semibold text-ink">Your cart is empty</p>
-        <p className="mt-2 text-sm text-steel">Add Buy Now lots from the catalog.</p>
+        <p className="mt-2 text-sm text-steel">Add lots from the catalog.</p>
         <Link href="/browse" className="btn btn-primary mt-6">
           Browse lots
         </Link>
@@ -95,7 +93,7 @@ export function CartCheckout({
             </div>
             <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
               <p className="font-display text-lg font-semibold">
-                {formatCurrency(lot.buyNowPrice ?? lot.currentBid)}
+                {formatCurrency(lotPrice(lot))}
               </p>
               <button
                 type="button"

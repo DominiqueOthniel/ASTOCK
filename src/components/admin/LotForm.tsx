@@ -1,5 +1,6 @@
 import { ImageUploadField } from "@/components/ImageUploadField";
-import { categories, conditionGrades, lotTypes, saleTypes } from "@/lib/constants";
+import { categories, conditionGrades, lotTypes } from "@/lib/constants";
+import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
 function toLocalInput(iso: string) {
@@ -18,6 +19,7 @@ export function LotForm({
   const action =
     mode === "create" ? "/api/admin/lots" : `/api/admin/lots/${lot?.id}`;
   const imagesValue = lot?.images.join("\n") ?? "";
+  const priceDefault = lot ? lotPrice(lot) : 500;
 
   return (
     <form
@@ -29,7 +31,7 @@ export function LotForm({
       <section className="space-y-4">
         <div>
           <h2 className="font-display text-xl font-semibold text-ink">Basics</h2>
-          <p className="mt-1 text-sm text-steel">Title, place, category, and sale type.</p>
+          <p className="mt-1 text-sm text-steel">Title, place, category, and grade.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <label className="block text-sm md:col-span-2">
@@ -73,69 +75,25 @@ export function LotForm({
               ))}
             </select>
           </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Sale type</span>
-            <select className="field" name="saleType" defaultValue={lot?.saleType ?? "Auction"}>
-              {saleTypes.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
         </div>
       </section>
 
       <section className="space-y-4 border-t border-line pt-6">
         <div>
-          <h2 className="font-display text-xl font-semibold text-ink">Pricing &amp; timing</h2>
-          <p className="mt-1 text-sm text-steel">Bids, buy-now price, units, and end time.</p>
+          <h2 className="font-display text-xl font-semibold text-ink">Price &amp; inventory</h2>
+          <p className="mt-1 text-sm text-steel">Fixed asking price buyers see on the lot.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Current bid</span>
+            <span className="mb-1.5 block font-medium">Asking price (USD)</span>
             <input
               className="field"
-              name="currentBid"
+              name="price"
               type="number"
               step="1"
               min="0"
               required
-              defaultValue={lot?.currentBid ?? 500}
-            />
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Starting bid</span>
-            <input
-              className="field"
-              name="startingBid"
-              type="number"
-              step="1"
-              min="0"
-              required
-              defaultValue={lot?.startingBid ?? 500}
-            />
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Buy now price (optional)</span>
-            <input
-              className="field"
-              name="buyNowPrice"
-              type="number"
-              step="1"
-              min="0"
-              defaultValue={lot?.buyNowPrice ?? ""}
-              placeholder="For Buy Now lots"
-            />
-          </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Bid count</span>
-            <input
-              className="field"
-              name="bidCount"
-              type="number"
-              step="1"
-              min="0"
-              required
-              defaultValue={lot?.bidCount ?? 0}
+              defaultValue={priceDefault}
             />
           </label>
           <label className="block text-sm">
@@ -163,23 +121,19 @@ export function LotForm({
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Ends at</span>
+            <span className="mb-1.5 block font-medium">Available until</span>
             <input
               className="field"
               name="endsAt"
               type="datetime-local"
               required
               defaultValue={toLocalInput(
-                lot?.endsAt ?? new Date(Date.now() + 3 * 24 * 3600000).toISOString(),
+                lot?.endsAt ?? new Date(Date.now() + 14 * 24 * 3600000).toISOString(),
               )}
             />
           </label>
         </div>
         <div className="flex flex-wrap gap-6 text-sm">
-          <label className="inline-flex items-center gap-2">
-            <input type="checkbox" name="reserveMet" value="true" defaultChecked={lot?.reserveMet} />
-            Reserve met
-          </label>
           <label className="inline-flex items-center gap-2">
             <input type="checkbox" name="featured" value="true" defaultChecked={lot?.featured} />
             Featured on home

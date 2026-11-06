@@ -46,7 +46,7 @@ export function parseLotFormData(formData: FormData): LotFormValues {
     .map((line) => line.trim())
     .filter(Boolean);
 
-  const buyNowRaw = String(formData.get("buyNowPrice") ?? "").trim();
+  const price = Math.max(0, num(formData.get("price"), num(formData.get("buyNowPrice"))));
   const endsRaw = String(formData.get("endsAt") ?? "");
 
   return {
@@ -55,12 +55,12 @@ export function parseLotFormData(formData: FormData): LotFormValues {
     category: String(formData.get("category") ?? "").trim(),
     condition: String(formData.get("condition") ?? "").trim(),
     lotType: String(formData.get("lotType") ?? "").trim(),
-    saleType: String(formData.get("saleType") ?? "").trim(),
-    currentBid: num(formData.get("currentBid")),
-    buyNowPrice: buyNowRaw ? num(formData.get("buyNowPrice")) : null,
-    startingBid: num(formData.get("startingBid")),
-    reserveMet: bool(formData, "reserveMet"),
-    bidCount: Math.max(0, Math.floor(num(formData.get("bidCount")))),
+    saleType: "Buy Now",
+    currentBid: price,
+    buyNowPrice: price > 0 ? price : null,
+    startingBid: price,
+    reserveMet: true,
+    bidCount: 0,
     unitCount: Math.max(1, Math.floor(num(formData.get("unitCount"), 1))),
     estimatedRetail: num(formData.get("estimatedRetail")),
     location: String(formData.get("location") ?? "").trim(),

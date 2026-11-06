@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BidBox } from "@/components/BidBox";
-import { BidHistory } from "@/components/BidHistory";
+import { BuyBox } from "@/components/BuyBox";
 import { LotGallery } from "@/components/LotGallery";
-import { LotListItem } from "@/components/LotListItem";
+import { LotCard } from "@/components/LotCard";
 import { formatCondition, formatCurrency } from "@/lib/format";
-import {
-  getPublishedLotBySlug,
-  getRelatedLots,
-  listBidsForLot,
-} from "@/lib/lot-service";
+import { getPublishedLotBySlug, getRelatedLots } from "@/lib/lot-service";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -34,16 +29,18 @@ export default async function LotDetailPage({ params }: LotPageProps) {
   const lot = await getPublishedLotBySlug(slug);
   if (!lot) notFound();
 
-  const [related, bids, user] = await Promise.all([
-    getRelatedLots(lot, 3),
-    listBidsForLot(lot.id),
+  const [related, user] = await Promise.all([
+    getRelatedLots(lot, 4),
     getMarketplaceUser(),
   ]);
 
   return (
     <div className="pt-24 pb-20">
       <div className="site-grid">
-        <Link href="/browse" className="text-sm font-medium text-steel transition-colors hover:text-accent-deep">
+        <Link
+          href="/browse"
+          className="text-sm font-medium text-steel transition-colors hover:text-accent-deep"
+        >
           ← Back to browse
         </Link>
 
@@ -55,8 +52,6 @@ export default async function LotDetailPage({ params }: LotPageProps) {
               <span>{lot.lotType}</span>
               <span aria-hidden="true">·</span>
               <span>{formatCondition(lot.condition)}</span>
-              <span aria-hidden="true">·</span>
-              <span className="break-all">{lot.slug.toUpperCase()}</span>
             </div>
             <h1 className="mt-3 max-w-3xl break-words font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
               {lot.title}
@@ -85,11 +80,6 @@ export default async function LotDetailPage({ params }: LotPageProps) {
               <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft">{lot.sellerNotes}</p>
             </section>
 
-            <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold">Bid history</h2>
-              <BidHistory bids={bids} />
-            </section>
-
             <section className="mt-10 grid gap-8 border-t border-line pt-10 md:grid-cols-2">
               <div>
                 <h2 className="font-display text-xl font-semibold">Shipping</h2>
@@ -103,16 +93,16 @@ export default async function LotDetailPage({ params }: LotPageProps) {
           </div>
 
           <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
-            <BidBox lot={lot} signedIn={Boolean(user)} />
+            <BuyBox lot={lot} signedIn={Boolean(user)} />
           </div>
         </div>
 
         {related.length > 0 ? (
           <section className="mt-16 border-t border-line pt-12">
             <h2 className="font-display text-2xl font-semibold">More in {lot.category}</h2>
-            <div className="mt-4 border-t border-line">
+            <div className="mt-6 lot-grid">
               {related.map((item) => (
-                <LotListItem key={item.id} lot={item} />
+                <LotCard key={item.id} lot={item} />
               ))}
             </div>
           </section>

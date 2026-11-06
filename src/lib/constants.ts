@@ -23,12 +23,11 @@ export const conditionGrades: ConditionGrade[] = [
 
 export const lotTypes: LotType[] = ["Pallet", "Truckload", "Mixed"];
 
-export const saleTypes: SaleType[] = ["Auction", "Buy Now"];
+export const saleTypes: SaleType[] = ["Buy Now"];
 
 export const sortLabels: Record<SortOption, string> = {
-  ending: "Ending soon",
-  "bid-high": "Bid: high to low",
-  "bid-low": "Bid: low to high",
+  newest: "Newest",
+  "price-high": "Price: high to low",
+  "price-low": "Price: low to high",
   retail: "Est. retail",
-  newest: "Newest listed",
 };

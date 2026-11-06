@@ -19,7 +19,7 @@ export default async function BrowsePage() {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-steel">Marketplace</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-ink md:text-5xl">Browse lots</h1>
         <p className="mt-3 max-w-2xl text-steel">
-          Search and filter by category, grade, or lot type. Tap a category chip to jump quickly.
+          Fixed-price liquidation lots. Filter by category, grade, or lot type.
         </p>
         <div className="mt-10">
           <Suspense fallback={<p className="text-steel">Loading lots…</p>}>

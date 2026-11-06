@@ -14,19 +14,20 @@ export default function TermsPage() {
         <h1 className="mt-3 font-display text-4xl font-semibold text-ink md:text-5xl">
           Terms &amp; Conditions
         </h1>
-        <p className="mt-4 text-sm text-steel">Last updated: 4 November 2026</p>
+        <p className="mt-4 text-sm text-steel">Last updated: 6 November 2026</p>
         <p className="mt-6 text-base leading-relaxed text-ink-soft">
           These Terms &amp; Conditions (“Terms”) govern access to and use of the Astock bulk liquidation
           marketplace operated at astock-one.vercel.app and related services (the “Platform”). By creating
-          an account, placing a bid, submitting a purchase request, or submitting a seller inquiry, you
-          agree to these Terms.
+          an account, submitting a purchase request, or submitting a seller inquiry, you agree to these
+          Terms.
         </p>
 
         <Section title="1. Platform role">
           Astock provides an online marketplace that lists graded bulk lots such as retail returns,
-          overstock, shelf pulls, pallets, and truckloads. Astock is a marketplace facilitator unless a
-          listing expressly states that Astock is the seller of record. Title, risk, and fulfillment
-          obligations for each lot remain with the named seller unless otherwise agreed in writing.
+          overstock, shelf pulls, pallets, and truckloads at a fixed asking price. Astock is a marketplace
+          facilitator unless a listing expressly states that Astock is the seller of record. Title, risk,
+          and fulfillment obligations for each lot remain with the named seller unless otherwise agreed in
+          writing.
         </Section>
 
         <Section title="2. Eligibility and accounts">
@@ -43,30 +44,21 @@ export default function TermsPage() {
           not guarantee fitness for any particular resale channel. Unless a listing expressly states
           otherwise, lots are offered <strong>as-is, where-is</strong>, with all faults, and without
           warranty of merchantability or fitness for a particular purpose. Buyers should review
-          manifests and request inspection access before bidding or requesting purchase when inspection
-          is material to their decision.
+          manifests and request inspection access before ordering when inspection is material to their
+          decision.
         </Section>
 
-        <Section title="4. Bidding">
-          Auction bids are binding offers. Minimum increments and current high bid amounts are shown on
-          the lot page. Astock may reject bids that fail validation, arrive after the listed end time,
-          or appear to be the product of manipulation. Outbid notices may be sent when available.
-          Winning bidders must complete settlement and pickup or freight arrangements within the window
-          communicated by Astock or the seller. Failure to settle may result in cancellation, account
-          restriction, and liability for losses reasonably attributable to the default.
+        <Section title="4. Purchase requests and payment">
+          Lots are offered at a fixed asking price. Buyers may add lots to a cart and place an email
+          order, or request purchase on a single lot. Submitting a purchase request creates an order
+          record and notifies Astock operations. A purchase request is an offer to buy at the stated
+          amount; it becomes a binding purchase when Astock or the seller confirms acceptance by email
+          or other written confirmation. Payment instructions, deposits, wire details, and timelines
+          will be provided during confirmation. Astock does not process card checkout on the Platform
+          unless a listing expressly states otherwise.
         </Section>
 
-        <Section title="5. Purchase requests and payment">
-          Fixed-price (“Buy Now”) listings may be requested through the Platform’s email order flow.
-          Submitting a purchase request creates an order record and notifies Astock operations. A
-          purchase request is an offer to buy at the stated amount; it becomes a binding purchase when
-          Astock or the seller confirms acceptance by email or other written confirmation. Payment
-          instructions, deposits, wire details, and timelines will be provided during confirmation.
-          Astock does not process card checkout on the Platform unless a listing expressly states
-          otherwise.
-        </Section>
-
-        <Section title="6. Shipping, pickup, and transfer of risk">
+        <Section title="5. Shipping, pickup, and transfer of risk">
           Lots remain at the stated warehouse until released. Buyers are responsible for arranging
           freight, LTL, or dock appointments unless the listing states that the seller will arrange
           shipping for a quoted fee. Risk of loss transfers upon release to the buyer’s carrier or upon
@@ -74,33 +66,33 @@ export default function TermsPage() {
           removed within the agreed release window.
         </Section>
 
-        <Section title="7. Seller listings and inquiries">
+        <Section title="6. Seller listings and inquiries">
           Sellers represent that they have lawful title and authority to sell listed inventory, that
           listings are not knowingly misleading, and that inventory is free of undisclosed hazardous
           materials except as stated. Seller inquiries submitted through the Platform authorize Astock
           to contact the seller about onboarding, grading, manifests, and listing logistics.
         </Section>
 
-        <Section title="8. Prohibited conduct">
-          You may not interfere with bidding integrity, scrape the Platform beyond ordinary browsing,
-          misrepresent identity or authority, list illegal goods, or use the Platform to harass other
-          users. Astock may remove listings and suspend access for violations.
+        <Section title="7. Prohibited conduct">
+          You may not scrape the Platform beyond ordinary browsing, misrepresent identity or authority,
+          list illegal goods, or use the Platform to harass other users. Astock may remove listings and
+          suspend access for violations.
         </Section>
 
-        <Section title="9. Limitation of liability">
+        <Section title="8. Limitation of liability">
           To the fullest extent permitted by law, Astock is not liable for indirect, incidental,
           special, consequential, or lost-profit damages arising from use of the Platform or from lot
           condition after sale. Astock’s aggregate liability related to any lot or transaction shall
           not exceed the marketplace fees actually paid to Astock for that transaction, if any.
         </Section>
 
-        <Section title="10. Indemnity">
+        <Section title="9. Indemnity">
           You agree to indemnify and hold harmless Astock and its operators from claims arising out of
-          your breach of these Terms, your listings, your bids or purchase requests, or your failure to
-          comply with applicable law.
+          your breach of these Terms, your listings, your purchase requests, or your failure to comply
+          with applicable law.
         </Section>
 
-        <Section title="11. Privacy">
+        <Section title="10. Privacy">
           Personal and business contact data is handled as described in the{" "}
           <Link href="/privacy" className="font-semibold text-accent-deep hover:underline">
             Privacy Policy
@@ -108,7 +100,7 @@ export default function TermsPage() {
           .
         </Section>
 
-        <Section title="12. Changes and governing framework">
+        <Section title="11. Changes and governing framework">
           Astock may update these Terms by posting a revised version on the Platform. Continued use
           after the posted update constitutes acceptance of the revised Terms for subsequent activity.
           These Terms are governed by the laws applicable to Astock’s principal place of business,
@@ -116,7 +108,7 @@ export default function TermsPage() {
           otherwise for a specific lot.
         </Section>
 
-        <Section title="13. Contact">
+        <Section title="12. Contact">
           Questions about these Terms:{" "}
           <a href="mailto:legal@astock.market" className="font-semibold text-accent-deep hover:underline">
             legal@astock.market

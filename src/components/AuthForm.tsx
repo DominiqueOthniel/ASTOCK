@@ -107,7 +107,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       {error ? <p className="text-sm text-warn">{error}</p> : null}
       {mode === "signup" ? (
         <p className="text-xs leading-relaxed text-steel">
-          You are signed in right after joining. No confirmation email needed for bidding or orders.
+          You are signed in right after joining. No confirmation email needed to browse or order.
         </p>
       ) : (
         <p className="text-xs text-steel">

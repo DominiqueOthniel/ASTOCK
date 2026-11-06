@@ -29,7 +29,7 @@ export function mapDbLot(lot: DbLot): Lot {
     category: lot.category as Category,
     condition: lot.condition as ConditionGrade,
     lotType: lot.lotType as LotType,
-    saleType: lot.saleType as SaleType,
+    saleType: "Buy Now" as SaleType,
     currentBid: lot.currentBid,
     buyNowPrice: lot.buyNowPrice ?? undefined,
     startingBid: lot.startingBid,

@@ -3,6 +3,11 @@ import { prisma } from "@/lib/prisma";
 import { getSiteSettings } from "@/lib/site-settings";
 import { siteUrl } from "@/lib/site";
 
+function askingPrice(lot: { buyNowPrice: number | null; currentBid: number }) {
+  if (typeof lot.buyNowPrice === "number" && lot.buyNowPrice > 0) return lot.buyNowPrice;
+  return lot.currentBid;
+}
+
 export async function ordersInboxEmail() {
   const settings = await getSiteSettings();
   return (
@@ -132,14 +137,11 @@ export async function createEmailOrdersForSlugs(opts: {
   for (const slug of uniqueSlugs) {
     const lot = bySlug.get(slug);
     if (!lot) return { ok: false, error: `Lot not found: ${slug}` };
-    if (lot.saleType !== "Buy Now") {
-      return { ok: false, error: `"${lot.title}" is not available for purchase request.` };
-    }
     if (lot.status !== "open" || new Date(lot.endsAt).getTime() <= Date.now()) {
       return { ok: false, error: `"${lot.title}" is no longer available.` };
     }
 
-    const amount = lot.buyNowPrice ?? lot.currentBid;
+    const amount = askingPrice(lot);
     const order = await prisma.order.create({
       data: {
         lotId: lot.id,

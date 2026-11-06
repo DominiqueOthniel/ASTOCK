@@ -18,33 +18,26 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
   );
   const [condition, setCondition] = useState("All");
   const [lotType, setLotType] = useState("All");
-  const [endingSoon, setEndingSoon] = useState(false);
-  const [sort, setSort] = useState<SortOption>("ending");
+  const [sort, setSort] = useState<SortOption>("newest");
 
   const filtered = useMemo(() => {
-    const now = Date.now();
     const list = lots.filter((lot) => {
-      const haystack = `${lot.title} ${lot.category} ${lot.location} ${lot.slug} ${lot.id}`.toLowerCase();
+      const haystack = `${lot.title} ${lot.category} ${lot.location} ${lot.slug}`.toLowerCase();
       if (query && !haystack.includes(query.toLowerCase())) return false;
       if (category !== "All" && lot.category !== category) return false;
       if (condition !== "All" && lot.condition !== condition) return false;
       if (lotType !== "All" && lot.lotType !== lotType) return false;
-      if (endingSoon) {
-        const hoursLeft = (new Date(lot.endsAt).getTime() - now) / 3600000;
-        if (hoursLeft > 24) return false;
-      }
       return true;
     });
     return sortLots(list, sort);
-  }, [lots, query, category, condition, lotType, endingSoon, sort]);
+  }, [lots, query, category, condition, lotType, sort]);
 
   function clearFilters() {
     setQuery("");
     setCategory("All");
     setCondition("All");
     setLotType("All");
-    setEndingSoon(false);
-    setSort("ending");
+    setSort("newest");
   }
 
   const activeChips: { key: string; label: string; clear: () => void }[] = [];
@@ -56,13 +49,6 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
   }
   if (lotType !== "All") {
     activeChips.push({ key: "lotType", label: lotType, clear: () => setLotType("All") });
-  }
-  if (endingSoon) {
-    activeChips.push({
-      key: "ending",
-      label: "Ending soon",
-      clear: () => setEndingSoon(false),
-    });
   }
   if (query) {
     activeChips.push({
@@ -136,15 +122,6 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
               ))}
             </select>
           </label>
-          <label className="browse-ending">
-            <input
-              type="checkbox"
-              checked={endingSoon}
-              onChange={(event) => setEndingSoon(event.target.checked)}
-              className="size-4 accent-[var(--accent)]"
-            />
-            <span>Ending soon</span>
-          </label>
           <label className="browse-field browse-field-sort">
             <span className="sr-only">Sort</span>
             <select
@@ -189,7 +166,7 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
         <div className="flex flex-wrap items-center gap-2 pt-1">
           <p className="text-sm text-steel">
             {filtered.length} lot{filtered.length === 1 ? "" : "s"}
-            {hasFilters ? " matching" : " live"}
+            {hasFilters ? " matching" : " available"}
           </p>
           {activeChips.map((chip) => (
             <button
@@ -224,8 +201,7 @@ export function BrowseClient({ lots }: { lots: Lot[] }) {
         <div className="border border-line bg-white/70 py-16 text-center">
           <p className="font-display text-xl font-semibold text-ink">No lots match</p>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-steel">
-            Try clearing filters or searching a different city, category, or slug. New liquidation
-            lots post throughout the week.
+            Try clearing filters or searching a different city or category.
           </p>
           <button type="button" className="btn btn-secondary mt-6" onClick={clearFilters}>
             Reset filters

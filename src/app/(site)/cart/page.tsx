@@ -18,16 +18,14 @@ export default async function CartPage() {
     getMarketplaceUser(),
   ]);
   const slugSet = new Set(cart.map((item) => item.slug));
-  const cartLots = lots.filter(
-    (lot) => slugSet.has(lot.slug) && lot.saleType === "Buy Now",
-  );
+  const cartLots = lots.filter((lot) => slugSet.has(lot.slug) && lot.status !== "sold");
 
   return (
     <div className="pt-24 pb-20">
       <div className="site-grid">
         <h1 className="font-display text-4xl font-semibold text-ink">Cart</h1>
         <p className="mt-3 max-w-2xl text-steel">
-          Review Buy Now lots, then place an email order. Ops follows up to confirm.
+          Review lots, then place an email order. Ops follows up to confirm.
         </p>
         <div className="mt-10">
           <CartCheckout lots={cartLots} signedIn={Boolean(user?.email)} />

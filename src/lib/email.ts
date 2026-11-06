@@ -46,32 +46,6 @@ export async function sendTransactionalEmail(payload: EmailPayload) {
   return { ok: true as const, queued: false as const };
 }
 
-export async function notifyBidPlaced(opts: {
-  email: string;
-  lotTitle: string;
-  amount: number;
-  slug: string;
-}) {
-  return sendTransactionalEmail({
-    to: opts.email,
-    subject: `Bid placed on ${opts.lotTitle}`,
-    text: `Your bid of $${opts.amount.toLocaleString()} on "${opts.lotTitle}" was recorded.\n\nView lot: ${process.env.NEXT_PUBLIC_SITE_URL ?? "https://astock-one.vercel.app"}/lots/${opts.slug}`,
-  });
-}
-
-export async function notifyOutbid(opts: {
-  email: string;
-  lotTitle: string;
-  amount: number;
-  slug: string;
-}) {
-  return sendTransactionalEmail({
-    to: opts.email,
-    subject: `Outbid on ${opts.lotTitle}`,
-    text: `Someone placed a higher bid on "${opts.lotTitle}". The current bid is $${opts.amount.toLocaleString()}.\n\nBid again: ${process.env.NEXT_PUBLIC_SITE_URL ?? "https://astock-one.vercel.app"}/lots/${opts.slug}`,
-  });
-}
-
 export async function notifySold(opts: {
   email: string;
   lotTitle: string;

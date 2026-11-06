@@ -43,7 +43,7 @@ export default async function HomePage() {
             Bulk lots for serious liquidation buyers
           </h1>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg animate-rise-delay-1">
-            Graded pallets and truckloads with manifests. Bid or request purchase.
+            Graded pallets and truckloads with manifests. Browse, add to cart, request purchase.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 animate-rise-delay-2">
             <Link href="/browse" className="btn btn-primary">
@@ -125,7 +125,7 @@ export default async function HomePage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-xl">
                 <h2 className="font-display text-3xl font-semibold md:text-4xl">
-                  Ready to bid or list surplus?
+                  Ready to buy or list surplus?
                 </h2>
                 <p className="mt-3 text-white/70">
                   Browse open lots, or request a seller intro.

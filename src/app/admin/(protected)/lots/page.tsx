@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { formatCurrency } from "@/lib/format";
 import { listAllLotsAdmin } from "@/lib/lot-service";
+import { lotPrice } from "@/lib/pricing";
 
 export default async function AdminLotsPage() {
   const lots = await listAllLotsAdmin();
@@ -23,8 +24,8 @@ export default async function AdminLotsPage() {
             <tr>
               <th className="px-4 py-3 font-semibold">Title</th>
               <th className="px-4 py-3 font-semibold">Status</th>
-              <th className="px-4 py-3 font-semibold">Bid</th>
-              <th className="px-4 py-3 font-semibold">Ends</th>
+              <th className="px-4 py-3 font-semibold">Price</th>
+              <th className="px-4 py-3 font-semibold">Available until</th>
               <th className="px-4 py-3 font-semibold"> </th>
             </tr>
           </thead>
@@ -39,7 +40,7 @@ export default async function AdminLotsPage() {
                   {lot.published ? "Published" : "Draft"}
                   {lot.featured ? " · Featured" : ""}
                 </td>
-                <td className="px-4 py-3">{formatCurrency(lot.currentBid)}</td>
+                <td className="px-4 py-3">{formatCurrency(lotPrice(lot))}</td>
                 <td className="px-4 py-3 text-steel">
                   {new Date(lot.endsAt).toLocaleString()}
                 </td>

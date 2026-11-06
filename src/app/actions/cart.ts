@@ -11,7 +11,7 @@ export async function addToCartAction(formData: FormData) {
   if (!slug) return { ok: false as const, error: "Missing lot." };
 
   const lot = await prisma.lot.findFirst({
-    where: { slug, published: true, saleType: "Buy Now", status: "open" },
+    where: { slug, published: true, status: "open" },
   });
   if (!lot) return { ok: false as const, error: "This lot cannot be added to cart." };
   if (new Date(lot.endsAt).getTime() <= Date.now()) {

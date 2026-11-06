@@ -23,14 +23,14 @@ export default function PrivacyPage() {
 
         <Section title="Information we collect">
           We collect account credentials and contact details you provide (such as email address and,
-          for sellers, company and phone), marketplace activity (bids, purchase requests, seller
+          for sellers, company and phone), marketplace activity (purchase requests, seller
           inquiries), technical logs needed to operate the service, and communications you send to
           Astock operations.
         </Section>
 
         <Section title="How we use information">
-          We use information to operate the marketplace, authenticate users, process bids and email
-          purchase requests, communicate about lots and logistics, prevent fraud and abuse, improve
+          We use information to operate the marketplace, authenticate users, process email purchase
+          requests, communicate about lots and logistics, prevent fraud and abuse, improve
           reliability, and comply with law.
         </Section>
 
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         <Section title="Your choices">
           You may update account email through supported account flows, request access or deletion
           subject to legal retention needs, and opt out of non-essential marketing messages. Transactional
-          notices related to bids, orders, and security may still be sent.
+          notices related to orders and security may still be sent.
         </Section>
 
         <Section title="Contact">

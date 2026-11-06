@@ -14,7 +14,7 @@ export default function SignupPage() {
   return (
     <div className="site-grid flex min-h-[70vh] flex-col justify-center pt-28 pb-20">
       <h1 className="font-display text-4xl font-semibold text-ink">Join Astock</h1>
-      <p className="mt-3 max-w-md text-steel">Email and password. Start bidding right away.</p>
+      <p className="mt-3 max-w-md text-steel">Email and password. Start ordering right away.</p>
       <div className="mt-8 max-w-md">
         <Suspense fallback={<p className="text-sm text-steel">Loading…</p>}>
           <AuthForm mode="signup" />
