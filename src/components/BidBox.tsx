@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
+import { addToCartAction } from "@/app/actions/cart";
 import { placeBidAction, requestPurchaseAction } from "@/app/actions/bidding";
 import { Countdown } from "@/components/Countdown";
 import { TermsAgree } from "@/components/TermsAgree";
@@ -15,6 +17,7 @@ export function BidBox({
   lot: Lot;
   signedIn: boolean;
 }) {
+  const router = useRouter();
   const closed = lot.status === "sold" || new Date(lot.endsAt).getTime() <= Date.now();
   const minBid = lot.currentBid + 25;
   const [amount, setAmount] = useState(String(minBid));
@@ -52,13 +55,27 @@ export function BidBox({
     });
   }
 
+  function onAddToCart() {
+    const formData = new FormData();
+    formData.set("slug", lot.slug);
+    startTransition(async () => {
+      const result = await addToCartAction(formData);
+      if (!result.ok) {
+        setMessage(result.error);
+        return;
+      }
+      setMessage("Added to cart.");
+      router.refresh();
+    });
+  }
+
   function onRequestPurchase() {
     if (!signedIn) {
       setMessage("Sign in to request this purchase.");
       return;
     }
     if (!termsAccepted) {
-      setMessage("Agree to the Terms & Conditions and Privacy Policy to continue.");
+      setMessage("Please agree to the terms to continue.");
       return;
     }
     const formData = new FormData();
@@ -74,8 +91,8 @@ export function BidBox({
       setMailto(result.mailto);
       setMessage(
         result.emailed
-          ? `Order sent. We emailed ops and confirmed to you for ${formatCurrency(result.amount)}. We will follow up by email.`
-          : `Order recorded for ${formatCurrency(result.amount)}. Open your email client to notify ops, or we will follow up from your account email.`,
+          ? `Order sent for ${formatCurrency(result.amount)}. We emailed ops and will follow up.`
+          : `Order recorded for ${formatCurrency(result.amount)}. Open email to ops if needed.`,
       );
     });
   }
@@ -149,26 +166,41 @@ export function BidBox({
             </Link>
           )}
         </form>
-      ) : signedIn ? (
-        <div className="mt-5 space-y-4">
-          <TermsAgree
-            checked={termsAccepted}
-            onChange={setTermsAccepted}
-            id={`purchase-terms-${lot.id}`}
-          />
+      ) : (
+        <div className="mt-5 space-y-3">
           <button
             type="button"
-            className="btn btn-primary w-full"
-            onClick={onRequestPurchase}
-            disabled={pending || !termsAccepted}
+            className="btn btn-secondary w-full"
+            onClick={onAddToCart}
+            disabled={pending}
           >
-            {pending ? "Sending request…" : "Request purchase"}
+            {pending ? "Adding…" : "Add to cart"}
           </button>
+          <Link href="/cart" className="btn btn-secondary w-full">
+            View cart
+          </Link>
+          {signedIn ? (
+            <>
+              <TermsAgree
+                checked={termsAccepted}
+                onChange={setTermsAccepted}
+                id={`purchase-terms-${lot.id}`}
+              />
+              <button
+                type="button"
+                className="btn btn-primary w-full"
+                onClick={onRequestPurchase}
+                disabled={pending || !termsAccepted}
+              >
+                {pending ? "Sending request…" : "Order this lot now"}
+              </button>
+            </>
+          ) : (
+            <Link href={loginHref} className="btn btn-primary w-full">
+              Sign in to order
+            </Link>
+          )}
         </div>
-      ) : (
-        <Link href={loginHref} className="btn btn-primary mt-5 w-full">
-          Sign in to buy
-        </Link>
       )}
 
       {message ? (
@@ -179,10 +211,15 @@ export function BidBox({
               Open email to ops
             </a>
           ) : null}
+          {message.includes("cart") ? (
+            <Link href="/cart" className="block font-semibold text-accent-deep hover:underline">
+              Go to cart
+            </Link>
+          ) : null}
         </div>
       ) : (
         <p className="mt-4 text-xs leading-relaxed text-steel">
-          Bids are binding once placed. Purchase requests are confirmed by email with Astock ops.
+          Bids are binding. Buy Now lots can go in your cart or order by email.
         </p>
       )}
     </aside>

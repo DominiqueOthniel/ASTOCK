@@ -1,23 +1,26 @@
 import { notifyOrderRequest } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
+import { getSiteSettings } from "@/lib/site-settings";
 import { siteUrl } from "@/lib/site";
 
-export function ordersInboxEmail() {
+export async function ordersInboxEmail() {
+  const settings = await getSiteSettings();
   return (
+    settings.contactEmail ||
     process.env.ORDERS_EMAIL ||
     process.env.ADMIN_EMAIL ||
     "admin@astock.market"
   );
 }
 
-export function buildOrderMailto(opts: {
+export async function buildOrderMailto(opts: {
   lotTitle: string;
   slug: string;
   amount: number;
   userEmail: string;
   orderId: string;
 }) {
-  const to = ordersInboxEmail();
+  const to = await ordersInboxEmail();
   const subject = encodeURIComponent(
     `Astock order request: ${opts.lotTitle} (${opts.slug})`,
   );
@@ -30,6 +33,33 @@ export function buildOrderMailto(opts: {
       `Buyer: ${opts.userEmail}`,
       `Link: ${siteUrl()}/lots/${opts.slug}`,
       "",
+      "Please confirm availability and next steps with the buyer by email.",
+    ].join("\n"),
+  );
+  return `mailto:${to}?subject=${subject}&body=${body}`;
+}
+
+export async function buildCartMailto(opts: {
+  userEmail: string;
+  lines: { orderId: string; title: string; slug: string; amount: number }[];
+  total: number;
+}) {
+  const to = await ordersInboxEmail();
+  const subject = encodeURIComponent(
+    `Astock cart order (${opts.lines.length} lot${opts.lines.length === 1 ? "" : "s"})`,
+  );
+  const body = encodeURIComponent(
+    [
+      `Buyer: ${opts.userEmail}`,
+      `Total: $${opts.total.toLocaleString()}`,
+      "",
+      ...opts.lines.flatMap((line) => [
+        `Order ID: ${line.orderId}`,
+        `Lot: ${line.title} (${line.slug})`,
+        `Amount: $${line.amount.toLocaleString()}`,
+        `Link: ${siteUrl()}/lots/${line.slug}`,
+        "",
+      ]),
       "Please confirm availability and next steps with the buyer by email.",
     ].join("\n"),
   );
@@ -51,51 +81,118 @@ export async function createEmailOrder(opts: {
     }
   | { ok: false; error: string }
 > {
-  const lot = await prisma.lot.findFirst({
-    where: { slug: opts.slug, published: true },
-  });
-  if (!lot) return { ok: false, error: "Lot not found." };
-  if (lot.saleType !== "Buy Now") {
-    return { ok: false, error: "This lot is not available for purchase request." };
-  }
-  if (lot.status !== "open" || new Date(lot.endsAt).getTime() <= Date.now()) {
-    return { ok: false, error: "This listing is no longer available." };
-  }
-
-  const amount = lot.buyNowPrice ?? lot.currentBid;
-  const order = await prisma.order.create({
-    data: {
-      lotId: lot.id,
-      userId: opts.userId,
-      userEmail: opts.userEmail,
-      amount,
-      status: "email_pending",
-      termsAcceptedAt: opts.termsAcceptedAt,
-    },
-  });
-
-  const mailto = buildOrderMailto({
-    lotTitle: lot.title,
-    slug: lot.slug,
-    amount,
+  const multi = await createEmailOrdersForSlugs({
+    slugs: [opts.slug],
+    userId: opts.userId,
     userEmail: opts.userEmail,
-    orderId: order.id,
+    termsAcceptedAt: opts.termsAcceptedAt,
   });
+  if (!multi.ok) return multi;
+  return {
+    ok: true,
+    orderId: multi.orderIds[0],
+    amount: multi.total,
+    mailto: multi.mailto,
+    emailed: multi.emailed,
+  };
+}
 
-  const emailed = await notifyOrderRequest({
-    opsEmail: ordersInboxEmail(),
-    buyerEmail: opts.userEmail,
-    lotTitle: lot.title,
-    slug: lot.slug,
-    amount,
-    orderId: order.id,
+export async function createEmailOrdersForSlugs(opts: {
+  slugs: string[];
+  userId: string;
+  userEmail: string;
+  termsAcceptedAt: Date;
+}): Promise<
+  | {
+      ok: true;
+      orderIds: string[];
+      total: number;
+      mailto: string;
+      emailed: boolean;
+    }
+  | { ok: false; error: string }
+> {
+  const uniqueSlugs = [...new Set(opts.slugs.map((slug) => slug.trim()).filter(Boolean))];
+  if (uniqueSlugs.length === 0) {
+    return { ok: false, error: "No lots selected." };
+  }
+
+  const lots = await prisma.lot.findMany({
+    where: { slug: { in: uniqueSlugs }, published: true },
   });
+  const bySlug = new Map(lots.map((lot) => [lot.slug, lot]));
+
+  const lines: {
+    orderId: string;
+    title: string;
+    slug: string;
+    amount: number;
+  }[] = [];
+
+  for (const slug of uniqueSlugs) {
+    const lot = bySlug.get(slug);
+    if (!lot) return { ok: false, error: `Lot not found: ${slug}` };
+    if (lot.saleType !== "Buy Now") {
+      return { ok: false, error: `"${lot.title}" is not available for purchase request.` };
+    }
+    if (lot.status !== "open" || new Date(lot.endsAt).getTime() <= Date.now()) {
+      return { ok: false, error: `"${lot.title}" is no longer available.` };
+    }
+
+    const amount = lot.buyNowPrice ?? lot.currentBid;
+    const order = await prisma.order.create({
+      data: {
+        lotId: lot.id,
+        userId: opts.userId,
+        userEmail: opts.userEmail,
+        amount,
+        status: "email_pending",
+        termsAcceptedAt: opts.termsAcceptedAt,
+      },
+    });
+    lines.push({
+      orderId: order.id,
+      title: lot.title,
+      slug: lot.slug,
+      amount,
+    });
+  }
+
+  const total = lines.reduce((sum, line) => sum + line.amount, 0);
+  const opsEmail = await ordersInboxEmail();
+  const mailto =
+    lines.length === 1
+      ? await buildOrderMailto({
+          lotTitle: lines[0].title,
+          slug: lines[0].slug,
+          amount: lines[0].amount,
+          userEmail: opts.userEmail,
+          orderId: lines[0].orderId,
+        })
+      : await buildCartMailto({
+          userEmail: opts.userEmail,
+          lines,
+          total,
+        });
+
+  let emailed = false;
+  for (const line of lines) {
+    const result = await notifyOrderRequest({
+      opsEmail,
+      buyerEmail: opts.userEmail,
+      lotTitle: line.title,
+      slug: line.slug,
+      amount: line.amount,
+      orderId: line.orderId,
+    });
+    if (result.ok && !result.queued) emailed = true;
+  }
 
   return {
     ok: true,
-    orderId: order.id,
-    amount,
+    orderIds: lines.map((line) => line.orderId),
+    total,
     mailto,
-    emailed: emailed.ok && !emailed.queued,
+    emailed,
   };
 }

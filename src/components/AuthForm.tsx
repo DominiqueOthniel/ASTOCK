@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { TermsAgree } from "@/components/TermsAgree";
@@ -10,7 +11,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const search = useSearchParams();
   const next = search.get("next") || "/browse";
   const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
 
@@ -20,33 +20,36 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
     setError(null);
-    setMessage(null);
 
     if (mode === "signup" && !termsAccepted) {
-      setError("Agree to the Terms & Conditions and Privacy Policy to continue.");
+      setError("Please agree to the terms to continue.");
       return;
     }
 
     startTransition(async () => {
       const supabase = createSupabaseBrowserClient();
+
       if (mode === "signup") {
-        const acceptedAt = new Date().toISOString();
-        const { error: signUpError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              terms_accepted_at: acceptedAt,
-              privacy_accepted_at: acceptedAt,
-            },
-          },
+        const response = await fetch("/api/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, termsAccepted: true }),
         });
-        if (signUpError) {
-          setError(signUpError.message);
+        const data = (await response.json()) as { error?: string };
+        if (!response.ok) {
+          setError(data.error ?? "Could not create account.");
           return;
         }
-        setMessage("Account created. You can sign in and start bidding.");
-        router.push(`/login?next=${encodeURIComponent(next)}`);
+
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (signInError) {
+          setError(signInError.message);
+          return;
+        }
+        router.push(next);
         router.refresh();
         return;
       }
@@ -56,6 +59,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         password,
       });
       if (signInError) {
+        const message = signInError.message.toLowerCase();
+        if (message.includes("confirm") || message.includes("email not confirmed")) {
+          setError(
+            "Email confirmation is still required in Supabase. Ask an admin to turn Confirm email Off, then try again.",
+          );
+          return;
+        }
         setError(signInError.message);
         return;
       }
@@ -92,10 +102,21 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         className="btn btn-primary w-full"
         disabled={pending || (mode === "signup" && !termsAccepted)}
       >
-        {pending ? "Working…" : mode === "login" ? "Sign in" : "Create account"}
+        {pending ? "Working…" : mode === "login" ? "Sign in" : "Join Astock"}
       </button>
       {error ? <p className="text-sm text-warn">{error}</p> : null}
-      {message ? <p className="text-sm text-ink-soft">{message}</p> : null}
+      {mode === "signup" ? (
+        <p className="text-xs leading-relaxed text-steel">
+          You are signed in right after joining. No confirmation email needed for bidding or orders.
+        </p>
+      ) : (
+        <p className="text-xs text-steel">
+          Need an account?{" "}
+          <Link href={`/signup?next=${encodeURIComponent(next)}`} className="font-medium text-accent-deep hover:underline">
+            Join
+          </Link>
+        </p>
+      )}
     </form>
   );
 }

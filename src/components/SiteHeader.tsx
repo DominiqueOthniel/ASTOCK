@@ -7,6 +7,7 @@ import { AccountMenu } from "@/components/AccountMenu";
 
 const links = [
   { href: "/browse", label: "Browse lots" },
+  { href: "/cart", label: "Cart" },
   { href: "/sell", label: "Sell" },
   { href: "/admin/login", label: "Admin" },
 ];
