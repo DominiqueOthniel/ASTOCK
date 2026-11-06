@@ -18,7 +18,16 @@ export default async function HomePage() {
     listPublishedLots(),
     getFeaturedPublishedLots(),
   ]);
-  const sampleLots = (featured.length > 0 ? featured : [...lots]).slice(0, 8);
+  const christmasTrees = lots
+    .filter(
+      (lot) =>
+        lot.category === "Christmas" &&
+        /tree|pine|spruce|fir|flocked|pre-lit|led/i.test(lot.title),
+    )
+    .slice(0, 4);
+  const sampleLots = (featured.length > 0 ? featured : [...lots])
+    .filter((lot) => !christmasTrees.some((tree) => tree.id === lot.id))
+    .slice(0, 8);
   const liveCount = lots.length;
 
   return (
@@ -84,24 +93,50 @@ export default async function HomePage() {
         </Reveal>
       </section>
 
-      <section className="border-y border-line bg-surface/70">
-        <div className="site-grid py-12 md:py-14">
-          <Reveal>
-            <div className="flex items-end justify-between gap-4">
-              <h2 className="font-display text-3xl font-semibold text-ink">Featured lots</h2>
-              <Link href="/browse" className="btn btn-secondary">
-                Browse
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal className="mt-7">
-            <div className="lot-grid">
-              {sampleLots.map((lot) => (
-                <LotCard key={lot.id} lot={lot} />
-              ))}
-            </div>
-          </Reveal>
-        </div>
+      {christmasTrees.length > 0 ? (
+        <section className="border-y border-line bg-surface/70">
+          <div className="site-grid py-12 md:py-14">
+            <Reveal>
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <h2 className="font-display text-3xl font-semibold text-ink">Christmas trees</h2>
+                  <p className="mt-1 text-sm text-steel">Fixed-price holiday SKUs ready to order</p>
+                </div>
+                <Link
+                  href="/browse?category=Christmas"
+                  className="btn btn-secondary"
+                >
+                  Shop Christmas
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal className="mt-7">
+              <div className="lot-grid">
+                {christmasTrees.map((lot) => (
+                  <LotCard key={lot.id} lot={lot} />
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="site-grid py-12 md:py-14">
+        <Reveal>
+          <div className="flex items-end justify-between gap-4">
+            <h2 className="font-display text-3xl font-semibold text-ink">Featured lots</h2>
+            <Link href="/browse" className="btn btn-secondary">
+              Browse
+            </Link>
+          </div>
+        </Reveal>
+        <Reveal className="mt-7">
+          <div className="lot-grid">
+            {sampleLots.map((lot) => (
+              <LotCard key={lot.id} lot={lot} />
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       <section className="site-grid py-12 md:py-16">
