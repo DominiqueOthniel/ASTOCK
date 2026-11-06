@@ -46,6 +46,23 @@ async function main() {
     create: { email, passwordHash },
   });
 
+  await prisma.siteSettings.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      contactEmail: "buyers@astock.market",
+      contactPhone: "",
+      whatsapp: "",
+      addressNote: "",
+      facebookUrl: "",
+      instagramUrl: "",
+      tiktokUrl: "",
+      linkedinUrl: "",
+      xUrl: "",
+    },
+  });
+
   const seedPath = join(__dirname, "seed-lots.json");
   const lots = JSON.parse(readFileSync(seedPath, "utf8")) as SeedLot[];
 
@@ -91,7 +108,7 @@ async function main() {
     }
   }
 
-  console.log(`Seeded admin ${email} and ${lots.length} lots.`);
+  console.log(`Seeded admin ${email}, site settings, and ${lots.length} lots.`);
 }
 
 main()

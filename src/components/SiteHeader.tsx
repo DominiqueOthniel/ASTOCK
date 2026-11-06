@@ -7,7 +7,8 @@ import { AccountMenu } from "@/components/AccountMenu";
 
 const links = [
   { href: "/browse", label: "Browse lots" },
-  { href: "/sell", label: "Sell with us" },
+  { href: "/sell", label: "Sell" },
+  { href: "/admin/login", label: "Admin" },
 ];
 
 export function SiteHeader({ email }: { email?: string | null }) {

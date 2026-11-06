@@ -1,13 +1,22 @@
 import Link from "next/link";
+import { getSiteSettings, publicSocialLinks } from "@/lib/site-settings";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const settings = await getSiteSettings();
+  const socials = publicSocialLinks(settings);
+  const hasContact =
+    Boolean(settings.contactEmail) ||
+    Boolean(settings.contactPhone) ||
+    Boolean(settings.whatsapp) ||
+    Boolean(settings.addressNote);
+
   return (
     <footer className="mt-auto border-t border-line bg-ink text-white">
-      <div className="site-grid grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="site-grid grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl font-bold">Astock</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70">
-            Bulk liquidation marketplace for pallets, truckloads, and mixed lots from retailers and brands.
+            Bulk liquidation marketplace for pallets, truckloads, and mixed lots.
           </p>
         </div>
         <div>
@@ -23,6 +32,11 @@ export function SiteFooter() {
             <li>
               <Link href="/sell" className="hover:text-white">
                 Sell with us
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/login" className="hover:text-white">
+                Admin
               </Link>
             </li>
           </ul>
@@ -43,8 +57,49 @@ export function SiteFooter() {
               </Link>
             </li>
           </ul>
-          <p className="mt-5 text-sm text-white/80">sellers@astock.market</p>
-          <p className="mt-1 text-sm text-white/80">buyers@astock.market</p>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
+            Contact
+          </p>
+          {hasContact || socials.length > 0 ? (
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
+              {settings.contactEmail ? (
+                <li>
+                  <a href={`mailto:${settings.contactEmail}`} className="hover:text-white">
+                    {settings.contactEmail}
+                  </a>
+                </li>
+              ) : null}
+              {settings.contactPhone ? (
+                <li>
+                  <a
+                    href={`tel:${settings.contactPhone.replace(/[^\d+]/g, "")}`}
+                    className="hover:text-white"
+                  >
+                    {settings.contactPhone}
+                  </a>
+                </li>
+              ) : null}
+              {settings.addressNote ? (
+                <li className="leading-relaxed text-white/70">{settings.addressNote}</li>
+              ) : null}
+              {socials.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-4 text-sm text-white/55">Contact details coming soon.</p>
+          )}
         </div>
       </div>
       <div className="border-t border-white/10">

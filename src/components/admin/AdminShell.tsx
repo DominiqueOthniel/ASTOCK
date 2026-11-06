@@ -6,6 +6,7 @@ const nav = [
   { href: "/admin/lots/new", label: "New lot" },
   { href: "/admin/orders", label: "Orders" },
   { href: "/admin/inquiries", label: "Inquiries" },
+  { href: "/admin/settings", label: "Contacts" },
 ];
 
 export function AdminShell({

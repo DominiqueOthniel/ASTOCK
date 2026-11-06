@@ -101,3 +101,17 @@ model AdminUser {
   passwordHash String
   createdAt    DateTime @default(now())
 }
+
+model SiteSettings {
+  id             String   @id @default("default")
+  contactEmail   String?
+  contactPhone   String?
+  whatsapp       String?
+  addressNote    String?
+  facebookUrl    String?
+  instagramUrl   String?
+  tiktokUrl      String?
+  linkedinUrl    String?
+  xUrl          String?
+  updatedAt      DateTime @updatedAt
+}
