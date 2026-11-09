@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 import { BuyBox } from "@/components/BuyBox";
 import { LotCard } from "@/components/LotCard";
 import { LotGallery } from "@/components/LotGallery";
+import { LotReviews } from "@/components/LotReviews";
 import { formatCondition, formatCurrency } from "@/lib/format";
 import { getPublishedLotBySlug, getRelatedLots } from "@/lib/lot-service";
 import { lotPrice } from "@/lib/pricing";
+import { listReviewsForLot } from "@/lib/reviews";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
@@ -37,10 +39,11 @@ export default async function LotDetailPage({ params }: LotPageProps) {
   const lot = await getPublishedLotBySlug(slug);
   if (!lot) notFound();
 
-  const [related, user, settings] = await Promise.all([
+  const [related, user, settings, reviews] = await Promise.all([
     getRelatedLots(lot, 4),
     getMarketplaceUser(),
     getSiteSettings(),
+    listReviewsForLot(lot.id),
   ]);
 
   return (
@@ -128,6 +131,8 @@ export default async function LotDetailPage({ params }: LotPageProps) {
             />
           </div>
         </div>
+
+        <LotReviews reviews={reviews} />
 
         {related.length > 0 ? (
           <section className="mt-14 border-t border-line pt-10">

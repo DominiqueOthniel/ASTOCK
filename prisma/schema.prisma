@@ -46,6 +46,20 @@ model Lot {
   updatedAt        DateTime  @updatedAt
   bids             Bid[]
   orders           Order[]
+  reviews          Review[]
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  lotId      String
+  lot        Lot      @relation(fields: [lotId], references: [id], onDelete: Cascade)
+  authorName String
+  rating     Int
+  body       String
+  verified   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([lotId, createdAt])
 }
 
 model Bid {

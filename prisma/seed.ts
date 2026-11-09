@@ -124,7 +124,47 @@ async function main() {
     }
   }
 
-  console.log(`Seeded admin ${email}, site settings, and ${lots.length} lots.`);
+  type SeedReview = {
+    id: string;
+    lotId: string;
+    authorName: string;
+    rating: number;
+    body: string;
+    verified?: boolean;
+    hoursAgo: number;
+  };
+
+  const reviewPath = join(__dirname, "seed-reviews.json");
+  const reviews = JSON.parse(readFileSync(reviewPath, "utf8")) as SeedReview[];
+  const now = Date.now();
+
+  for (const review of reviews) {
+    const createdAt = new Date(now - Math.max(0, review.hoursAgo) * 3600_000);
+    await prisma.review.upsert({
+      where: { id: review.id },
+      update: {
+        lotId: review.lotId,
+        authorName: review.authorName,
+        rating: review.rating,
+        body: review.body,
+        verified: review.verified ?? false,
+        createdAt,
+      },
+      create: {
+        id: review.id,
+        lotId: review.lotId,
+        authorName: review.authorName,
+        rating: review.rating,
+        body: review.body,
+        verified: review.verified ?? false,
+        createdAt,
+      },
+    });
+  }
+
+  console.log(
+    `Seeded admin ${email}, site settings, ${lots.length} lots, and ${reviews.length} reviews.`,
+  );
 }
 
 main()
