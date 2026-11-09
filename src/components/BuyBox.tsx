@@ -29,10 +29,12 @@ export function BuyBox({
   lot,
   signedIn,
   minOrderTotalCents,
+  accountEmail = "",
 }: {
   lot: Lot;
   signedIn: boolean;
   minOrderTotalCents: number;
+  accountEmail?: string;
 }) {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
@@ -201,6 +203,7 @@ export function BuyBox({
                 idPrefix={`buy-${lot.id}`}
                 disabled={pending}
                 compact
+                defaultEmail={accountEmail}
               />
               <TermsAgree
                 checked={termsAccepted}

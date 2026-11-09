@@ -37,6 +37,7 @@ export default async function CartPage() {
           <CartCheckout
             lines={lines}
             signedIn={Boolean(user?.email)}
+            accountEmail={user?.email ?? ""}
             minOrderTotalCents={settings.minOrderTotalCents}
           />
         </div>

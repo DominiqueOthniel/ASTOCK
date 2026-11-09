@@ -4,12 +4,14 @@ type BuyerDetailsFieldsProps = {
   idPrefix?: string;
   disabled?: boolean;
   compact?: boolean;
+  defaultEmail?: string;
 };
 
 export function BuyerDetailsFields({
   idPrefix = "buyer",
   disabled = false,
   compact = false,
+  defaultEmail = "",
 }: BuyerDetailsFieldsProps) {
   const gap = compact ? "gap-3" : "gap-4";
 
@@ -34,6 +36,22 @@ export function BuyerDetailsFields({
             minLength={2}
             maxLength={80}
             placeholder="First and last name"
+            disabled={disabled}
+          />
+        </label>
+
+        <label className="block text-sm">
+          <span className="mb-1.5 block font-medium text-ink">Email</span>
+          <input
+            className="field"
+            name="email"
+            id={`${idPrefix}-email`}
+            type="email"
+            autoComplete="email"
+            required
+            maxLength={120}
+            placeholder="you@example.com"
+            defaultValue={defaultEmail}
             disabled={disabled}
           />
         </label>

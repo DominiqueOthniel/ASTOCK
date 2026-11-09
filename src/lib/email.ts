@@ -73,6 +73,7 @@ export async function notifySellInquiry(opts: {
 export async function notifyOrderRequest(opts: {
   opsEmail: string;
   buyerEmail: string;
+  accountEmail?: string;
   lotTitle: string;
   slug: string;
   amount: number;
@@ -81,6 +82,7 @@ export async function notifyOrderRequest(opts: {
   buyerBlock?: string;
 }) {
   const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astock-one.vercel.app";
+  const accountEmail = opts.accountEmail || opts.buyerEmail;
   const ops = await sendTransactionalEmail({
     to: opts.opsEmail,
     subject: `Order request: ${opts.lotTitle}`,
@@ -92,7 +94,7 @@ export async function notifyOrderRequest(opts: {
       `Slug: ${opts.slug}`,
       `Quantity: ${opts.quantity ?? 1}`,
       `Amount: $${opts.amount.toLocaleString()}`,
-      `Account email: ${opts.buyerEmail}`,
+      `Account email: ${accountEmail}`,
       opts.buyerBlock ? `` : null,
       opts.buyerBlock ?? null,
       ``,

@@ -92,6 +92,7 @@ model Order {
   stripePaymentIntentId String?
   termsAcceptedAt       DateTime?
   buyerFullName         String?
+  buyerEmail            String?
   buyerPhone            String?
   buyerAge              Int?
   shipStreet            String?

@@ -1,5 +1,6 @@
 export type BuyerDetails = {
   fullName: string;
+  email: string;
   phone: string;
   age: number;
   street: string;
@@ -16,12 +17,15 @@ export type BuyerDetailsResult =
 const US_STATES =
   /^(A[LKZR]|C[AOT]|D[EC]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEHINOST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$/i;
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
 function read(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
 }
 
 export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
   const fullName = read(formData, "fullName");
+  const email = read(formData, "email").toLowerCase();
   const phone = read(formData, "phone");
   const street = read(formData, "street");
   const city = read(formData, "city");
@@ -42,6 +46,10 @@ export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
   }
   if (fullName.split(/\s+/).filter(Boolean).length < 2) {
     return { ok: false, error: "Enter first and last name.", field: "fullName" };
+  }
+
+  if (!email || email.length > 120 || !EMAIL_RE.test(email)) {
+    return { ok: false, error: "Enter a valid email address.", field: "email" };
   }
 
   const phoneDigits = phone.replace(/[^\d]/g, "");
@@ -88,6 +96,7 @@ export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
     ok: true,
     details: {
       fullName,
+      email,
       phone: phoneDigits.length === 10 ? `+1${phoneDigits}` : `+${phoneDigits}`,
       age,
       street,
@@ -106,6 +115,7 @@ export function formatBuyerAddress(details: BuyerDetails) {
 export function buyerDetailsEmailBlock(details: BuyerDetails) {
   return [
     `Name: ${details.fullName}`,
+    `Email: ${details.email}`,
     `Phone: ${details.phone}`,
     `Age: ${details.age}`,
     `Address: ${formatBuyerAddress(details)}`,

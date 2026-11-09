@@ -47,11 +47,16 @@ export default async function AdminOrdersPage() {
                     {order.userEmail} · {order.status} ·{" "}
                     {new Date(order.createdAt).toLocaleString()}
                   </p>
-                  {order.buyerFullName ? (
+                  {order.buyerFullName || order.buyerEmail ? (
                     <p className="text-sm text-ink-soft">
-                      {order.buyerFullName}
-                      {order.buyerPhone ? ` · ${order.buyerPhone}` : ""}
-                      {typeof order.buyerAge === "number" ? ` · Age ${order.buyerAge}` : ""}
+                      {[
+                        order.buyerFullName,
+                        order.buyerEmail,
+                        order.buyerPhone,
+                        typeof order.buyerAge === "number" ? `Age ${order.buyerAge}` : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </p>
                   ) : null}
                   {address ? <p className="text-sm text-ink-soft">{address}</p> : null}
@@ -68,7 +73,7 @@ export default async function AdminOrdersPage() {
                     View lot
                   </Link>
                   <a
-                    href={`mailto:${order.userEmail}?subject=${encodeURIComponent(`PalletDeals order ${order.id}`)}`}
+                    href={`mailto:${order.buyerEmail || order.userEmail}?subject=${encodeURIComponent(`PalletDeals order ${order.id}`)}`}
                     className="text-sm font-semibold text-accent hover:text-accent-deep"
                   >
                     Email buyer

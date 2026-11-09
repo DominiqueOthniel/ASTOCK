@@ -41,10 +41,12 @@ export function CartCheckout({
   lines,
   signedIn,
   minOrderTotalCents,
+  accountEmail = "",
 }: {
   lines: CartLine[];
   signedIn: boolean;
   minOrderTotalCents: number;
+  accountEmail?: string;
 }) {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
@@ -269,7 +271,12 @@ export function CartCheckout({
 
         {signedIn ? (
           <form ref={formRef} className="mt-5 space-y-4" onSubmit={onCheckout} noValidate>
-            <BuyerDetailsFields idPrefix="cart-buyer" disabled={pending} compact />
+            <BuyerDetailsFields
+              idPrefix="cart-buyer"
+              disabled={pending}
+              compact
+              defaultEmail={accountEmail}
+            />
             <TermsAgree
               checked={termsAccepted}
               onChange={setTermsAccepted}

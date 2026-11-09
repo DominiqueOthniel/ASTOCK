@@ -253,6 +253,7 @@ export async function createEmailOrdersForSlugs(opts: {
         status: "email_pending",
         termsAcceptedAt: opts.termsAcceptedAt,
         buyerFullName: buyer.fullName,
+        buyerEmail: buyer.email,
         buyerPhone: buyer.phone,
         buyerAge: buyer.age,
         shipStreet: buyer.street,
@@ -295,7 +296,8 @@ export async function createEmailOrdersForSlugs(opts: {
   for (const line of lines) {
     const result = await notifyOrderRequest({
       opsEmail,
-      buyerEmail: opts.userEmail,
+      buyerEmail: buyer.email,
+      accountEmail: opts.userEmail,
       lotTitle: line.title,
       slug: line.slug,
       amount: line.amount,

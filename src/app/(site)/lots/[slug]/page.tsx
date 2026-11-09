@@ -131,6 +131,7 @@ export default async function LotDetailPage({ params }: LotPageProps) {
             <BuyBox
               lot={lot}
               signedIn={Boolean(user)}
+              accountEmail={user?.email ?? ""}
               minOrderTotalCents={settings.minOrderTotalCents}
             />
           </div>
