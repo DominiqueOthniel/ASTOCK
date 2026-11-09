@@ -102,7 +102,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         className="btn btn-primary w-full"
         disabled={pending || (mode === "signup" && !termsAccepted)}
       >
-        {pending ? "Working…" : mode === "login" ? "Sign in" : "Join Astock"}
+        {pending ? "Working…" : mode === "login" ? "Sign in" : "Join PalletDeals"}
       </button>
       {error ? <p className="text-sm text-warn">{error}</p> : null}
       {mode === "signup" ? (

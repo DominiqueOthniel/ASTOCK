@@ -21,10 +21,11 @@ export function BuyBox({
   const closed = lot.status === "sold" || new Date(lot.endsAt).getTime() <= Date.now();
   const price = lotPrice(lot);
   const [message, setMessage] = useState<string | null>(null);
-  const [mailto, setMailto] = useState<string | null>(null);
+  const [orderDone, setOrderDone] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
   const loginHref = `/login?next=${encodeURIComponent(`/lots/${lot.slug}`)}`;
+  const freeShipping = /free/i.test(lot.shipping);
 
   function onAddToCart() {
     const formData = new FormData();
@@ -56,16 +57,40 @@ export function BuyBox({
       const result = await requestPurchaseAction(formData);
       if (!result.ok) {
         setMessage(result.error);
-        setMailto(null);
+        setOrderDone(false);
         return;
       }
-      setMailto(result.mailto);
-      setMessage(
-        result.emailed
-          ? `Order sent for ${formatCurrency(result.amount)}.`
-          : `Order recorded for ${formatCurrency(result.amount)}.`,
-      );
+      setMessage(null);
+      setOrderDone(true);
     });
+  }
+
+  if (orderDone) {
+    return (
+      <aside
+        className="w-full min-w-0 border border-accent-soft bg-surface p-5 shadow-[var(--shadow)]"
+        role="status"
+        aria-live="polite"
+        data-testid="lot-order-success"
+      >
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-deep">
+          Order received
+        </p>
+        <p className="mt-2 font-display text-2xl font-semibold text-ink">Thank you</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+          We received your request for {lot.title} at {formatCurrency(price)}. Our team will email
+          next steps. No card charge until confirmed.
+        </p>
+        <div className="mt-5 flex flex-col gap-2">
+          <Link href="/account" className="btn btn-primary w-full">
+            View orders
+          </Link>
+          <Link href="/browse" className="btn btn-secondary w-full">
+            Keep browsing
+          </Link>
+        </div>
+      </aside>
+    );
   }
 
   return (
@@ -75,7 +100,8 @@ export function BuyBox({
       </p>
       <p className="mt-2 font-display text-4xl font-bold text-ink">{formatCurrency(price)}</p>
       <p className="mt-2 text-sm text-steel">
-        {lot.unitCount.toLocaleString()} units · {lot.location}
+        {lot.unitCount.toLocaleString()} unit{lot.unitCount === 1 ? "" : "s"}
+        {freeShipping ? " · Shipping free" : ""}
       </p>
 
       {closed ? (
@@ -119,11 +145,6 @@ export function BuyBox({
       {message ? (
         <div className="mt-4 space-y-2 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
           <p>{message}</p>
-          {mailto ? (
-            <a href={mailto} className="font-semibold text-accent-deep hover:underline">
-              Open email to ops
-            </a>
-          ) : null}
           {message.toLowerCase().includes("cart") ? (
             <Link href="/cart" className="block font-semibold text-accent-deep hover:underline">
               View cart

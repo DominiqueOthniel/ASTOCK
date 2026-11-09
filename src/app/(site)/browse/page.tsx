@@ -7,7 +7,11 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Browse lots",
-  description: "Browse fixed-price liquidation lots on Astock.",
+  description: "Browse fixed-price liquidation lots on PalletDeals.",
+  openGraph: {
+    title: "Browse lots | PalletDeals",
+    description: "Browse fixed-price liquidation lots on PalletDeals.",
+  },
 };
 
 export default async function BrowsePage() {

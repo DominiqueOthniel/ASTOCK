@@ -5,7 +5,7 @@ import { AuthForm } from "@/components/AuthForm";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Sign in to Astock.",
+  description: "Sign in to PalletDeals.",
 };
 
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export default function LoginPage() {
       <p className="mt-6 text-sm text-steel">
         New here?{" "}
         <Link href="/signup" className="font-medium text-accent-deep hover:underline">
-          Join Astock
+          Join PalletDeals
         </Link>
       </p>
     </div>

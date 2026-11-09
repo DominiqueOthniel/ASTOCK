@@ -5,7 +5,7 @@ import { AuthForm } from "@/components/AuthForm";
 
 export const metadata: Metadata = {
   title: "Join",
-  description: "Create an Astock account with email and password.",
+  description: "Create a PalletDeals account with email and password.",
 };
 
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 export default function SignupPage() {
   return (
     <div className="site-grid flex min-h-[70vh] flex-col justify-center py-14">
-      <h1 className="font-display text-4xl font-semibold text-ink">Join Astock</h1>
+      <h1 className="font-display text-4xl font-semibold text-ink">Join PalletDeals</h1>
       <p className="mt-2 text-steel">Email and password. Order right away.</p>
       <div className="mt-8 max-w-md">
         <Suspense fallback={<p className="text-sm text-steel">Loading…</p>}>

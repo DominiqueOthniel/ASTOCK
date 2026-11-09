@@ -45,7 +45,7 @@ export default async function AdminOrdersPage() {
                   View lot
                 </Link>
                 <a
-                  href={`mailto:${order.userEmail}?subject=${encodeURIComponent(`Astock order ${order.id}`)}`}
+                  href={`mailto:${order.userEmail}?subject=${encodeURIComponent(`PalletDeals order ${order.id}`)}`}
                   className="text-sm font-semibold text-accent hover:text-accent-deep"
                 >
                   Email buyer

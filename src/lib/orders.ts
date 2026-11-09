@@ -27,7 +27,7 @@ export async function buildOrderMailto(opts: {
 }) {
   const to = await ordersInboxEmail();
   const subject = encodeURIComponent(
-    `Astock order request: ${opts.lotTitle} (${opts.slug})`,
+    `PalletDeals order request: ${opts.lotTitle} (${opts.slug})`,
   );
   const body = encodeURIComponent(
     [
@@ -51,7 +51,7 @@ export async function buildCartMailto(opts: {
 }) {
   const to = await ordersInboxEmail();
   const subject = encodeURIComponent(
-    `Astock cart order (${opts.lines.length} lot${opts.lines.length === 1 ? "" : "s"})`,
+    `PalletDeals cart order (${opts.lines.length} lot${opts.lines.length === 1 ? "" : "s"})`,
   );
   const body = encodeURIComponent(
     [

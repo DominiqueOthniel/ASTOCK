@@ -18,7 +18,7 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 60vw"
-          priority
+          priority={active === 0}
         />
       </div>
       {list.length > 1 ? (
@@ -33,7 +33,14 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
               }`}
               aria-label={`Show image ${index + 1}`}
             >
-              <Image src={image} alt="" fill className="object-cover" sizes="96px" />
+              <Image
+                src={image}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="96px"
+                loading="lazy"
+              />
             </button>
           ))}
         </div>

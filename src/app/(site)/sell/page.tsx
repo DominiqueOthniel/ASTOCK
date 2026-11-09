@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sell with us",
-  description: "List retail returns, overstock, and liquidation lots on Astock.",
+  description: "List retail returns, overstock, and liquidation lots on PalletDeals.",
 };
 
 export default async function SellPage() {
@@ -17,7 +17,7 @@ export default async function SellPage() {
     <div className="pt-8 pb-16 md:pt-10 md:pb-20">
       <div className="site-grid">
         <h1 className="font-display text-4xl font-semibold text-ink md:text-5xl">
-          Sell with Astock
+          Sell with PalletDeals
         </h1>
         <p className="mt-3 max-w-xl text-steel">
           List graded surplus with a clear asking price.{" "}

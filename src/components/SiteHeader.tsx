@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AccountMenu } from "@/components/AccountMenu";
+import { BrandLogo } from "@/components/BrandLogo";
 import { CartIcon } from "@/components/CartIcon";
 
 const links = [
@@ -26,15 +27,9 @@ export function SiteHeader({
   return (
     <header className={`site-header ${onHome ? "is-home" : "is-solid"}`}>
       <div className="site-grid flex h-[var(--header-h)] items-center justify-between gap-3">
-        <Link
-          href="/"
-          className="font-display text-xl font-bold tracking-tight md:text-2xl"
-          onClick={() => setOpen(false)}
-        >
-          Astock
-        </Link>
+        <BrandLogo onDark={onHome} onClick={() => setOpen(false)} />
 
-        <nav className="hidden items-center gap-5 md:flex lg:gap-7">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-7" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -50,7 +45,7 @@ export function SiteHeader({
           <AccountMenu email={email ?? null} onDark={onHome} />
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="relative z-[1] flex items-center gap-2 md:hidden">
           <CartIcon count={cartCount} onDark={onHome} />
           <button
             type="button"
@@ -88,6 +83,14 @@ export function SiteHeader({
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/cart"
+              className="flex min-h-12 items-center text-base font-medium"
+              onClick={() => setOpen(false)}
+              data-testid="mobile-menu-cart"
+            >
+              Cart{cartCount > 0 ? ` (${cartCount})` : ""}
+            </Link>
             <div className="border-t border-current/15 py-3">
               <AccountMenu email={email ?? null} onDark={onHome} />
             </div>

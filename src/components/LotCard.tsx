@@ -26,7 +26,6 @@ export function LotCard({ lot }: { lot: Lot }) {
           <span>{formatCondition(lot.condition)}</span>
         </div>
         <h3 className="lot-card-title">{lot.title}</h3>
-        <p className="mt-0.5 text-[11px] leading-snug text-steel">{lot.location}</p>
         <p className="mt-2 font-display text-base font-semibold leading-tight text-ink">
           {formatCurrency(lotPrice(lot))}
         </p>

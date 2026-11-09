@@ -19,9 +19,15 @@ export async function generateMetadata({ params }: LotPageProps): Promise<Metada
   const { slug } = await params;
   const lot = await getPublishedLotBySlug(slug);
   if (!lot) return { title: "Lot not found" };
+  const description = `${lot.category} · ${formatCondition(lot.condition)} · ${formatCurrency(lotPrice(lot))}`;
   return {
     title: lot.title,
-    description: `${lot.category} · ${formatCurrency(lotPrice(lot))}`,
+    description,
+    openGraph: {
+      title: lot.title,
+      description,
+      images: lot.images[0] ? [{ url: lot.images[0] }] : undefined,
+    },
   };
 }
 
@@ -60,10 +66,6 @@ export default async function LotDetailPage({ params }: LotPageProps) {
 
             <dl className="fact-grid mt-8 border-y border-line py-5">
               <div className="fact-item">
-                <dt>Location</dt>
-                <dd>{lot.location}</dd>
-              </div>
-              <div className="fact-item">
                 <dt>Units</dt>
                 <dd>{lot.unitCount.toLocaleString()}</dd>
               </div>
@@ -74,6 +76,10 @@ export default async function LotDetailPage({ params }: LotPageProps) {
               <div className="fact-item">
                 <dt>Grade</dt>
                 <dd>{formatCondition(lot.condition)}</dd>
+              </div>
+              <div className="fact-item">
+                <dt>Shipping</dt>
+                <dd>{/free/i.test(lot.shipping) ? "Free" : "Quoted"}</dd>
               </div>
             </dl>
 

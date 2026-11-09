@@ -10,7 +10,7 @@ export type EmailPayload = {
  */
 export async function sendTransactionalEmail(payload: EmailPayload) {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM ?? "Astock <noreply@astock.market>";
+  const from = process.env.EMAIL_FROM ?? "PalletDeals <noreply@palletdealsshop.com>";
 
   if (!key) {
     console.info(
@@ -65,7 +65,7 @@ export async function notifySellInquiry(opts: {
 }) {
   return sendTransactionalEmail({
     to: opts.email,
-    subject: "Astock received your seller inquiry",
+    subject: "PalletDeals received your seller inquiry",
     text: `Thanks ${opts.company}. We received your seller inquiry and will follow up about manifests, grades, and pickup.`,
   });
 }
@@ -83,7 +83,7 @@ export async function notifyOrderRequest(opts: {
     to: opts.opsEmail,
     subject: `Order request: ${opts.lotTitle}`,
     text: [
-      `New Astock purchase request.`,
+      `New PalletDeals purchase request.`,
       ``,
       `Order ID: ${opts.orderId}`,
       `Lot: ${opts.lotTitle}`,
@@ -103,7 +103,7 @@ export async function notifyOrderRequest(opts: {
       `Thanks for your interest in "${opts.lotTitle}".`,
       ``,
       `We recorded your request for $${opts.amount.toLocaleString()} (order ${opts.orderId}).`,
-      `An Astock operator will confirm next steps by email.`,
+      `A PalletDeals operator will confirm next steps by email.`,
       ``,
       `Lot: ${site}/lots/${opts.slug}`,
     ].join("\n"),

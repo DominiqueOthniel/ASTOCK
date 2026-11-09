@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Cart",
-  description: "Review lots and request an email order on Astock.",
+  description: "Review lots and request an email order on PalletDeals.",
 };
 
 export default async function CartPage() {

@@ -33,7 +33,7 @@ export default async function AccountPage({
       <p className="mt-2 text-steel">{user.email}</p>
       {params.success ? (
         <p className="mt-4 border border-accent-soft bg-accent-soft/40 px-3 py-2 text-sm">
-          Order recorded. Astock will confirm next steps by email.
+          Order recorded. PalletDeals will confirm next steps by email.
         </p>
       ) : null}
 

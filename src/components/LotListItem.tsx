@@ -29,7 +29,7 @@ export function LotListItem({ lot }: { lot: Lot }) {
           {lot.title}
         </h3>
         <p className="mt-0.5 text-sm text-steel">
-          {lot.unitCount.toLocaleString()} units · {lot.location}
+          {lot.unitCount.toLocaleString()} unit{lot.unitCount === 1 ? "" : "s"}
         </p>
       </div>
       <div className="md:text-right">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 import { getSiteSettings, publicSocialLinks } from "@/lib/site-settings";
 
 export async function SiteFooter() {
@@ -14,7 +15,7 @@ export async function SiteFooter() {
     <footer className="mt-auto border-t border-line bg-ink text-white">
       <div className="site-grid grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl font-bold">Astock</p>
+          <BrandLogo onDark size="md" className="text-white" />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/65">
             Bulk liquidation lots with clear prices.
           </p>
@@ -92,7 +93,7 @@ export async function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="site-grid py-5 text-xs text-white/45">© 2026 Astock</div>
+        <div className="site-grid py-5 text-xs text-white/45">© 2026 PalletDealsShop</div>
       </div>
     </footer>
   );

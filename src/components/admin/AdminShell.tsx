@@ -21,7 +21,7 @@ export function AdminShell({
       <header className="border-b border-line bg-ink text-white">
         <div className="admin-shell flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
-            <p className="font-display text-lg font-bold tracking-tight">Astock Admin</p>
+            <p className="font-display text-lg font-bold tracking-tight">PalletDeals Admin</p>
             <p className="truncate text-xs text-white/55">{email}</p>
           </div>
           <nav className="scroll-x flex max-w-full items-center gap-1 pb-1 sm:gap-2">

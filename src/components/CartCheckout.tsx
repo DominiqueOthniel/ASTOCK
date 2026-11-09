@@ -10,6 +10,12 @@ import { formatCurrency } from "@/lib/format";
 import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
+type OrderSuccess = {
+  count: number;
+  total: number;
+  emailed: boolean;
+};
+
 export function CartCheckout({
   lots,
   signedIn,
@@ -19,8 +25,8 @@ export function CartCheckout({
 }) {
   const router = useRouter();
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
-  const [mailto, setMailto] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<OrderSuccess | null>(null);
   const [pending, startTransition] = useTransition();
   const total = lots.reduce((sum, lot) => sum + lotPrice(lot), 0);
 
@@ -35,11 +41,11 @@ export function CartCheckout({
 
   function onCheckout() {
     if (!signedIn) {
-      setMessage("Sign in to request your order.");
+      setError("Sign in to request your order.");
       return;
     }
     if (!termsAccepted) {
-      setMessage("Please agree to the terms to continue.");
+      setError("Please agree to the terms to continue.");
       return;
     }
     const formData = new FormData();
@@ -47,21 +53,60 @@ export function CartCheckout({
     startTransition(async () => {
       const result = await checkoutCartAction(formData);
       if (!result.ok) {
-        setMessage(result.error);
-        setMailto(null);
+        setError(result.error);
+        setSuccess(null);
         return;
       }
-      setMailto(result.mailto);
-      setMessage(
-        result.emailed
-          ? `Order requested for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}).`
-          : `Order recorded for ${result.count} lot${result.count === 1 ? "" : "s"} (${formatCurrency(result.total)}).`,
-      );
+      setError(null);
+      setSuccess({
+        count: result.count,
+        total: result.total,
+        emailed: result.emailed,
+      });
       router.refresh();
     });
   }
 
-  if (lots.length === 0 && !message) {
+  if (success) {
+    return (
+      <div
+        className="border border-accent-soft bg-surface px-6 py-12 text-center shadow-[var(--shadow)] sm:px-10"
+        role="status"
+        aria-live="polite"
+        data-testid="order-success"
+      >
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-deep">
+          Order received
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-semibold text-ink">Thank you</h2>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
+          We received your request for {success.count} lot
+          {success.count === 1 ? "" : "s"} totaling {formatCurrency(success.total)}.
+          {success.emailed
+            ? " A confirmation email is on the way."
+            : " Your order is saved in your account."}
+        </p>
+        <div className="mx-auto mt-6 max-w-sm space-y-2 text-left text-sm text-ink-soft">
+          <p className="font-semibold text-ink">What happens next</p>
+          <ol className="list-decimal space-y-1.5 pl-5">
+            <li>Our team reviews availability and shipping.</li>
+            <li>You get a follow-up email with next steps.</li>
+            <li>No card charge until the order is confirmed.</li>
+          </ol>
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/account" className="btn btn-primary">
+            View orders
+          </Link>
+          <Link href="/browse" className="btn btn-secondary">
+            Keep browsing
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (lots.length === 0) {
     return (
       <div className="border border-line bg-surface px-6 py-14 text-center shadow-[var(--shadow)]">
         <p className="font-display text-2xl font-semibold text-ink">Cart is empty</p>
@@ -104,7 +149,7 @@ export function CartCheckout({
                 {lot.title}
               </Link>
               <p className="mt-1 text-sm text-steel">
-                {lot.location} · {lot.unitCount.toLocaleString()} units
+                {lot.unitCount.toLocaleString()} unit{lot.unitCount === 1 ? "" : "s"}
               </p>
               <button
                 type="button"
@@ -126,7 +171,7 @@ export function CartCheckout({
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">Order</p>
         <p className="mt-2 font-display text-3xl font-bold text-ink">{formatCurrency(total)}</p>
         <p className="mt-1 text-sm text-steel">
-          {lots.length} lot{lots.length === 1 ? "" : "s"}
+          {lots.length} lot{lots.length === 1 ? "" : "s"} · Shipping free
         </p>
 
         {signedIn ? (
@@ -154,20 +199,14 @@ export function CartCheckout({
           </Link>
         )}
 
-        {message ? (
-          <div className="mt-4 space-y-2 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
-            <p>{message}</p>
-            {mailto ? (
-              <a href={mailto} className="font-semibold text-accent-deep hover:underline">
-                Open email to ops
-              </a>
-            ) : null}
-            <Link href="/account" className="block font-semibold text-accent-deep hover:underline">
-              View orders
-            </Link>
-          </div>
+        {error ? (
+          <p className="mt-4 border border-line bg-mist/60 px-3 py-2 text-sm text-ink-soft" role="alert">
+            {error}
+          </p>
         ) : (
-          <p className="mt-4 text-xs text-steel">Email confirmation from Astock ops. No card charge.</p>
+          <p className="mt-4 text-xs text-steel">
+            Email confirmation from PalletDeals ops. No card charge until confirmed.
+          </p>
         )}
       </aside>
     </div>

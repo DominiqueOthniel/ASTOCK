@@ -40,7 +40,7 @@ export function SellForm({ signedIn, defaultEmail }: { signedIn: boolean; defaul
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Request received</p>
         <h2 className="mt-2 font-display text-2xl font-semibold">Thanks for reaching out</h2>
         <p className="mt-3 max-w-xl text-steel leading-relaxed">
-          Your seller inquiry is saved. An Astock seller manager will follow up with next steps for manifests, grades, and pickup.
+          Your seller inquiry is saved. A PalletDeals seller manager will follow up with next steps for manifests, grades, and pickup.
         </p>
         <button type="button" className="btn btn-secondary mt-6" onClick={() => setSubmitted(false)}>
           Submit another request

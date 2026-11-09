@@ -1299,5 +1299,35 @@
     "sellerNotes": "Specialty. Black statement tree for boutique and gothic holiday assortments.",
     "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+  },
+  {
+    "id": "ast-ps5-01",
+    "slug": "playstation-5",
+    "title": "PlayStation 5",
+    "category": "Electronics",
+    "condition": "A",
+    "lotType": "Mixed",
+    "saleType": "Buy Now",
+    "currentBid": 400,
+    "buyNowPrice": 400,
+    "startingBid": 400,
+    "reserveMet": true,
+    "bidCount": 0,
+    "unitCount": 1,
+    "estimatedRetail": 499,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "featured": true,
+    "published": true,
+    "images": [
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/13189272/pexels-photo-13189272.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "manifestSummary": "One PlayStation 5 console with DualSense controller. Disc edition. Power cable included. Manifest lists serial and carton seal status.",
+    "conditionNotes": "Grade A new overstock. Factory sealed carton. Sample seal check passed.",
+    "sellerNotes": "Fixed price $400 per unit. Ideal for electronics resellers and gift programs.",
+    "shipping": "Shipping free. Parcel carrier, tracked. Packed in original carton with outer protective wrap.",
+    "pickup": "Parcel ship only. No dock pickup required for this SKU."
   }
 ]

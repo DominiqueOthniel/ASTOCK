@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LotCard } from "@/components/LotCard";
 import { Reveal } from "@/components/Reveal";
+import { brand } from "@/lib/brand";
 import { categories } from "@/lib/constants";
 import {
   getFeaturedPublishedLots,
@@ -9,6 +11,17 @@ import {
 } from "@/lib/lot-service";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: `${brand.name} | Bulk liquidation marketplace`,
+  },
+  description: brand.description,
+  openGraph: {
+    title: `${brand.name} | Bulk liquidation marketplace`,
+    description: brand.description,
+  },
+};
 
 const heroImage =
   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80";
@@ -43,7 +56,7 @@ export default async function HomePage() {
         />
         <div className="hero-content site-grid">
           <p className="brand-mark font-display text-5xl font-extrabold sm:text-6xl md:text-7xl animate-rise">
-            Astock
+            PalletDeals
           </p>
           <h1 className="mt-5 max-w-lg font-display text-2xl font-semibold leading-tight text-white/95 sm:text-3xl animate-rise-delay-1">
             Bulk lots, clear prices
@@ -102,10 +115,7 @@ export default async function HomePage() {
                   <h2 className="font-display text-3xl font-semibold text-ink">Christmas trees</h2>
                   <p className="mt-1 text-sm text-steel">Fixed-price holiday SKUs ready to order</p>
                 </div>
-                <Link
-                  href="/browse?category=Christmas"
-                  className="btn btn-secondary"
-                >
+                <Link href="/browse?category=Christmas" className="btn btn-secondary">
                   Shop Christmas
                 </Link>
               </div>
