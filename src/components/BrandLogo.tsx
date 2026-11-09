@@ -10,8 +10,7 @@ type BrandLogoProps = {
 };
 
 /**
- * PD mark using SVG text so the letters stay readable at small sizes
- * (path monograms were misread as "Rc" on some screens).
+ * Bold pallet-stack mark with a deal slash. Geometry stays clear at 28px.
  */
 export function BrandMark({
   onDark = false,
@@ -20,9 +19,12 @@ export function BrandMark({
   onDark?: boolean;
   size?: "sm" | "md" | "lg";
 }) {
-  const dim = size === "sm" ? 28 : size === "lg" ? 40 : 32;
-  const bg = onDark ? "rgb(255 255 255 / 12%)" : "#124c3b";
-  const fg = "#fffdfb";
+  const dim = size === "sm" ? 30 : size === "lg" ? 44 : 34;
+  const forest = onDark ? "#0d3328" : "#124c3b";
+  const board = onDark ? "#f6efdf" : "#f0e2c4";
+  const boardDeep = onDark ? "#e2d0a8" : "#d9c18a";
+  const slash = "#e07a2f";
+  const spark = "#f0c14a";
 
   return (
     <svg
@@ -35,34 +37,43 @@ export function BrandMark({
       className="shrink-0"
       data-testid="brand-mark"
     >
-      <rect width="40" height="40" rx="7" fill={bg} />
+      <rect width="40" height="40" rx="9" fill={forest} />
       {onDark ? (
         <rect
-          x="1"
-          y="1"
-          width="38"
-          height="38"
-          rx="6"
-          stroke="rgb(255 255 255 / 35%)"
-          strokeWidth="1"
+          x="1.25"
+          y="1.25"
+          width="37.5"
+          height="37.5"
+          rx="7.75"
+          stroke="rgb(255 255 255 / 40%)"
+          strokeWidth="1.5"
           fill="none"
         />
       ) : null}
-      <text
-        x="20"
-        y="26.5"
-        textAnchor="middle"
-        fill={fg}
-        style={{
-          fontFamily:
-            "ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif",
-          fontSize: "15px",
-          fontWeight: 800,
-          letterSpacing: "0.5px",
-        }}
-      >
-        PD
-      </text>
+
+      {/* Stacked pallet boards */}
+      <g>
+        <rect x="7" y="9" width="26" height="5.2" rx="1.2" fill={board} />
+        <rect x="7" y="17.2" width="26" height="5.2" rx="1.2" fill={boardDeep} />
+        <rect x="7" y="25.4" width="26" height="5.2" rx="1.2" fill={board} />
+        {/* Stringers */}
+        <rect x="11" y="9" width="3" height="21.6" fill={forest} opacity="0.45" />
+        <rect x="26" y="9" width="3" height="21.6" fill={forest} opacity="0.45" />
+      </g>
+
+      {/* Deal slash + spark */}
+      <path
+        d="M8.5 31.5 L31.5 8.5"
+        stroke={slash}
+        strokeWidth="3.4"
+        strokeLinecap="round"
+      />
+      <circle cx="32.2" cy="8.2" r="3.1" fill={spark} />
+      <path
+        d="M32.2 5.8 L32.7 7.4 L34.4 7.6 L33 8.7 L33.4 10.4 L32.2 9.5 L31 10.4 L31.4 8.7 L30 7.6 L31.7 7.4 Z"
+        fill={forest}
+        opacity="0.35"
+      />
     </svg>
   );
 }
@@ -77,6 +88,8 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const text =
     size === "sm" ? "text-lg" : size === "lg" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl";
+  const markTone = onDark ? "text-white" : "text-ink";
+  const dealTone = onDark ? "text-[#f0c14a]" : "text-accent-deep";
 
   return (
     <Link
@@ -86,7 +99,11 @@ export function BrandLogo({
       aria-label="PalletDeals home"
     >
       <BrandMark onDark={onDark} size={size} />
-      {showWordmark ? <span>PalletDeals</span> : null}
+      {showWordmark ? (
+        <span className={`leading-none ${markTone}`}>
+          Pallet<span className={dealTone}>Deals</span>
+        </span>
+      ) : null}
     </Link>
   );
 }

@@ -8,7 +8,7 @@ import type { Lot } from "@/lib/types";
 export function LotCard({ lot }: { lot: Lot }) {
   return (
     <Link href={`/lots/${lot.slug}`} className="lot-card group">
-      <div className="lot-card-media">
+      <div className="lot-card-media lot-media">
         <Image
           src={
             lot.images[0] ??
@@ -16,7 +16,7 @@ export function LotCard({ lot }: { lot: Lot }) {
           }
           alt={`Photo of ${lot.title}`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          className="lot-media-img"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
       </div>

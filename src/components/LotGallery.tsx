@@ -11,12 +11,12 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
 
   return (
     <div className="min-w-0 max-w-full">
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-mist">
+      <div className="lot-media relative aspect-[4/3] w-full sm:aspect-[16/10]">
         <Image
           src={list[active]}
           alt={`${title}, image ${active + 1} of ${list.length}`}
           fill
-          className="object-cover"
+          className="lot-media-img"
           sizes="(max-width: 768px) 100vw, 60vw"
           priority={active === 0}
         />
@@ -28,7 +28,7 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
               key={`${image}-${index}`}
               type="button"
               onClick={() => setActive(index)}
-              className={`relative h-16 w-[4.5rem] shrink-0 overflow-hidden border transition-opacity sm:h-[4.5rem] sm:w-24 ${
+              className={`lot-media relative h-16 w-[4.5rem] shrink-0 border transition-opacity sm:h-[4.5rem] sm:w-24 ${
                 index === active ? "border-accent opacity-100" : "border-line opacity-70 hover:opacity-100"
               }`}
               aria-label={`Show image ${index + 1}`}
@@ -37,7 +37,7 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
                 src={image}
                 alt=""
                 fill
-                className="object-cover"
+                className="lot-media-img !p-0.5"
                 sizes="96px"
                 loading="lazy"
               />

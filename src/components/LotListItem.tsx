@@ -8,7 +8,7 @@ import type { Lot } from "@/lib/types";
 export function LotListItem({ lot }: { lot: Lot }) {
   return (
     <Link href={`/lots/${lot.slug}`} className="lot-row group">
-      <div className="relative aspect-[16/10] overflow-hidden bg-mist sm:aspect-[4/3] md:aspect-square md:h-[72px] md:w-[96px]">
+      <div className="lot-media relative aspect-[4/3] sm:aspect-[4/3] md:aspect-square md:h-[72px] md:w-[96px]">
         <Image
           src={
             lot.images[0] ??
@@ -16,7 +16,7 @@ export function LotListItem({ lot }: { lot: Lot }) {
           }
           alt={`Photo of ${lot.title}`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          className="lot-media-img"
           sizes="(max-width: 768px) 100vw, 96px"
         />
       </div>

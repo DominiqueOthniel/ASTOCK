@@ -180,7 +180,7 @@ export function CartCheckout({
             >
               <Link
                 href={`/lots/${lot.slug}`}
-                className="relative aspect-[4/3] overflow-hidden bg-mist sm:aspect-square sm:h-[88px] sm:w-[88px]"
+                className="lot-media relative aspect-[4/3] sm:aspect-square sm:h-[88px] sm:w-[88px]"
               >
                 <Image
                   src={
@@ -189,7 +189,7 @@ export function CartCheckout({
                   }
                   alt=""
                   fill
-                  className="object-cover"
+                  className="lot-media-img"
                   sizes="88px"
                 />
               </Link>

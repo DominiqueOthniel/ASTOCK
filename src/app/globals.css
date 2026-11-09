@@ -411,7 +411,28 @@ select.field {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--mist);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 40%, rgb(27 107 82 / 10%), transparent 70%),
+    linear-gradient(165deg, #f6f2ea 0%, var(--mist) 48%, #ddd6cb 100%);
+}
+
+.lot-media {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 40%, rgb(27 107 82 / 10%), transparent 70%),
+    linear-gradient(165deg, #f6f2ea 0%, var(--mist) 48%, #ddd6cb 100%);
+}
+
+.lot-media-img {
+  object-fit: contain;
+  object-position: center;
+  padding: 0.35rem;
+  transition: transform 0.45s ease;
+}
+
+.group:hover .lot-media-img {
+  transform: scale(1.02);
 }
 
 .lot-card-body {

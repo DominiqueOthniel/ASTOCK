@@ -152,7 +152,7 @@
     "endsAt": "2026-11-07T06:00:00.000Z",
     "images": [
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1517649763962-0c6230660277?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Fitness accessories, outdoor gear, water bottles, and athletic apparel. Returns sorted by department. Approx 2100 units. Hardgoods ~55%, softgoods ~45%. Manifest by carton with department codes.",
@@ -184,7 +184,7 @@
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg",
+      "/lots/consumer/ref-toys-box-2.jpg",
       "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Liquidation mixed toys pallet. Board games, preschool, plurals, and building sets as packed. Contents vary by load. No itemized SKU list. Approx 210 units across a mixed category spread.",
@@ -318,7 +318,7 @@
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
       "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Liquidation mixed outdoor toys and backyard play items. Ride-ons, water toys, and seasonal play goods as packed. Contents vary. No line-level SKU list.",
     "conditionNotes": "Grade A/B shelf pulls. Packaging intact on most units. Some assembly required on larger items.",
@@ -419,7 +419,7 @@
     "featured": true,
     "images": [
       "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1605745341112-85968b19345a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Cross-category general merchandise: home accents, personal care (non-regulated), small electronics accessories, and pet supplies. 160 units. Manifest is by department percentage, not full UPC depth.",
@@ -583,7 +583,7 @@
     "location": "Denver, CO",
     "endsAt": "2026-11-11T21:00:00.000Z",
     "images": [
-      "https://images.unsplash.com/photo-1517649763962-0c6230660277?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80"
     ],
@@ -650,7 +650,7 @@
     "endsAt": "2026-11-12T21:00:00.000Z",
     "featured": true,
     "images": [
-      "https://images.unsplash.com/photo-1605745341112-85968b19345a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80"
@@ -753,7 +753,7 @@
     "images": [
       "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1576919228236-a097c6a17f43?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Holiday string lights, wreaths, ornaments, and tabletop décor across 52 SKUs. 420 units. Manifest lists colorway, pack size, and power type (battery vs plug).",
     "conditionNotes": "Grade B. Mostly open-box and shelf pulls. Packaging scuffed; product function-tested where powered. Sold as-is.",
@@ -786,7 +786,7 @@
     "featured": true,
     "images": [
       "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80"
     ],
     "manifestSummary": "Sealed gift sets, wrapping paper, bows, cards, and stocking stuffers. Approx 5600 units on 22 pallets. Department summary plus SKU CSV after award.",
@@ -851,7 +851,7 @@
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg",
+      "/lots/consumer/ref-toys-box-3.jpg",
       "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
     ],
     "manifestSummary": "Liquidation mixed holiday toys and plush. Seasonal aisle returns and overstock. Contents vary by wave. No itemized SKU list.",
@@ -887,7 +887,7 @@
     "images": [
       "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1426927303421-c7124eadc6b3?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Cordless drills, impact drivers, saws, and batteries mixed brands. 86 units. Voltage and kit contents flagged where known.",
     "conditionNotes": "Grade C customer returns. Cosmetic damage common. Batteries not guaranteed charged. Sold as-is after visual sort.",
@@ -953,7 +953,7 @@
     "endsAt": "2026-11-15T19:00:00.000Z",
     "images": [
       "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1426927303421-c7124eadc6b3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=80"
     ],
     "manifestSummary": "String trimmers, blowers, and small mowers (push). 22 units. Fuel type and voltage noted. Bulky SKUs.",
@@ -1050,7 +1050,7 @@
     "location": "Denver, CO",
     "endsAt": "2026-11-13T21:00:00.000Z",
     "images": [
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba6851?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"
     ],
@@ -1496,9 +1496,9 @@
     "featured": true,
     "published": true,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/ps5-slim/hero.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/ps5-slim/angle.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/ps5-slim/kit.jpg"
+      "/lots/ps5-slim/hero.jpg",
+      "/lots/ps5-slim/angle.jpg",
+      "/lots/ps5-slim/kit.jpg"
     ],
     "manifestSummary": "One PlayStation 5 Slim Disc Edition console (CFI-2000 series) with DualSense controller. 1TB SSD, detachable Ultra HD Blu-ray disc drive installed. Power cord and HDMI cable included. Manifest lists serial and carton seal status.",
     "conditionNotes": "Grade A new overstock. Factory sealed Slim Disc carton. Sample seal check passed. Slim chassis only, not the original fat model.",
@@ -1535,8 +1535,8 @@
     "quantitySold": 31,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg",
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "Sealed LEGO Star Wars set 75386, 289 pcs, ages 7+. Includes Paz Vizsla, Moff Gideon, and Praetorian Guard minifigures.",
     "conditionNotes": "Grade A sealed retail box. Minor shelf scuffs on carton corners only.",
@@ -1568,7 +1568,7 @@
     "quantitySold": 22,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Sealed LEGO seasonal set 40499 Santa's Sleigh, 343 pcs, ages 9+. Sleigh with reindeer build.",
     "conditionNotes": "Grade A sealed. Box artwork clean.",
@@ -1600,7 +1600,7 @@
     "quantitySold": 27,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Giggle Scape 14 inch baby doll set. Thumb-suck feature, outfit, headband, pacifier. Ages 2+.",
     "conditionNotes": "New in retail packaging. Carton intact.",
@@ -1632,7 +1632,7 @@
     "quantitySold": 19,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Epoch Games Super Mario Piranha Plant Escape tabletop game. 2 to 4 players.",
     "conditionNotes": "Sealed game box. Grade A.",
@@ -1664,7 +1664,7 @@
     "quantitySold": 35,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Maxx Action Heavy Hauler toy semi with working trailer door. Retail blister or window box.",
     "conditionNotes": "New. Packaging may show shelf wear.",
@@ -1696,7 +1696,7 @@
     "quantitySold": 41,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Large red strawberry plush with embroidered seed detail. Soft goods, poly bag or hang tag.",
     "conditionNotes": "New soft goods. Clean fabric.",
@@ -1728,8 +1728,8 @@
     "quantitySold": 28,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-2.jpg",
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Sealed LEGO NINJAGO Dragons Rising set 71839 Arin's Battle Mech. Piece count per carton label.",
     "conditionNotes": "Grade A sealed. Inventory sticker on some cartons.",
@@ -1761,7 +1761,7 @@
     "quantitySold": 15,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg"
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "Thames and Kosmos Ooze Labs Chemistry Station STEM kit. About 20 goo experiments, lab setup in box.",
     "conditionNotes": "Sealed science kit. Grade A.",
@@ -1793,7 +1793,7 @@
     "quantitySold": 13,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg"
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "Little Tikes Story Dream Machine with BusyTown story cartridges. Brings storytime to life.",
     "conditionNotes": "New in box. Retail barcode sticker may remain.",
@@ -1825,8 +1825,8 @@
     "quantitySold": 24,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-2.jpg",
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "What Do You Meme Let's Get Deep After Dark expansion for couples. Sealed small card box.",
     "conditionNotes": "New sealed. Some units carry clearance stickers.",
@@ -1858,7 +1858,7 @@
     "quantitySold": 29,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg"
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "Large lime green round plush. Soft goods, no hard parts.",
     "conditionNotes": "New. Clean pile.",
@@ -1890,7 +1890,7 @@
     "quantitySold": 21,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "Sealed LEGO Technic 42165 Mercedes-AMG F1 W14 E Performance Pull-Back race car.",
     "conditionNotes": "Grade A sealed Technic carton.",
@@ -1922,7 +1922,7 @@
     "quantitySold": 17,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "Sealed LEGO Jurassic World 76972 Raptor Off-Road Escape, 285 pcs, ages 6+.",
     "conditionNotes": "Sealed. Inventory sticker on some boxes.",
@@ -1954,7 +1954,7 @@
     "quantitySold": 14,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "What Do You Meme Shoot The Moon classic ball-drop wooden skill game. Ages 8+.",
     "conditionNotes": "New in box. Grade A.",
@@ -1986,7 +1986,7 @@
     "quantitySold": 20,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "Epoch Games Super Mario Hover Shell Strike action game. Ages 4+.",
     "conditionNotes": "Sealed colorful retail box.",
@@ -2018,7 +2018,7 @@
     "quantitySold": 26,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "Powerpuff Girls Buttercup character plush head or soft figure. Licensed soft goods.",
     "conditionNotes": "New soft goods. Clean.",
@@ -2050,8 +2050,8 @@
     "quantitySold": 55,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg"
+      "/lots/consumer/ref-toys-box-3.jpg",
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "ZURU 5 Surprise blind capsule. Assorted series as packed.",
     "conditionNotes": "New sealed capsules.",
@@ -2083,7 +2083,7 @@
     "quantitySold": 18,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Sealed LEGO seasonal set 40746 Santa's Delivery Truck, 224 pcs, ages 8+.",
     "conditionNotes": "Grade A sealed holiday carton.",
@@ -2115,7 +2115,7 @@
     "quantitySold": 12,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Our Generation 18 inch fashion doll in sealed retail packaging with protective poly wrap.",
     "conditionNotes": "New sealed. Outer poly may show warehouse marks.",
@@ -2147,7 +2147,7 @@
     "quantitySold": 16,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Three MGA Miniverse Harry Potter themed mystery balls including Make It Mini Potions and Honeydukes styles. Sold as a 3-pack lot.",
     "conditionNotes": "New sealed balls. Series mix as photographed.",
@@ -2179,7 +2179,7 @@
     "quantitySold": 34,
     "featured": true,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-pallet-household.jpg"
+      "/lots/consumer/ref-pallet-household.jpg"
     ],
     "manifestSummary": "Case pack of Purex liquid laundry detergent from truckload overstock. Bottle count per case as labeled on blue Purex trays.",
     "conditionNotes": "Warehouse overstock. Shrink wrap intact on sampled cases. Cap seals present.",
@@ -2211,7 +2211,7 @@
     "quantitySold": 22,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-pallet-household.jpg"
+      "/lots/consumer/ref-pallet-household.jpg"
     ],
     "manifestSummary": "Case of SEG 3lb oxy cleaner tubs from trailer overstock. Label reads SEG 3lb OXY TUB.",
     "conditionNotes": "Cartons dusty from trailer but sealed. Grade A contents.",
@@ -2243,7 +2243,7 @@
     "quantitySold": 9,
     "featured": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-pallet-household.jpg"
+      "/lots/consumer/ref-pallet-household.jpg"
     ],
     "manifestSummary": "One layer equivalent of bath tissue cases from mixed household truckload. Pack count printed on case.",
     "conditionNotes": "Trailer overstock. Outer cases may show scuffs.",
@@ -2274,7 +2274,7 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg",
+      "/lots/consumer/ref-toys-box-1.jpg",
       "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
     ],
     "manifestSummary": "Small liquidation mixed toys pallet / case mix. Preschool, plurals, and small boxed toys as packed. Contents vary. No itemized SKU list. Approx 85 units.",
@@ -2307,7 +2307,7 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg",
+      "/lots/consumer/ref-toys-box-4.jpg",
       "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Small mixed toys case from liquidation. Assorted boxed toys and soft goods as packed. Contents vary. No SKU-level list.",
@@ -2340,7 +2340,7 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-3.jpg",
+      "/lots/consumer/ref-toys-box-3.jpg",
       "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Medium liquidation mixed toys pallet. Building sets, games, plurals, and preschool as packed from big-box returns. Contents vary by wave. No itemized SKU list. Approx 280 units.",
@@ -2373,7 +2373,7 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-2.jpg",
+      "/lots/consumer/ref-toys-box-2.jpg",
       "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80"
     ],
     "manifestSummary": "Large mixed toys pallet from retailer overstock. Broad category mix: games, plurals, building, and seasonal toys as packed. Contents vary. No itemized SKU list. Approx 520 units.",
@@ -2407,7 +2407,7 @@
     "sellByUnit": false,
     "images": [
       "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=1600&q=80",
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-1.jpg"
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Truckload-style mixed toys pallet stack from liquidation. Multi-category toys and games as packed across stacked cartons. Contents vary heavily. No SKU-level breakdown. Approx 1100 units.",
     "conditionNotes": "Grade B mixed returns and shelf pulls. Expect carton damage on outer layers. Contents mostly complete retail units.",
@@ -2439,7 +2439,7 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "https://myrpaonxszltnsnexafv.supabase.co/storage/v1/object/public/lot-images/lots/consumer/ref-toys-box-4.jpg",
+      "/lots/consumer/ref-toys-box-4.jpg",
       "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
     ],
     "manifestSummary": "Liquidation mixed building-set toys pallet. Assorted sealed construction toys and related boxed toys as packed. Brand and set mix varies. No named SKU list.",
