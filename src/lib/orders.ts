@@ -1,4 +1,8 @@
 import {
+  buyerDetailsEmailBlock,
+  type BuyerDetails,
+} from "@/lib/buyer-details";
+import {
   clampOrderQuantity,
   lineTotal,
   meetsMinOrder,
@@ -31,6 +35,7 @@ export async function buildOrderMailto(opts: {
   quantity: number;
   userEmail: string;
   orderId: string;
+  buyer: BuyerDetails;
 }) {
   const to = await ordersInboxEmail();
   const subject = encodeURIComponent(
@@ -43,10 +48,11 @@ export async function buildOrderMailto(opts: {
       `Slug: ${opts.slug}`,
       `Quantity: ${opts.quantity}`,
       `Amount: $${opts.amount.toLocaleString()}`,
-      `Buyer: ${opts.userEmail}`,
+      `Account email: ${opts.userEmail}`,
+      buyerDetailsEmailBlock(opts.buyer),
       `Link: ${siteUrl()}/lots/${opts.slug}`,
       "",
-      "Please confirm availability and next steps with the buyer by email.",
+      "Please confirm availability and next steps with the buyer.",
     ].join("\n"),
   );
   return `mailto:${to}?subject=${subject}&body=${body}`;
@@ -54,6 +60,7 @@ export async function buildOrderMailto(opts: {
 
 export async function buildCartMailto(opts: {
   userEmail: string;
+  buyer: BuyerDetails;
   lines: { orderId: string; title: string; slug: string; amount: number; quantity: number }[];
   total: number;
 }) {
@@ -63,7 +70,8 @@ export async function buildCartMailto(opts: {
   );
   const body = encodeURIComponent(
     [
-      `Buyer: ${opts.userEmail}`,
+      `Account email: ${opts.userEmail}`,
+      buyerDetailsEmailBlock(opts.buyer),
       `Total: $${opts.total.toLocaleString()}`,
       "",
       ...opts.lines.flatMap((line) => [
@@ -74,7 +82,7 @@ export async function buildCartMailto(opts: {
         `Link: ${siteUrl()}/lots/${line.slug}`,
         "",
       ]),
-      "Please confirm availability and next steps with the buyer by email.",
+      "Please confirm availability and next steps with the buyer.",
     ].join("\n"),
   );
   return `mailto:${to}?subject=${subject}&body=${body}`;
@@ -91,6 +99,7 @@ export async function createEmailOrder(opts: {
   userId: string;
   userEmail: string;
   termsAcceptedAt: Date;
+  buyer: BuyerDetails;
 }): Promise<
   | {
       ok: true;
@@ -106,6 +115,7 @@ export async function createEmailOrder(opts: {
     userId: opts.userId,
     userEmail: opts.userEmail,
     termsAcceptedAt: opts.termsAcceptedAt,
+    buyer: opts.buyer,
   });
   if (!multi.ok) return multi;
   return {
@@ -124,6 +134,7 @@ export async function createEmailOrdersForSlugs(opts: {
   userId: string;
   userEmail: string;
   termsAcceptedAt: Date;
+  buyer: BuyerDetails;
 }): Promise<
   | {
       ok: true;
@@ -134,6 +145,10 @@ export async function createEmailOrdersForSlugs(opts: {
     }
   | { ok: false; error: string }
 > {
+  if (opts.buyer.age < 18) {
+    return { ok: false, error: "You must be 18 or older to place an order." };
+  }
+
   const rawLines: OrderLineInput[] =
     opts.lines?.length > 0
       ? opts.lines
@@ -196,6 +211,7 @@ export async function createEmailOrdersForSlugs(opts: {
     return { ok: false, error: minOrderMessage(total, settings.minOrderTotalCents) };
   }
 
+  const buyer = opts.buyer;
   const lines: {
     orderId: string;
     title: string;
@@ -214,6 +230,14 @@ export async function createEmailOrdersForSlugs(opts: {
         quantity: item.quantity,
         status: "email_pending",
         termsAcceptedAt: opts.termsAcceptedAt,
+        buyerFullName: buyer.fullName,
+        buyerPhone: buyer.phone,
+        buyerAge: buyer.age,
+        shipStreet: buyer.street,
+        shipCity: buyer.city,
+        shipState: buyer.state,
+        shipPostal: buyer.postal,
+        shipCountry: buyer.country,
       },
     });
     lines.push({
@@ -226,6 +250,7 @@ export async function createEmailOrdersForSlugs(opts: {
   }
 
   const opsEmail = await ordersInboxEmail();
+  const buyerBlock = buyerDetailsEmailBlock(buyer);
   const mailto =
     lines.length === 1
       ? await buildOrderMailto({
@@ -235,9 +260,11 @@ export async function createEmailOrdersForSlugs(opts: {
           quantity: lines[0].quantity,
           userEmail: opts.userEmail,
           orderId: lines[0].orderId,
+          buyer,
         })
       : await buildCartMailto({
           userEmail: opts.userEmail,
+          buyer,
           lines,
           total,
         });
@@ -250,7 +277,9 @@ export async function createEmailOrdersForSlugs(opts: {
       lotTitle: line.title,
       slug: line.slug,
       amount: line.amount,
+      quantity: line.quantity,
       orderId: line.orderId,
+      buyerBlock,
     });
     if (result.ok && !result.queued) emailed = true;
   }

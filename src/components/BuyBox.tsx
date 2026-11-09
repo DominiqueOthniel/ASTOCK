@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition, type FormEvent } from "react";
 import { addToCartAction } from "@/app/actions/cart";
 import { requestPurchaseAction } from "@/app/actions/orders";
+import { BuyerDetailsFields } from "@/components/BuyerDetailsFields";
 import { LotPrice } from "@/components/LotPrice";
 import { StockPressure } from "@/components/StockPressure";
 import { TermsAgree } from "@/components/TermsAgree";
+import { parseBuyerDetails } from "@/lib/buyer-details";
 import {
   clampOrderQuantity,
   lineTotal,
@@ -18,7 +20,6 @@ import {
   unitLabel,
 } from "@/lib/commerce";
 import { formatCurrency } from "@/lib/format";
-import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
 export function BuyBox({
@@ -31,8 +32,8 @@ export function BuyBox({
   minOrderTotalCents: number;
 }) {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const closed = lot.status === "sold" || new Date(lot.endsAt).getTime() <= Date.now();
-  const price = lotPrice(lot);
   const maxQty = maxOrderQuantity(lot);
   const [quantity, setQuantity] = useState(lot.minQuantity || 1);
   const [message, setMessage] = useState<string | null>(null);
@@ -62,7 +63,8 @@ export function BuyBox({
     });
   }
 
-  function onRequestPurchase() {
+  function onRequestPurchase(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     if (!signedIn) {
       setMessage("Sign in to place this order.");
       return;
@@ -75,10 +77,19 @@ export function BuyBox({
       setMessage("Please agree to the terms to continue.");
       return;
     }
-    const formData = new FormData();
+
+    const form = formRef.current ?? event.currentTarget;
+    const formData = new FormData(form);
     formData.set("slug", lot.slug);
     formData.set("quantity", String(qty));
     formData.set("termsAccepted", "true");
+
+    const buyer = parseBuyerDetails(formData);
+    if (!buyer.ok) {
+      setMessage(buyer.error);
+      return;
+    }
+
     startTransition(async () => {
       const result = await requestPurchaseAction(formData);
       if (!result.ok) {
@@ -170,16 +181,20 @@ export function BuyBox({
             {pending ? "Adding…" : "Add to cart"}
           </button>
           {signedIn ? (
-            <>
+            <form ref={formRef} className="space-y-3" onSubmit={onRequestPurchase} noValidate>
+              <BuyerDetailsFields
+                idPrefix={`buy-${lot.id}`}
+                disabled={pending}
+                compact
+              />
               <TermsAgree
                 checked={termsAccepted}
                 onChange={setTermsAccepted}
                 id={`purchase-terms-${lot.id}`}
               />
               <button
-                type="button"
+                type="submit"
                 className="btn btn-secondary w-full"
-                onClick={onRequestPurchase}
                 disabled={pending || !termsAccepted || !canBuyNow}
                 data-testid="buy-now"
               >
@@ -195,7 +210,7 @@ export function BuyBox({
                   minimum.
                 </p>
               ) : null}
-            </>
+            </form>
           ) : (
             <Link href={loginHref} className="btn btn-secondary w-full">
               Sign in to order
@@ -205,7 +220,14 @@ export function BuyBox({
       )}
 
       {message ? (
-        <div className="mt-4 space-y-2 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
+        <div
+          className={`mt-4 space-y-2 border px-3 py-2 text-sm text-ink-soft ${
+            message.toLowerCase().includes("added")
+              ? "border-accent-soft bg-accent-soft/50"
+              : "border-warn/30 bg-warn/10"
+          }`}
+          role="alert"
+        >
           <p>{message}</p>
           {message.toLowerCase().includes("cart") || message.toLowerCase().includes("minimum") ? (
             <Link href="/cart" className="block font-semibold text-accent-deep hover:underline">

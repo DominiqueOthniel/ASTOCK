@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { parseBuyerDetails } from "@/lib/buyer-details";
 import { createEmailOrder } from "@/lib/orders";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
@@ -22,6 +23,11 @@ export async function requestPurchaseAction(formData: FormData) {
     };
   }
 
+  const buyerParsed = parseBuyerDetails(formData);
+  if (!buyerParsed.ok) {
+    return { ok: false as const, error: buyerParsed.error };
+  }
+
   const slug = String(formData.get("slug") ?? "");
   const quantity = Number(formData.get("quantity") ?? 1);
   const result = await createEmailOrder({
@@ -30,6 +36,7 @@ export async function requestPurchaseAction(formData: FormData) {
     userId: user.id,
     userEmail: user.email,
     termsAcceptedAt: new Date(),
+    buyer: buyerParsed.details,
   });
   if (!result.ok) {
     return { ok: false as const, error: result.error };

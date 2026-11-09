@@ -3,13 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition, type FormEvent } from "react";
 import {
   checkoutCartAction,
   removeFromCartAction,
   updateCartQuantityAction,
 } from "@/app/actions/cart";
+import { BuyerDetailsFields } from "@/components/BuyerDetailsFields";
 import { TermsAgree } from "@/components/TermsAgree";
+import { parseBuyerDetails } from "@/lib/buyer-details";
 import {
   lineTotal,
   maxOrderQuantity,
@@ -44,6 +46,7 @@ export function CartCheckout({
   minOrderTotalCents: number;
 }) {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<OrderSuccess | null>(null);
@@ -72,7 +75,8 @@ export function CartCheckout({
     });
   }
 
-  function onCheckout() {
+  function onCheckout(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     if (!signedIn) {
       setError("Sign in to request your order.");
       return;
@@ -85,8 +89,17 @@ export function CartCheckout({
       setError("Please agree to the terms to continue.");
       return;
     }
-    const formData = new FormData();
+
+    const form = formRef.current ?? event.currentTarget;
+    const formData = new FormData(form);
     formData.set("termsAccepted", "true");
+
+    const buyer = parseBuyerDetails(formData);
+    if (!buyer.ok) {
+      setError(buyer.error);
+      return;
+    }
+
     startTransition(async () => {
       const result = await checkoutCartAction(formData);
       if (!result.ok) {
@@ -156,7 +169,7 @@ export function CartCheckout({
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
       <div className="space-y-3">
         {lines.map(({ lot, quantity }) => {
           const maxQty = maxOrderQuantity(lot);
@@ -249,22 +262,22 @@ export function CartCheckout({
         </div>
 
         {signedIn ? (
-          <div className="mt-5 space-y-4">
+          <form ref={formRef} className="mt-5 space-y-4" onSubmit={onCheckout} noValidate>
+            <BuyerDetailsFields idPrefix="cart-buyer" disabled={pending} compact />
             <TermsAgree
               checked={termsAccepted}
               onChange={setTermsAccepted}
               id="cart-terms"
             />
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary w-full"
-              onClick={onCheckout}
               disabled={pending || !termsAccepted || !canCheckout || lines.length === 0}
               data-testid="cart-checkout"
             >
               {pending ? "Sending…" : canCheckout ? "Request order" : `Minimum ${formatCurrency(minDollars)}`}
             </button>
-          </div>
+          </form>
         ) : (
           <Link
             href={`/login?next=${encodeURIComponent("/cart")}`}
@@ -275,7 +288,7 @@ export function CartCheckout({
         )}
 
         {error ? (
-          <p className="mt-4 border border-line bg-mist/60 px-3 py-2 text-sm text-ink-soft" role="alert">
+          <p className="mt-4 border border-warn/30 bg-warn/10 px-3 py-2 text-sm text-ink-soft" role="alert">
             {error}
           </p>
         ) : (

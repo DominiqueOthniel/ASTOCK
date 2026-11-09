@@ -76,7 +76,9 @@ export async function notifyOrderRequest(opts: {
   lotTitle: string;
   slug: string;
   amount: number;
+  quantity?: number;
   orderId: string;
+  buyerBlock?: string;
 }) {
   const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astock-one.vercel.app";
   const ops = await sendTransactionalEmail({
@@ -88,12 +90,18 @@ export async function notifyOrderRequest(opts: {
       `Order ID: ${opts.orderId}`,
       `Lot: ${opts.lotTitle}`,
       `Slug: ${opts.slug}`,
+      `Quantity: ${opts.quantity ?? 1}`,
       `Amount: $${opts.amount.toLocaleString()}`,
-      `Buyer: ${opts.buyerEmail}`,
+      `Account email: ${opts.buyerEmail}`,
+      opts.buyerBlock ? `` : null,
+      opts.buyerBlock ?? null,
+      ``,
       `Lot URL: ${site}/lots/${opts.slug}`,
       ``,
-      `Confirm with the buyer by email to complete the sale.`,
-    ].join("\n"),
+      `Confirm with the buyer by email or phone to complete the sale.`,
+    ]
+      .filter((line) => line !== null)
+      .join("\n"),
   });
 
   await sendTransactionalEmail({

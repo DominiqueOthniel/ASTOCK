@@ -90,6 +90,14 @@ model Order {
   stripeSessionId       String?   @unique
   stripePaymentIntentId String?
   termsAcceptedAt       DateTime?
+  buyerFullName         String?
+  buyerPhone            String?
+  buyerAge              Int?
+  shipStreet            String?
+  shipCity              String?
+  shipState             String?
+  shipPostal            String?
+  shipCountry           String?   @default("US")
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 

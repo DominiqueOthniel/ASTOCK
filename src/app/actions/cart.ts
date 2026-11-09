@@ -8,6 +8,7 @@ import {
   removeFromCart,
   setCartQuantity,
 } from "@/lib/cart";
+import { parseBuyerDetails } from "@/lib/buyer-details";
 import { clampOrderQuantity } from "@/lib/commerce";
 import { createEmailOrdersForSlugs } from "@/lib/orders";
 import { prisma } from "@/lib/prisma";
@@ -99,6 +100,11 @@ export async function checkoutCartAction(formData: FormData) {
     };
   }
 
+  const buyerParsed = parseBuyerDetails(formData);
+  if (!buyerParsed.ok) {
+    return { ok: false as const, error: buyerParsed.error };
+  }
+
   const cart = await readCart();
   if (cart.length === 0) {
     return { ok: false as const, error: "Your cart is empty." };
@@ -109,6 +115,7 @@ export async function checkoutCartAction(formData: FormData) {
     userId: user.id,
     userEmail: user.email,
     termsAcceptedAt: new Date(),
+    buyer: buyerParsed.details,
   });
 
   if (!result.ok) {
