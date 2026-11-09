@@ -14,7 +14,7 @@ export async function ordersInboxEmail() {
     settings.contactEmail ||
     process.env.ORDERS_EMAIL ||
     process.env.ADMIN_EMAIL ||
-    "admin@astock.market"
+    "uncledrewlegacy@gmail.com"
   );
 }
 

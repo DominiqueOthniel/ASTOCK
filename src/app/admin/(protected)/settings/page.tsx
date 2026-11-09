@@ -20,7 +20,7 @@ export default async function AdminSettingsPage({
         </Link>
         <h1 className="mt-3 font-display text-3xl font-semibold text-ink">Contacts &amp; social</h1>
         <p className="mt-2 max-w-2xl text-sm text-steel">
-          These values appear in the public footer. Leave a field blank to hide it on the site.
+          Public footer contacts and order inbox email. Leave a field blank to hide it.
         </p>
       </div>
 
@@ -45,27 +45,23 @@ export default async function AdminSettingsPage({
         action="/api/admin/settings"
         className="space-y-6 border border-line bg-white p-6 shadow-[var(--shadow)]"
       >
+        {/* Keep unused channels cleared on save */}
+        <input type="hidden" name="contactPhone" value="" />
+        <input type="hidden" name="addressNote" value="" />
+        <input type="hidden" name="linkedinUrl" value="" />
+        <input type="hidden" name="xUrl" value="" />
+
         <section className="space-y-4">
           <h2 className="font-display text-xl font-semibold text-ink">Contact details</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="block text-sm">
-              <span className="mb-1.5 block font-medium">Email</span>
+              <span className="mb-1.5 block font-medium">Email (orders inbox)</span>
               <input
                 className="field"
                 type="email"
                 name="contactEmail"
                 defaultValue={settings.contactEmail}
-                placeholder="buyers@astock.market"
-              />
-            </label>
-            <label className="block text-sm">
-              <span className="mb-1.5 block font-medium">Phone</span>
-              <input
-                className="field"
-                type="tel"
-                name="contactPhone"
-                defaultValue={settings.contactPhone}
-                placeholder="+1 555 010 2000"
+                placeholder="uncledrewlegacy@gmail.com"
               />
             </label>
             <label className="block text-sm">
@@ -74,23 +70,14 @@ export default async function AdminSettingsPage({
                 className="field"
                 name="whatsapp"
                 defaultValue={settings.whatsapp}
-                placeholder="https://wa.me/15550102000 or +15550102000"
-              />
-            </label>
-            <label className="block text-sm md:col-span-2">
-              <span className="mb-1.5 block font-medium">Address or contact note</span>
-              <textarea
-                className="field min-h-24"
-                name="addressNote"
-                defaultValue={settings.addressNote}
-                placeholder="Warehouse appointments via email. Ops hours Mon to Fri."
+                placeholder="+12404009904"
               />
             </label>
           </div>
         </section>
 
         <section className="space-y-4 border-t border-line pt-6">
-          <h2 className="font-display text-xl font-semibold text-ink">Social &amp; messaging</h2>
+          <h2 className="font-display text-xl font-semibold text-ink">Social</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="block text-sm">
               <span className="mb-1.5 block font-medium">Facebook URL</span>
@@ -98,7 +85,7 @@ export default async function AdminSettingsPage({
                 className="field"
                 name="facebookUrl"
                 defaultValue={settings.facebookUrl}
-                placeholder="https://facebook.com/…"
+                placeholder="https://www.facebook.com/share/…"
               />
             </label>
             <label className="block text-sm">
@@ -107,7 +94,7 @@ export default async function AdminSettingsPage({
                 className="field"
                 name="instagramUrl"
                 defaultValue={settings.instagramUrl}
-                placeholder="https://instagram.com/…"
+                placeholder="https://www.instagram.com/palletplugdeals"
               />
             </label>
             <label className="block text-sm">
@@ -116,25 +103,7 @@ export default async function AdminSettingsPage({
                 className="field"
                 name="tiktokUrl"
                 defaultValue={settings.tiktokUrl}
-                placeholder="https://tiktok.com/@…"
-              />
-            </label>
-            <label className="block text-sm">
-              <span className="mb-1.5 block font-medium">LinkedIn URL</span>
-              <input
-                className="field"
-                name="linkedinUrl"
-                defaultValue={settings.linkedinUrl}
-                placeholder="https://linkedin.com/company/…"
-              />
-            </label>
-            <label className="block text-sm">
-              <span className="mb-1.5 block font-medium">X URL</span>
-              <input
-                className="field"
-                name="xUrl"
-                defaultValue={settings.xUrl}
-                placeholder="https://x.com/…"
+                placeholder="https://www.tiktok.com/@palletplugdeals"
               />
             </label>
           </div>

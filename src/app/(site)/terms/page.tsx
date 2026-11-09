@@ -110,10 +110,10 @@ export default function TermsPage() {
 
         <Section title="12. Contact">
           Questions about these Terms:{" "}
-          <a href="mailto:legal@astock.market" className="font-semibold text-accent-deep hover:underline">
-            legal@astock.market
+          <a href="mailto:uncledrewlegacy@gmail.com" className="font-semibold text-accent-deep hover:underline">
+            uncledrewlegacy@gmail.com
           </a>
-          . Marketplace operations: buyers@astock.market and sellers@astock.market.
+          .
         </Section>
 
         <p className="mt-12 border-t border-line pt-6 text-xs leading-relaxed text-steel">

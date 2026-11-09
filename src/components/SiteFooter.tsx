@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
-import { getSiteSettings, publicSocialLinks } from "@/lib/site-settings";
+import {
+  getSiteSettings,
+  normalizeWhatsApp,
+  publicSocialLinks,
+} from "@/lib/site-settings";
 
 export async function SiteFooter() {
   const settings = await getSiteSettings();
   const socials = publicSocialLinks(settings);
-  const hasContact =
-    Boolean(settings.contactEmail) ||
-    Boolean(settings.contactPhone) ||
-    Boolean(settings.whatsapp) ||
-    Boolean(settings.addressNote);
+  const hasContact = Boolean(settings.contactEmail) || socials.length > 0;
 
   return (
     <footer className="mt-auto border-t border-line bg-ink text-white">
@@ -57,7 +57,7 @@ export async function SiteFooter() {
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">Contact</p>
-          {hasContact || socials.length > 0 ? (
+          {hasContact ? (
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               {settings.contactEmail ? (
                 <li>
@@ -66,26 +66,27 @@ export async function SiteFooter() {
                   </a>
                 </li>
               ) : null}
-              {settings.contactPhone ? (
+              {settings.whatsapp ? (
                 <li>
                   <a
-                    href={`tel:${settings.contactPhone.replace(/[^\d+]/g, "")}`}
+                    href={normalizeWhatsApp(settings.whatsapp)}
+                    target="_blank"
+                    rel="noreferrer"
                     className="hover:text-white"
                   >
-                    {settings.contactPhone}
+                    WhatsApp +1 (240) 400-9904
                   </a>
                 </li>
               ) : null}
-              {settings.addressNote ? (
-                <li className="leading-relaxed text-white/65">{settings.addressNote}</li>
-              ) : null}
-              {socials.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} target="_blank" rel="noreferrer" className="hover:text-white">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {socials
+                .filter((link) => link.label !== "WhatsApp")
+                .map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href} target="_blank" rel="noreferrer" className="hover:text-white">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
             </ul>
           ) : (
             <p className="mt-4 text-sm text-white/55">Contact soon.</p>

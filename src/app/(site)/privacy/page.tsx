@@ -56,8 +56,8 @@ export default function PrivacyPage() {
 
         <Section title="Contact">
           Privacy requests:{" "}
-          <a href="mailto:privacy@astock.market" className="font-semibold text-accent-deep hover:underline">
-            privacy@astock.market
+          <a href="mailto:uncledrewlegacy@gmail.com" className="font-semibold text-accent-deep hover:underline">
+            uncledrewlegacy@gmail.com
           </a>
           . Related terms:{" "}
           <Link href="/terms" className="font-semibold text-accent-deep hover:underline">
