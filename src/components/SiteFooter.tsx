@@ -38,6 +38,11 @@ export async function SiteFooter() {
                 Sell
               </Link>
             </li>
+            <li>
+              <Link href="/support" className="hover:text-white">
+                Support
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

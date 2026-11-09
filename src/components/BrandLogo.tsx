@@ -9,6 +9,7 @@ type BrandLogoProps = {
   onClick?: () => void;
 };
 
+/** Geometric PD monogram — blunt stems so it never reads as Rc. */
 export function BrandMark({
   onDark = false,
   size = "md",
@@ -17,6 +18,10 @@ export function BrandMark({
   size?: "sm" | "md" | "lg";
 }) {
   const dim = size === "sm" ? 28 : size === "lg" ? 40 : 32;
+  const bg = onDark ? "rgb(255 255 255 / 12%)" : "#124c3b";
+  const pFill = "#fffdfb";
+  const dFill = onDark ? "#d6ebe2" : "#d6ebe2";
+
   return (
     <svg
       width={dim}
@@ -26,24 +31,28 @@ export function BrandMark({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className="shrink-0"
+      data-testid="brand-mark"
     >
-      <rect
-        x="1.5"
-        y="1.5"
-        width="37"
-        height="37"
-        rx="8"
-        className={onDark ? "stroke-white/40" : "stroke-[var(--line)]"}
-        strokeWidth="1.5"
-        fill={onDark ? "rgb(255 255 255 / 8%)" : "var(--surface)"}
+      <rect width="40" height="40" rx="7" fill={bg} />
+      {onDark ? (
+        <rect
+          x="1"
+          y="1"
+          width="38"
+          height="38"
+          rx="6"
+          stroke="rgb(255 255 255 / 35%)"
+          strokeWidth="1"
+          fill="none"
+        />
+      ) : null}
+      <path
+        d="M9 11h8.2c3.05 0 5.05 1.7 5.05 4.35 0 2.55-1.9 4.25-5.05 4.25H12.4V29H9V11Zm3.4 3.05v3.5h4.55c1.45 0 2.2-.75 2.2-1.75s-.75-1.75-2.2-1.75H12.4Z"
+        fill={pFill}
       />
       <path
-        d="M10 27V13h6.4c3.3 0 5.3 1.7 5.3 4.2 0 1.7-.9 3-2.4 3.6L24.2 27h-3.4l-4.3-5.7H13.2V27H10Zm3.2-8.3h3c1.6 0 2.5-.8 2.5-2.1s-.9-2-2.5-2H13.2v4.1Z"
-        fill={onDark ? "white" : "var(--accent-deep)"}
-      />
-      <path
-        d="M26.2 27c-3.2 0-5.3-2.2-5.3-5.4 0-3.2 2.1-5.4 5.3-5.4 1.7 0 3.1.6 4 1.8l-2.1 1.3c-.5-.6-1.2-1-2-1-1.5 0-2.5 1.1-2.5 3.2s1 3.3 2.6 3.3c.9 0 1.6-.3 2.1-.9l2.1 1.4c-.9 1.2-2.4 1.7-4.2 1.7Z"
-        fill={onDark ? "white" : "var(--accent)"}
+        d="M23.2 11H28c4.55 0 7.55 3.05 7.55 9s-3 9-7.55 9h-4.8V11Zm3.4 3.05V25.9H28c2.7 0 4.35-2.05 4.35-5.9s-1.65-5.95-4.35-5.95h-1.4Z"
+        fill={dFill}
       />
     </svg>
   );
