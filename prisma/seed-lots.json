@@ -1532,9 +1532,9 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 380,
-    "buyNowPrice": 380,
-    "startingBid": 380,
+    "currentBid": 360,
+    "buyNowPrice": 360,
+    "startingBid": 360,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 18,
@@ -1550,7 +1550,7 @@
     ],
     "manifestSummary": "One PlayStation 5 Slim Digital Edition console (CFI-2000B series) with DualSense controller. 1TB SSD. No Ultra HD Blu-ray disc drive. Power cord and HDMI cable included. Manifest lists serial and carton seal status.",
     "conditionNotes": "Grade A new overstock. Factory sealed Slim Digital carton. Sample seal check passed. Slim Digital chassis only, not the original fat model and not Disc Edition.",
-    "sellerNotes": "List price $380 per unit for PS5 Slim Digital Edition. Automatic bulk tiers at 3+, 5+, and 10+. Console only unless a game bundle is confirmed through Support.",
+    "sellerNotes": "List price $360 per unit for PS5 Slim Digital Edition. Automatic bulk tiers at 3+, 5+, and 10+. Console only unless a game bundle is confirmed through Support.",
     "shipping": "Shipping free. Parcel carrier, tracked. Packed in original Slim carton with outer protective wrap.",
     "pickup": "Parcel ship only. No dock pickup required for this SKU.",
     "minQuantity": 1,
@@ -1560,15 +1560,15 @@
     "bulkTiers": [
       {
         "minQuantity": 3,
-        "unitPrice": 357
-      },
-      {
-        "minQuantity": 5,
         "unitPrice": 338
       },
       {
+        "minQuantity": 5,
+        "unitPrice": 320
+      },
+      {
         "minQuantity": 10,
-        "unitPrice": 323
+        "unitPrice": 306
       }
     ]
   },

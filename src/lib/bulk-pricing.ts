@@ -76,7 +76,7 @@ export function defaultPs5DiscBulkTiers(base = 400): BulkTier[] {
 }
 
 /** Default PS5 Slim Digital bulk ladder from list price. */
-export function defaultPs5DigitalBulkTiers(base = 380): BulkTier[] {
+export function defaultPs5DigitalBulkTiers(base = 360): BulkTier[] {
   return [
     { minQuantity: 3, unitPrice: Math.round(base * 0.94) },
     { minQuantity: 5, unitPrice: Math.round(base * 0.89) },
