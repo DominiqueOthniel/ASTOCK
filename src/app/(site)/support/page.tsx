@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Can I buy single units?",
-    a: "Yes for SKUs sold by the unit, including Christmas trees and the PlayStation 5. Bulk pallets still sell as whole lots.",
+    a: "Yes for SKUs sold by the unit, including Christmas trees and the PlayStation 5 Slim. Bulk pallets still sell as whole lots.",
   },
   {
     q: "Shipping and pickup?",

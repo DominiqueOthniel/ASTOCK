@@ -6,7 +6,7 @@
     "rating": 5,
     "verified": true,
     "hoursAgo": 3,
-    "body": "Got the PS5 yesterday. Sealed box, free shipping hit in 2 days to Atlanta. Price was straight, no weird fees."
+    "body": "Got the PS5 Slim yesterday. Sealed box, free shipping hit in 2 days to Atlanta. Price was straight, no weird fees."
   },
   {
     "id": "rev-ps5-02",
@@ -69,7 +69,7 @@
     "rating": 4,
     "verified": false,
     "hoursAgo": 1100,
-    "body": "Took a minute for them to email me back but the unit showed up clean. Fair price for a sealed PS5."
+    "body": "Took a minute for them to email me back but the unit showed up clean. Fair price for a sealed PS5 Slim."
   },
   {
     "id": "rev-xt03-01",
@@ -745,5 +745,401 @@
     "verified": true,
     "hoursAgo": 1294,
     "body": "Solid for the money. Took a day to get the confirm email but shipping was fine."
+  },
+  {
+    "id": "rev-ast-toy-40499-0",
+    "lotId": "ast-toy-40499",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-40499-1",
+    "lotId": "ast-toy-40499",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-40499-2",
+    "lotId": "ast-toy-40499",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-giggle-doll-0",
+    "lotId": "ast-toy-giggle-doll",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-giggle-doll-1",
+    "lotId": "ast-toy-giggle-doll",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-giggle-doll-2",
+    "lotId": "ast-toy-giggle-doll",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-piranha-0",
+    "lotId": "ast-toy-piranha",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-piranha-1",
+    "lotId": "ast-toy-piranha",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-piranha-2",
+    "lotId": "ast-toy-piranha",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-strawberry-0",
+    "lotId": "ast-toy-strawberry",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-strawberry-1",
+    "lotId": "ast-toy-strawberry",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-71839-0",
+    "lotId": "ast-toy-71839",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-71839-1",
+    "lotId": "ast-toy-71839",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-71839-2",
+    "lotId": "ast-toy-71839",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-ooze-0",
+    "lotId": "ast-toy-ooze",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-ooze-1",
+    "lotId": "ast-toy-ooze",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-deep-0",
+    "lotId": "ast-toy-deep",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-deep-1",
+    "lotId": "ast-toy-deep",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-green-plush-0",
+    "lotId": "ast-toy-green-plush",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-green-plush-1",
+    "lotId": "ast-toy-green-plush",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-green-plush-2",
+    "lotId": "ast-toy-green-plush",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-42165-0",
+    "lotId": "ast-toy-42165",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-42165-1",
+    "lotId": "ast-toy-42165",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-42165-2",
+    "lotId": "ast-toy-42165",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-moon-0",
+    "lotId": "ast-toy-moon",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-moon-1",
+    "lotId": "ast-toy-moon",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-hover-0",
+    "lotId": "ast-toy-hover",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-hover-1",
+    "lotId": "ast-toy-hover",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-hover-2",
+    "lotId": "ast-toy-hover",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-buttercup-0",
+    "lotId": "ast-toy-buttercup",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-buttercup-1",
+    "lotId": "ast-toy-buttercup",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-buttercup-2",
+    "lotId": "ast-toy-buttercup",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-40746-0",
+    "lotId": "ast-toy-40746",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-40746-1",
+    "lotId": "ast-toy-40746",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-40746-2",
+    "lotId": "ast-toy-40746",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
+  },
+  {
+    "id": "rev-ast-toy-ourgen-0",
+    "lotId": "ast-toy-ourgen",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-ourgen-1",
+    "lotId": "ast-toy-ourgen",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-toy-hp-balls-0",
+    "lotId": "ast-toy-hp-balls",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-toy-hp-balls-1",
+    "lotId": "ast-toy-hp-balls",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-hh-oxy-0",
+    "lotId": "ast-hh-oxy",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-hh-oxy-1",
+    "lotId": "ast-hh-oxy",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-hh-tissue-0",
+    "lotId": "ast-hh-tissue",
+    "authorName": "Diego M.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 655,
+    "body": "Fair price for sealed LEGO. No missing seals."
+  },
+  {
+    "id": "rev-ast-hh-tissue-1",
+    "lotId": "ast-hh-tissue",
+    "authorName": "Jaylen P.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 430,
+    "body": "Exactly the set number I wanted."
+  },
+  {
+    "id": "rev-ast-hh-tissue-2",
+    "lotId": "ast-hh-tissue",
+    "authorName": "Greg S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 231,
+    "body": "Good for my booth. Sold through in a week."
   }
 ]

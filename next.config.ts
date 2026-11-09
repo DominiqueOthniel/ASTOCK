@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/lots/playstation-5",
+        destination: "/lots/playstation-5-slim",
+        permanent: true,
+      },
+    ];
+  },
   serverExternalPackages: ["@prisma/client", "prisma", "bcryptjs"],
   turbopack: {
     rules: {
