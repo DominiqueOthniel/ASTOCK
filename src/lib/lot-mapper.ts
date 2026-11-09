@@ -1,4 +1,5 @@
 import type { Lot as DbLot } from "@prisma/client";
+import { normalizeBulkTiers, type BulkTier } from "./bulk-pricing";
 import type { Category, ConditionGrade, Lot, LotType, SaleType } from "./types";
 
 export function slugify(input: string): string {
@@ -9,6 +10,26 @@ export function slugify(input: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 80);
+}
+
+function parseBulkTiers(raw: string | null | undefined): BulkTier[] | undefined {
+  if (!raw) return undefined;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return undefined;
+    const tiers = normalizeBulkTiers(
+      parsed.filter(
+        (item): item is BulkTier =>
+          Boolean(item) &&
+          typeof item === "object" &&
+          Number.isFinite((item as BulkTier).minQuantity) &&
+          Number.isFinite((item as BulkTier).unitPrice),
+      ),
+    );
+    return tiers.length > 0 ? tiers : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 export function mapDbLot(lot: DbLot): Lot {
@@ -33,6 +54,7 @@ export function mapDbLot(lot: DbLot): Lot {
     currentBid: lot.currentBid,
     buyNowPrice: lot.buyNowPrice ?? undefined,
     compareAtPrice: lot.compareAtPrice ?? undefined,
+    bulkTiers: parseBulkTiers(lot.bulkTiersJson),
     startingBid: lot.startingBid,
     reserveMet: lot.reserveMet,
     bidCount: lot.bidCount,

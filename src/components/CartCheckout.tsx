@@ -12,6 +12,7 @@ import {
 import { BuyerDetailsFields } from "@/components/BuyerDetailsFields";
 import { TermsAgree } from "@/components/TermsAgree";
 import { parseBuyerDetails } from "@/lib/buyer-details";
+import { hasBulkPricing, unitPriceForQuantity } from "@/lib/bulk-pricing";
 import {
   lineTotal,
   maxOrderQuantity,
@@ -202,7 +203,12 @@ export function CartCheckout({
                 </Link>
                 <p className="mt-1 text-sm text-steel">
                   {lot.sellByUnit
-                    ? `${formatCurrency(lotPrice(lot))} each`
+                    ? `${formatCurrency(unitPriceForQuantity(lot, quantity))} each${
+                        hasBulkPricing(lot) &&
+                        unitPriceForQuantity(lot, quantity) < lotPrice(lot)
+                          ? " bulk"
+                          : ""
+                      }`
                     : unitLabel(lot, quantity)}
                 </p>
                 {lot.sellByUnit && maxQty > 1 ? (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BuyBox } from "@/components/BuyBox";
 import { LotCard } from "@/components/LotCard";
+import { LotFaq } from "@/components/LotFaq";
 import { LotGallery } from "@/components/LotGallery";
 import { LotReviews } from "@/components/LotReviews";
 import { formatCondition, formatCurrency } from "@/lib/format";
@@ -125,6 +126,8 @@ export default async function LotDetailPage({ params }: LotPageProps) {
                 </div>
               </div>
             </details>
+
+            <LotFaq lot={lot} />
           </div>
 
           <div className="min-w-0 lg:sticky lg:top-[calc(var(--header-h)+1rem)] lg:self-start">

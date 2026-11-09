@@ -1,5 +1,5 @@
+import { unitPriceForQuantity, type BulkTier } from "@/lib/bulk-pricing";
 import { formatCurrency } from "@/lib/format";
-import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
 /** Default minimum cart / buy-now order total ($150). */
@@ -12,6 +12,7 @@ export type OrderableLot = {
   minQuantity: number;
   sellByUnit: boolean;
   title: string;
+  bulkTiers?: BulkTier[];
 };
 
 export function minOrderTotalCents(override?: number | null): number {
@@ -42,10 +43,19 @@ export function clampOrderQuantity(lot: OrderableLot, quantity: number): number 
 
 export function lineTotal(lot: OrderableLot, quantity: number): number {
   const qty = clampOrderQuantity(lot, quantity);
-  return lotPrice({
-    buyNowPrice: lot.buyNowPrice ?? undefined,
-    currentBid: lot.currentBid,
-  }) * qty;
+  const unit = unitPriceForQuantity(
+    {
+      buyNowPrice: lot.buyNowPrice ?? undefined,
+      currentBid: lot.currentBid,
+      bulkTiers: lot.bulkTiers,
+      sellByUnit: lot.sellByUnit,
+      minQuantity: lot.minQuantity,
+      unitCount: lot.unitCount,
+      title: lot.title,
+    },
+    qty,
+  );
+  return Math.round(unit * qty * 100) / 100;
 }
 
 export function remainingToMinOrder(totalDollars: number, minCents?: number | null): number {

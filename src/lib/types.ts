@@ -27,6 +27,8 @@ export interface Lot {
   currentBid: number;
   buyNowPrice?: number;
   compareAtPrice?: number;
+  /** Quantity tiers for sell-by-unit bulk discounts. */
+  bulkTiers?: { minQuantity: number; unitPrice: number }[];
   startingBid: number;
   reserveMet: boolean;
   bidCount: number;

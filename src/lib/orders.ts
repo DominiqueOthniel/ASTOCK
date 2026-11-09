@@ -2,6 +2,7 @@ import {
   buyerDetailsEmailBlock,
   type BuyerDetails,
 } from "@/lib/buyer-details";
+import { normalizeBulkTiers, type BulkTier } from "@/lib/bulk-pricing";
 import {
   clampOrderQuantity,
   lineTotal,
@@ -16,6 +17,26 @@ import { siteUrl } from "@/lib/site";
 function askingPrice(lot: { buyNowPrice: number | null; currentBid: number }) {
   if (typeof lot.buyNowPrice === "number" && lot.buyNowPrice > 0) return lot.buyNowPrice;
   return lot.currentBid;
+}
+
+function parseBulkTiersJson(raw: string | null | undefined): BulkTier[] | undefined {
+  if (!raw) return undefined;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return undefined;
+    const tiers = normalizeBulkTiers(
+      parsed.filter(
+        (item): item is BulkTier =>
+          Boolean(item) &&
+          typeof item === "object" &&
+          Number.isFinite((item as BulkTier).minQuantity) &&
+          Number.isFinite((item as BulkTier).unitPrice),
+      ),
+    );
+    return tiers.length > 0 ? tiers : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 export async function ordersInboxEmail() {
@@ -191,6 +212,7 @@ export async function createEmailOrdersForSlugs(opts: {
       minQuantity: lot.minQuantity ?? 1,
       sellByUnit: Boolean(lot.sellByUnit),
       title: lot.title,
+      bulkTiers: parseBulkTiersJson(lot.bulkTiersJson),
     };
     const quantity = clampOrderQuantity(orderable, merged.get(slug) ?? 1);
     if (quantity < orderable.minQuantity) {

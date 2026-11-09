@@ -16,6 +16,7 @@ type SeedLot = {
   currentBid: number;
   buyNowPrice?: number | null;
   compareAtPrice?: number | null;
+  bulkTiers?: { minQuantity: number; unitPrice: number }[];
   startingBid: number;
   reserveMet: boolean;
   bidCount: number;
@@ -93,6 +94,10 @@ async function main() {
       currentBid: lot.currentBid,
       buyNowPrice: lot.buyNowPrice ?? null,
       compareAtPrice: lot.compareAtPrice ?? null,
+      bulkTiersJson:
+        Array.isArray(lot.bulkTiers) && lot.bulkTiers.length > 0
+          ? JSON.stringify(lot.bulkTiers)
+          : null,
       startingBid: lot.startingBid,
       reserveMet: lot.reserveMet,
       bidCount: lot.bidCount,

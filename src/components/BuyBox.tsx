@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition, type FormEvent } from "react";
 import { addToCartAction } from "@/app/actions/cart";
 import { requestPurchaseAction } from "@/app/actions/orders";
+import { BulkPriceTiers } from "@/components/BulkPriceTiers";
 import { BuyerDetailsFields } from "@/components/BuyerDetailsFields";
 import { LotPrice } from "@/components/LotPrice";
 import { StockPressure } from "@/components/StockPressure";
 import { TermsAgree } from "@/components/TermsAgree";
 import { parseBuyerDetails } from "@/lib/buyer-details";
+import { hasBulkPricing, unitPriceForQuantity } from "@/lib/bulk-pricing";
 import {
   clampOrderQuantity,
   lineTotal,
@@ -20,6 +22,7 @@ import {
   unitLabel,
 } from "@/lib/commerce";
 import { formatCurrency } from "@/lib/format";
+import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
 
 export function BuyBox({
@@ -44,9 +47,12 @@ export function BuyBox({
   const loginHref = `/login?next=${encodeURIComponent(`/lots/${lot.slug}`)}`;
   const freeShipping = /free/i.test(lot.shipping);
   const qty = clampOrderQuantity(lot, quantity);
+  const unitNow = unitPriceForQuantity(lot, qty);
+  const baseUnit = lotPrice(lot);
   const total = lineTotal(lot, qty);
   const canBuyNow = meetsMinOrder(total, minOrderTotalCents);
   const minDollars = minOrderTotalDollars(minOrderTotalCents);
+  const bulkActive = hasBulkPricing(lot) && unitNow < baseUnit;
 
   function onAddToCart() {
     const formData = new FormData();
@@ -140,9 +146,14 @@ export function BuyBox({
         <LotPrice lot={lot} size="lg" />
       </div>
       <p className="mt-2 text-sm text-steel">
-        {lot.sellByUnit ? "Per unit" : unitLabel(lot)}
+        {lot.sellByUnit ? "Per unit list" : unitLabel(lot)}
         {freeShipping ? " · Shipping free" : ""}
       </p>
+      {bulkActive ? (
+        <p className="mt-2 text-sm font-semibold text-accent-deep" data-testid="bulk-unit-price">
+          Bulk price {formatCurrency(unitNow)} each
+        </p>
+      ) : null}
       <div className="mt-2">
         <StockPressure lot={lot} />
       </div>
@@ -156,6 +167,7 @@ export function BuyBox({
         </p>
       ) : (
         <div className="mt-6 space-y-3">
+          {hasBulkPricing(lot) ? <BulkPriceTiers lot={lot} quantity={qty} /> : null}
           {lot.sellByUnit && maxQty > 1 ? (
             <label className="block text-sm">
               <span className="mb-1.5 block font-medium text-ink">Quantity</span>
@@ -170,7 +182,10 @@ export function BuyBox({
             </label>
           ) : null}
           {qty > 1 ? (
-            <p className="text-sm text-ink-soft">Line total {formatCurrency(total)}</p>
+            <p className="text-sm text-ink-soft">
+              Line total {formatCurrency(total)}
+              {bulkActive ? ` (${formatCurrency(unitNow)} × ${qty})` : ""}
+            </p>
           ) : null}
           <button
             type="button"

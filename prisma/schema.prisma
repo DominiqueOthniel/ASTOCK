@@ -29,6 +29,7 @@ model Lot {
   minQuantity      Int       @default(1)
   sellByUnit       Boolean   @default(false)
   compareAtPrice   Float?
+  bulkTiersJson    String?
   estimatedRetail  Float
   location         String
   endsAt           DateTime
