@@ -13,6 +13,8 @@ export type LotFormValues = {
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  minQuantity: number;
+  sellByUnit: boolean;
   estimatedRetail: number;
   location: string;
   endsAt: Date;
@@ -62,6 +64,8 @@ export function parseLotFormData(formData: FormData): LotFormValues {
     reserveMet: true,
     bidCount: 0,
     unitCount: Math.max(1, Math.floor(num(formData.get("unitCount"), 1))),
+    minQuantity: Math.max(1, Math.floor(num(formData.get("minQuantity"), 1))),
+    sellByUnit: bool(formData, "sellByUnit"),
     estimatedRetail: num(formData.get("estimatedRetail")),
     location: String(formData.get("location") ?? "").trim(),
     endsAt: new Date(endsRaw),

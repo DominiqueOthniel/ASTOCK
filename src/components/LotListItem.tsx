@@ -29,11 +29,15 @@ export function LotListItem({ lot }: { lot: Lot }) {
           {lot.title}
         </h3>
         <p className="mt-0.5 text-sm text-steel">
-          {lot.unitCount.toLocaleString()} unit{lot.unitCount === 1 ? "" : "s"}
+          {lot.sellByUnit
+            ? `From 1 unit · ${lot.unitCount.toLocaleString()} in stock`
+            : `${lot.unitCount.toLocaleString()} unit${lot.unitCount === 1 ? "" : "s"}`}
         </p>
       </div>
       <div className="md:text-right">
-        <p className="text-[11px] uppercase tracking-[0.12em] text-steel">Price</p>
+        <p className="text-[11px] uppercase tracking-[0.12em] text-steel">
+          {lot.sellByUnit ? "Each" : "Price"}
+        </p>
         <p className="mt-0.5 font-display text-lg font-semibold text-ink md:text-xl">
           {formatCurrency(lotPrice(lot))}
         </p>

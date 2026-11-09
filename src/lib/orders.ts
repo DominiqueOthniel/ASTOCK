@@ -1,3 +1,9 @@
+import {
+  clampOrderQuantity,
+  lineTotal,
+  meetsMinOrder,
+  minOrderMessage,
+} from "@/lib/commerce";
 import { notifyOrderRequest } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
 import { getSiteSettings } from "@/lib/site-settings";
@@ -22,6 +28,7 @@ export async function buildOrderMailto(opts: {
   lotTitle: string;
   slug: string;
   amount: number;
+  quantity: number;
   userEmail: string;
   orderId: string;
 }) {
@@ -34,6 +41,7 @@ export async function buildOrderMailto(opts: {
       `Order ID: ${opts.orderId}`,
       `Lot: ${opts.lotTitle}`,
       `Slug: ${opts.slug}`,
+      `Quantity: ${opts.quantity}`,
       `Amount: $${opts.amount.toLocaleString()}`,
       `Buyer: ${opts.userEmail}`,
       `Link: ${siteUrl()}/lots/${opts.slug}`,
@@ -46,7 +54,7 @@ export async function buildOrderMailto(opts: {
 
 export async function buildCartMailto(opts: {
   userEmail: string;
-  lines: { orderId: string; title: string; slug: string; amount: number }[];
+  lines: { orderId: string; title: string; slug: string; amount: number; quantity: number }[];
   total: number;
 }) {
   const to = await ordersInboxEmail();
@@ -61,6 +69,7 @@ export async function buildCartMailto(opts: {
       ...opts.lines.flatMap((line) => [
         `Order ID: ${line.orderId}`,
         `Lot: ${line.title} (${line.slug})`,
+        `Quantity: ${line.quantity}`,
         `Amount: $${line.amount.toLocaleString()}`,
         `Link: ${siteUrl()}/lots/${line.slug}`,
         "",
@@ -71,8 +80,14 @@ export async function buildCartMailto(opts: {
   return `mailto:${to}?subject=${subject}&body=${body}`;
 }
 
+export type OrderLineInput = {
+  slug: string;
+  quantity?: number;
+};
+
 export async function createEmailOrder(opts: {
   slug: string;
+  quantity?: number;
   userId: string;
   userEmail: string;
   termsAcceptedAt: Date;
@@ -87,7 +102,7 @@ export async function createEmailOrder(opts: {
   | { ok: false; error: string }
 > {
   const multi = await createEmailOrdersForSlugs({
-    slugs: [opts.slug],
+    lines: [{ slug: opts.slug, quantity: opts.quantity ?? 1 }],
     userId: opts.userId,
     userEmail: opts.userEmail,
     termsAcceptedAt: opts.termsAcceptedAt,
@@ -103,7 +118,9 @@ export async function createEmailOrder(opts: {
 }
 
 export async function createEmailOrdersForSlugs(opts: {
-  slugs: string[];
+  lines: OrderLineInput[];
+  /** @deprecated prefer lines */
+  slugs?: string[];
   userId: string;
   userEmail: string;
   termsAcceptedAt: Date;
@@ -117,7 +134,18 @@ export async function createEmailOrdersForSlugs(opts: {
     }
   | { ok: false; error: string }
 > {
-  const uniqueSlugs = [...new Set(opts.slugs.map((slug) => slug.trim()).filter(Boolean))];
+  const rawLines: OrderLineInput[] =
+    opts.lines?.length > 0
+      ? opts.lines
+      : (opts.slugs ?? []).map((slug) => ({ slug, quantity: 1 }));
+
+  const merged = new Map<string, number>();
+  for (const line of rawLines) {
+    const slug = line.slug.trim();
+    if (!slug) continue;
+    merged.set(slug, (merged.get(slug) ?? 0) + Math.max(1, Math.floor(line.quantity ?? 1)));
+  }
+  const uniqueSlugs = [...merged.keys()];
   if (uniqueSlugs.length === 0) {
     return { ok: false, error: "No lots selected." };
   }
@@ -126,11 +154,11 @@ export async function createEmailOrdersForSlugs(opts: {
     where: { slug: { in: uniqueSlugs }, published: true },
   });
   const bySlug = new Map(lots.map((lot) => [lot.slug, lot]));
+  const settings = await getSiteSettings();
 
-  const lines: {
-    orderId: string;
-    title: string;
-    slug: string;
+  const prepared: {
+    lot: (typeof lots)[number];
+    quantity: number;
     amount: number;
   }[] = [];
 
@@ -141,26 +169,62 @@ export async function createEmailOrdersForSlugs(opts: {
       return { ok: false, error: `"${lot.title}" is no longer available.` };
     }
 
-    const amount = askingPrice(lot);
+    const orderable = {
+      buyNowPrice: lot.buyNowPrice,
+      currentBid: lot.currentBid,
+      unitCount: lot.unitCount,
+      minQuantity: lot.minQuantity ?? 1,
+      sellByUnit: Boolean(lot.sellByUnit),
+      title: lot.title,
+    };
+    const quantity = clampOrderQuantity(orderable, merged.get(slug) ?? 1);
+    if (quantity < orderable.minQuantity) {
+      return {
+        ok: false,
+        error: `"${lot.title}" requires at least ${orderable.minQuantity} unit${orderable.minQuantity === 1 ? "" : "s"}.`,
+      };
+    }
+    const amount = lineTotal(orderable, quantity);
+    if (!(askingPrice(lot) > 0) || amount <= 0) {
+      return { ok: false, error: `"${lot.title}" has no valid price.` };
+    }
+    prepared.push({ lot, quantity, amount });
+  }
+
+  const total = prepared.reduce((sum, line) => sum + line.amount, 0);
+  if (!meetsMinOrder(total, settings.minOrderTotalCents)) {
+    return { ok: false, error: minOrderMessage(total, settings.minOrderTotalCents) };
+  }
+
+  const lines: {
+    orderId: string;
+    title: string;
+    slug: string;
+    amount: number;
+    quantity: number;
+  }[] = [];
+
+  for (const item of prepared) {
     const order = await prisma.order.create({
       data: {
-        lotId: lot.id,
+        lotId: item.lot.id,
         userId: opts.userId,
         userEmail: opts.userEmail,
-        amount,
+        amount: item.amount,
+        quantity: item.quantity,
         status: "email_pending",
         termsAcceptedAt: opts.termsAcceptedAt,
       },
     });
     lines.push({
       orderId: order.id,
-      title: lot.title,
-      slug: lot.slug,
-      amount,
+      title: item.lot.title,
+      slug: item.lot.slug,
+      amount: item.amount,
+      quantity: item.quantity,
     });
   }
 
-  const total = lines.reduce((sum, line) => sum + line.amount, 0);
   const opsEmail = await ordersInboxEmail();
   const mailto =
     lines.length === 1
@@ -168,6 +232,7 @@ export async function createEmailOrdersForSlugs(opts: {
           lotTitle: lines[0].title,
           slug: lines[0].slug,
           amount: lines[0].amount,
+          quantity: lines[0].quantity,
           userEmail: opts.userEmail,
           orderId: lines[0].orderId,
         })

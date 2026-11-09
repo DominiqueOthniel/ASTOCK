@@ -7,6 +7,7 @@ import { LotGallery } from "@/components/LotGallery";
 import { formatCondition, formatCurrency } from "@/lib/format";
 import { getPublishedLotBySlug, getRelatedLots } from "@/lib/lot-service";
 import { lotPrice } from "@/lib/pricing";
+import { getSiteSettings } from "@/lib/site-settings";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -36,9 +37,10 @@ export default async function LotDetailPage({ params }: LotPageProps) {
   const lot = await getPublishedLotBySlug(slug);
   if (!lot) notFound();
 
-  const [related, user] = await Promise.all([
+  const [related, user, settings] = await Promise.all([
     getRelatedLots(lot, 4),
     getMarketplaceUser(),
+    getSiteSettings(),
   ]);
 
   return (
@@ -66,9 +68,15 @@ export default async function LotDetailPage({ params }: LotPageProps) {
 
             <dl className="fact-grid mt-8 border-y border-line py-5">
               <div className="fact-item">
-                <dt>Units</dt>
+                <dt>{lot.sellByUnit ? "Available" : "Units"}</dt>
                 <dd>{lot.unitCount.toLocaleString()}</dd>
               </div>
+              {lot.sellByUnit ? (
+                <div className="fact-item">
+                  <dt>Min order</dt>
+                  <dd>{lot.minQuantity.toLocaleString()} unit{lot.minQuantity === 1 ? "" : "s"}</dd>
+                </div>
+              ) : null}
               <div className="fact-item">
                 <dt>Est. retail</dt>
                 <dd>{formatCurrency(lot.estimatedRetail)}</dd>
@@ -113,7 +121,11 @@ export default async function LotDetailPage({ params }: LotPageProps) {
           </div>
 
           <div className="min-w-0 lg:sticky lg:top-[calc(var(--header-h)+1rem)] lg:self-start">
-            <BuyBox lot={lot} signedIn={Boolean(user)} />
+            <BuyBox
+              lot={lot}
+              signedIn={Boolean(user)}
+              minOrderTotalCents={settings.minOrderTotalCents}
+            />
           </div>
         </div>
 

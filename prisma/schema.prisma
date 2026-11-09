@@ -25,6 +25,8 @@ model Lot {
   reserveMet       Boolean   @default(false)
   bidCount         Int       @default(0)
   unitCount        Int
+  minQuantity      Int       @default(1)
+  sellByUnit       Boolean   @default(false)
   estimatedRetail  Float
   location         String
   endsAt           DateTime
@@ -66,6 +68,7 @@ model Order {
   userId                String
   userEmail             String
   amount                Float
+  quantity              Int       @default(1)
   currency              String    @default("usd")
   status                String    @default("pending")
   stripeSessionId       String?   @unique
@@ -103,15 +106,16 @@ model AdminUser {
 }
 
 model SiteSettings {
-  id             String   @id @default("default")
-  contactEmail   String?
-  contactPhone   String?
-  whatsapp       String?
-  addressNote    String?
-  facebookUrl    String?
-  instagramUrl   String?
-  tiktokUrl      String?
-  linkedinUrl    String?
-  xUrl          String?
-  updatedAt      DateTime @updatedAt
+  id                 String   @id @default("default")
+  contactEmail       String?
+  contactPhone       String?
+  whatsapp           String?
+  addressNote        String?
+  facebookUrl        String?
+  instagramUrl       String?
+  tiktokUrl          String?
+  linkedinUrl        String?
+  xUrl               String?
+  minOrderTotalCents Int      @default(15000)
+  updatedAt          DateTime @updatedAt
 }

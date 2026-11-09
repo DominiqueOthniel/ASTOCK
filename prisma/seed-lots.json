@@ -28,7 +28,9 @@
     "slug": "ast-2401",
     "startingBid": 1295,
     "published": true,
-    "buyNowPrice": 1850
+    "buyNowPrice": 1850,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2402",
@@ -58,7 +60,9 @@
     "slug": "ast-2402",
     "startingBid": 6440,
     "published": true,
-    "buyNowPrice": 9200
+    "buyNowPrice": 9200,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2403",
@@ -88,7 +92,9 @@
     "pickup": "Phoenix fulfillment center. Same-week slots open Tue through Sat. Dock level; pallet jack recommended.",
     "slug": "ast-2403",
     "startingBid": 448,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2404",
@@ -118,7 +124,9 @@
     "slug": "ast-2404",
     "startingBid": 770,
     "published": true,
-    "buyNowPrice": 1100
+    "buyNowPrice": 1100,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2405",
@@ -147,7 +155,9 @@
     "slug": "ast-2405",
     "startingBid": 10150,
     "published": true,
-    "buyNowPrice": 14500
+    "buyNowPrice": 14500,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2406",
@@ -176,7 +186,9 @@
     "slug": "ast-2406",
     "startingBid": 686,
     "published": true,
-    "buyNowPrice": 980
+    "buyNowPrice": 980,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2407",
@@ -205,7 +217,9 @@
     "slug": "ast-2407",
     "startingBid": 294,
     "published": true,
-    "buyNowPrice": 420
+    "buyNowPrice": 420,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2408",
@@ -234,7 +248,9 @@
     "slug": "ast-2408",
     "startingBid": 924,
     "published": true,
-    "buyNowPrice": 1320
+    "buyNowPrice": 1320,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2409",
@@ -264,7 +280,9 @@
     "pickup": "LA basin warehouse. Appointment and COI required. Loading Mon through Thu.",
     "slug": "ast-2409",
     "startingBid": 15400,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2410",
@@ -293,7 +311,9 @@
     "slug": "ast-2410",
     "startingBid": 532,
     "published": true,
-    "buyNowPrice": 760
+    "buyNowPrice": 760,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2411",
@@ -323,7 +343,9 @@
     "slug": "ast-2411",
     "startingBid": 4760,
     "published": true,
-    "buyNowPrice": 6800
+    "buyNowPrice": 6800,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2412",
@@ -352,7 +374,9 @@
     "pickup": "Kansas City DC. Walk-up appointments often available same week.",
     "slug": "ast-2412",
     "startingBid": 336,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2413",
@@ -382,7 +406,9 @@
     "slug": "ast-2413",
     "startingBid": 623,
     "published": true,
-    "buyNowPrice": 890
+    "buyNowPrice": 890,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2414",
@@ -411,7 +437,9 @@
     "slug": "ast-2414",
     "startingBid": 12950,
     "published": true,
-    "buyNowPrice": 18500
+    "buyNowPrice": 18500,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2415",
@@ -440,7 +468,9 @@
     "slug": "ast-2415",
     "startingBid": 1470,
     "published": true,
-    "buyNowPrice": 2100
+    "buyNowPrice": 2100,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2416",
@@ -469,7 +499,9 @@
     "slug": "ast-2416",
     "startingBid": 7840,
     "published": true,
-    "buyNowPrice": 11200
+    "buyNowPrice": 11200,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2417",
@@ -498,7 +530,9 @@
     "pickup": "Tampa DC. Morning pickup preferred for same-day outbound.",
     "slug": "ast-2417",
     "startingBid": 504,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2418",
@@ -527,7 +561,9 @@
     "slug": "ast-2418",
     "startingBid": 1078,
     "published": true,
-    "buyNowPrice": 1540
+    "buyNowPrice": 1540,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2419",
@@ -556,7 +592,9 @@
     "slug": "ast-2419",
     "startingBid": 273,
     "published": true,
-    "buyNowPrice": 390
+    "buyNowPrice": 390,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2420",
@@ -587,7 +625,9 @@
     "slug": "ast-2420",
     "startingBid": 11760,
     "published": true,
-    "buyNowPrice": 16800
+    "buyNowPrice": 16800,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2421",
@@ -616,7 +656,9 @@
     "slug": "ast-2421",
     "startingBid": 826,
     "published": true,
-    "buyNowPrice": 1180
+    "buyNowPrice": 1180,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2422",
@@ -645,7 +687,9 @@
     "slug": "ast-2422",
     "startingBid": 994,
     "published": true,
-    "buyNowPrice": 1420
+    "buyNowPrice": 1420,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2423",
@@ -675,7 +719,9 @@
     "slug": "ast-2423",
     "startingBid": 686,
     "published": true,
-    "buyNowPrice": 980
+    "buyNowPrice": 980,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2424",
@@ -705,7 +751,9 @@
     "slug": "ast-2424",
     "startingBid": 8680,
     "published": true,
-    "buyNowPrice": 12400
+    "buyNowPrice": 12400,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2425",
@@ -734,7 +782,9 @@
     "pickup": "Atlanta DC dock. Appointment required. Forklift on site.",
     "slug": "ast-2425",
     "startingBid": 2100,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2426",
@@ -763,7 +813,9 @@
     "slug": "ast-2426",
     "startingBid": 532,
     "published": true,
-    "buyNowPrice": 760
+    "buyNowPrice": 760,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2427",
@@ -793,7 +845,9 @@
     "slug": "ast-2427",
     "startingBid": 1155,
     "published": true,
-    "buyNowPrice": 1650
+    "buyNowPrice": 1650,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2428",
@@ -822,7 +876,9 @@
     "slug": "ast-2428",
     "startingBid": 623,
     "published": true,
-    "buyNowPrice": 890
+    "buyNowPrice": 890,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2429",
@@ -851,7 +907,9 @@
     "pickup": "Charlotte DC. Forklift loading. Appointment required.",
     "slug": "ast-2429",
     "startingBid": 3200,
-    "published": true
+    "published": true,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2430",
@@ -880,7 +938,9 @@
     "slug": "ast-2430",
     "startingBid": 3780,
     "published": true,
-    "buyNowPrice": 5400
+    "buyNowPrice": 5400,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2431",
@@ -909,7 +969,9 @@
     "slug": "ast-2431",
     "startingBid": 448,
     "published": true,
-    "buyNowPrice": 640
+    "buyNowPrice": 640,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-2432",
@@ -938,7 +1000,9 @@
     "slug": "ast-2432",
     "startingBid": 896,
     "published": true,
-    "buyNowPrice": 1280
+    "buyNowPrice": 1280,
+    "minQuantity": 1,
+    "sellByUnit": false
   },
   {
     "id": "ast-xt-01",
@@ -948,13 +1012,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 1680,
-    "buyNowPrice": 1680,
-    "startingBid": 1176,
+    "currentBid": 47,
+    "buyNowPrice": 47,
+    "startingBid": 33,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 36,
-    "estimatedRetail": 5040,
+    "estimatedRetail": 140,
     "location": "Allentown, PA",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -966,9 +1030,11 @@
     ],
     "manifestSummary": "36 units of hinged 6FT classic green pine. PVC tips, metal hinged branches, plastic stand included. Cartons labeled by SKU. Full height assembled approx 6 ft.",
     "conditionNotes": "Grade A new overstock. Sealed retail cartons. Sample unit tip count and hinge check passed.",
-    "sellerNotes": "Traditional Green. Traditional green pine for seasonal retailers and online holiday shops. Strong entry price for floor stacks.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Traditional Green. Traditional green pine for seasonal retailers and online holiday shops. Strong entry price for floor stacks. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-02",
@@ -978,13 +1044,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2450,
-    "buyNowPrice": 2450,
-    "startingBid": 1715,
+    "currentBid": 88,
+    "buyNowPrice": 88,
+    "startingBid": 62,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 28,
-    "estimatedRetail": 7000,
+    "estimatedRetail": 250,
     "location": "Allentown, PA",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -996,9 +1062,11 @@
     ],
     "manifestSummary": "28 units of 7FT full-profile green spruce. Dense tip count, hinged construction, stand included. One style, one height.",
     "conditionNotes": "Grade A. Cartons intact. No customer returns in this wave.",
-    "sellerNotes": "Traditional Green. Full spruce silhouette for living-room floor sets. Clean wholesale pack.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Traditional Green. Full spruce silhouette for living-room floor sets. Clean wholesale pack. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-03",
@@ -1008,13 +1076,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 3120,
-    "buyNowPrice": 3120,
-    "startingBid": 2184,
+    "currentBid": 130,
+    "buyNowPrice": 130,
+    "startingBid": 91,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 24,
-    "estimatedRetail": 9600,
+    "estimatedRetail": 400,
     "location": "Allentown, PA",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": true,
@@ -1026,9 +1094,11 @@
     ],
     "manifestSummary": "24 units of 7.5FT premium fir. Higher tip density, hinged branches, weighted stand. Cartons marked Premium Fir 7.5FT.",
     "conditionNotes": "Grade A shelf-ready. Sample hinge and tip inspection clean.",
-    "sellerNotes": "Traditional Green. Top of the traditional green line. Best for showroom and premium online listings.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Traditional Green. Top of the traditional green line. Best for showroom and premium online listings. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-04",
@@ -1038,13 +1108,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 1980,
-    "buyNowPrice": 1980,
-    "startingBid": 1386,
+    "currentBid": 66,
+    "buyNowPrice": 66,
+    "startingBid": 46,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 30,
-    "estimatedRetail": 6300,
+    "estimatedRetail": 210,
     "location": "Memphis, TN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -1056,9 +1126,11 @@
     ],
     "manifestSummary": "30 units of 6FT snow-flocked pine. Factory flock finish, hinged branches, stand included. Wear gloves when fluffing.",
     "conditionNotes": "Grade A. Flock sealed in poly bags inside carton. Minor carton scuffs only.",
-    "sellerNotes": "Frosted and Snow-Flocked. Snow-flocked pine for winter window sets and holiday pop-ups.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Frosted and Snow-Flocked. Snow-flocked pine for winter window sets and holiday pop-ups. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-05",
@@ -1068,13 +1140,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2680,
-    "buyNowPrice": 2680,
-    "startingBid": 1876,
+    "currentBid": 112,
+    "buyNowPrice": 112,
+    "startingBid": 78,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 24,
-    "estimatedRetail": 7920,
+    "estimatedRetail": 330,
     "location": "Memphis, TN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": true,
@@ -1086,9 +1158,11 @@
     ],
     "manifestSummary": "24 units of 7FT frosted tree. Light flock over green tips, hinged build, stand included.",
     "conditionNotes": "Grade A new goods. Flock coverage checked on opened sample.",
-    "sellerNotes": "Frosted and Snow-Flocked. Soft frost look between classic green and heavy snow. Strong mid-size seller.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Frosted and Snow-Flocked. Soft frost look between classic green and heavy snow. Strong mid-size seller. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-06",
@@ -1098,13 +1172,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 3480,
-    "buyNowPrice": 3480,
-    "startingBid": 2436,
+    "currentBid": 174,
+    "buyNowPrice": 174,
+    "startingBid": 122,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 20,
-    "estimatedRetail": 11000,
+    "estimatedRetail": 550,
     "location": "Memphis, TN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -1116,9 +1190,11 @@
     ],
     "manifestSummary": "20 units of 7.5FT heavy snow-flocked tree. Dense white flock, hinged branches, stand included. Extra poly wrap for flock protection.",
     "conditionNotes": "Grade A. Heavy flock can shed in transit; cartons double-bagged.",
-    "sellerNotes": "Frosted and Snow-Flocked. Statement snow tree for premium holiday floors. Limited case pack.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Frosted and Snow-Flocked. Statement snow tree for premium holiday floors. Limited case pack. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-07",
@@ -1128,13 +1204,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2160,
-    "buyNowPrice": 2160,
-    "startingBid": 1512,
+    "currentBid": 72,
+    "buyNowPrice": 72,
+    "startingBid": 50,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 30,
-    "estimatedRetail": 7200,
+    "estimatedRetail": 240,
     "location": "Indianapolis, IN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": true,
@@ -1146,9 +1222,11 @@
     ],
     "manifestSummary": "30 units of 6FT pre-lit tree with warm white LED string. UL-listed lights hardwired on branches. On/off foot switch. Stand included.",
     "conditionNotes": "Grade A. Sample light string tested. Sealed cartons.",
-    "sellerNotes": "Pre-Lit. Warm white LED is the volume pre-lit SKU. Ready for big-box style aisle sets.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Pre-Lit. Warm white LED is the volume pre-lit SKU. Ready for big-box style aisle sets. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-08",
@@ -1158,13 +1236,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2780,
-    "buyNowPrice": 2780,
-    "startingBid": 1946,
+    "currentBid": 116,
+    "buyNowPrice": 116,
+    "startingBid": 81,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 24,
-    "estimatedRetail": 8640,
+    "estimatedRetail": 360,
     "location": "Indianapolis, IN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -1176,9 +1254,11 @@
     ],
     "manifestSummary": "24 units of 7FT pre-lit tree with multicolor LED. Color modes on controller. Hinged branches and stand included.",
     "conditionNotes": "Grade A. Controller and light check on sample unit passed.",
-    "sellerNotes": "Pre-Lit. Multicolor LED for playful holiday shops and family living rooms.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Pre-Lit. Multicolor LED for playful holiday shops and family living rooms. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-09",
@@ -1188,13 +1268,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 3960,
-    "buyNowPrice": 3960,
-    "startingBid": 2772,
+    "currentBid": 220,
+    "buyNowPrice": 220,
+    "startingBid": 154,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 18,
-    "estimatedRetail": 12600,
+    "estimatedRetail": 700,
     "location": "Indianapolis, IN",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": true,
@@ -1206,9 +1286,11 @@
     ],
     "manifestSummary": "18 units of 7.5FT premium pre-lit fir with warm white LED, denser tip count, and dual-mode controller. Stand included.",
     "conditionNotes": "Grade A. Premium carton labeling. Sample light and hinge inspection clean.",
-    "sellerNotes": "Pre-Lit. Hero pre-lit SKU for showrooms and high-ticket online listings.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Pre-Lit. Hero pre-lit SKU for showrooms and high-ticket online listings. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-10",
@@ -1218,13 +1300,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 1320,
-    "buyNowPrice": 1320,
-    "startingBid": 924,
+    "currentBid": 33,
+    "buyNowPrice": 33,
+    "startingBid": 23,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 40,
-    "estimatedRetail": 4000,
+    "estimatedRetail": 100,
     "location": "Dallas, TX",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -1236,9 +1318,11 @@
     ],
     "manifestSummary": "40 units of 6FT slim pencil tree. Narrow footprint for apartments and entryways. Hinged tips, stand included.",
     "conditionNotes": "Grade A overstock. Cartons unmarked by retailer stickers.",
-    "sellerNotes": "Specialty. High-turn slim SKU. Easy to merchandize in tight floor plans.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Specialty. High-turn slim SKU. Easy to merchandize in tight floor plans. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-11",
@@ -1248,13 +1332,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2580,
-    "buyNowPrice": 2580,
-    "startingBid": 1806,
+    "currentBid": 117,
+    "buyNowPrice": 117,
+    "startingBid": 82,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 22,
-    "estimatedRetail": 7700,
+    "estimatedRetail": 350,
     "location": "Dallas, TX",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": true,
@@ -1266,9 +1350,11 @@
     ],
     "manifestSummary": "22 units of 7FT all-white PVC tree. Hinged branches, white stand. Designed for modern and monochrome decor.",
     "conditionNotes": "Grade A. White tips show carton scuffs if any; samples clean.",
-    "sellerNotes": "Specialty. White specialty tree for design-forward holiday shops.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Specialty. White specialty tree for design-forward holiday shops. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-xt-12",
@@ -1278,13 +1364,13 @@
     "condition": "A",
     "lotType": "Mixed",
     "saleType": "Buy Now",
-    "currentBid": 2860,
-    "buyNowPrice": 2860,
-    "startingBid": 2002,
+    "currentBid": 159,
+    "buyNowPrice": 159,
+    "startingBid": 111,
     "reserveMet": true,
     "bidCount": 0,
     "unitCount": 18,
-    "estimatedRetail": 9000,
+    "estimatedRetail": 500,
     "location": "Dallas, TX",
     "endsAt": "2027-01-15T18:00:00.000Z",
     "featured": false,
@@ -1296,9 +1382,11 @@
     ],
     "manifestSummary": "18 units of 7.5FT black PVC tree. Matte black tips, hinged build, black stand. Strong contrast for metallic ornaments.",
     "conditionNotes": "Grade A specialty overstock. Sealed cartons.",
-    "sellerNotes": "Specialty. Black statement tree for boutique and gothic holiday assortments.",
-    "shipping": "LTL freight quote after order. Cartons stackable. Keep dry. Liftgate available at buyer cost.",
-    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID."
+    "sellerNotes": "Specialty. Black statement tree for boutique and gothic holiday assortments. Sold by the unit. Order 1 or more.",
+    "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
+    "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
+    "minQuantity": 1,
+    "sellByUnit": true
   },
   {
     "id": "ast-ps5-01",
@@ -1328,6 +1416,8 @@
     "conditionNotes": "Grade A new overstock. Factory sealed carton. Sample seal check passed.",
     "sellerNotes": "Fixed price $400 per unit. Ideal for electronics resellers and gift programs.",
     "shipping": "Shipping free. Parcel carrier, tracked. Packed in original carton with outer protective wrap.",
-    "pickup": "Parcel ship only. No dock pickup required for this SKU."
+    "pickup": "Parcel ship only. No dock pickup required for this SKU.",
+    "minQuantity": 1,
+    "sellByUnit": true
   }
 ]

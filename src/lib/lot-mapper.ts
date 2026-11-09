@@ -36,6 +36,8 @@ export function mapDbLot(lot: DbLot): Lot {
     reserveMet: lot.reserveMet,
     bidCount: lot.bidCount,
     unitCount: lot.unitCount,
+    minQuantity: lot.minQuantity ?? 1,
+    sellByUnit: Boolean(lot.sellByUnit),
     estimatedRetail: lot.estimatedRetail,
     location: lot.location,
     endsAt: lot.endsAt.toISOString(),

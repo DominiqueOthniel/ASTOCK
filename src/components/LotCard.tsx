@@ -28,6 +28,9 @@ export function LotCard({ lot }: { lot: Lot }) {
         <h3 className="lot-card-title">{lot.title}</h3>
         <p className="mt-2 font-display text-base font-semibold leading-tight text-ink">
           {formatCurrency(lotPrice(lot))}
+          {lot.sellByUnit ? (
+            <span className="ml-1 text-xs font-medium text-steel">each</span>
+          ) : null}
         </p>
       </div>
     </Link>

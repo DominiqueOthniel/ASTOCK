@@ -1,3 +1,4 @@
+import { DEFAULT_MIN_ORDER_TOTAL_CENTS } from "@/lib/commerce";
 import { prisma } from "@/lib/prisma";
 
 export type SiteSettingsData = {
@@ -10,6 +11,7 @@ export type SiteSettingsData = {
   tiktokUrl: string;
   linkedinUrl: string;
   xUrl: string;
+  minOrderTotalCents: number;
 };
 
 /** Canonical public contacts for PalletDealsShop. */
@@ -23,6 +25,7 @@ export const canonicalContacts = {
   tiktokUrl: "https://www.tiktok.com/@palletplugdeals",
   linkedinUrl: "",
   xUrl: "",
+  minOrderTotalCents: DEFAULT_MIN_ORDER_TOTAL_CENTS,
 } as const;
 
 export const emptySiteSettings: SiteSettingsData = {
@@ -35,6 +38,7 @@ export const emptySiteSettings: SiteSettingsData = {
   tiktokUrl: "",
   linkedinUrl: "",
   xUrl: "",
+  minOrderTotalCents: DEFAULT_MIN_ORDER_TOTAL_CENTS,
 };
 
 function asString(value: string | null | undefined) {
@@ -54,6 +58,10 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
     tiktokUrl: asString(row.tiktokUrl),
     linkedinUrl: asString(row.linkedinUrl),
     xUrl: asString(row.xUrl),
+    minOrderTotalCents:
+      typeof row.minOrderTotalCents === "number" && row.minOrderTotalCents > 0
+        ? row.minOrderTotalCents
+        : DEFAULT_MIN_ORDER_TOTAL_CENTS,
   };
 }
 
@@ -103,7 +111,6 @@ export function publicSocialLinks(settings: SiteSettingsData) {
     links.push({ label: "WhatsApp", href: normalizeWhatsApp(settings.whatsapp) });
   }
   if (settings.tiktokUrl) links.push({ label: "TikTok", href: settings.tiktokUrl });
-  // LinkedIn and X intentionally omitted unless set; canonical contacts leave them blank.
   if (settings.linkedinUrl) links.push({ label: "LinkedIn", href: settings.linkedinUrl });
   if (settings.xUrl) links.push({ label: "X", href: settings.xUrl });
   return links.filter((link) => link.href);

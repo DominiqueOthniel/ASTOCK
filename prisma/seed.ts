@@ -19,6 +19,8 @@ type SeedLot = {
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  minQuantity?: number;
+  sellByUnit?: boolean;
   estimatedRetail: number;
   location: string;
   endsAt: string;
@@ -58,6 +60,7 @@ async function main() {
       tiktokUrl: "https://www.tiktok.com/@palletplugdeals",
       linkedinUrl: "",
       xUrl: "",
+      minOrderTotalCents: 15000,
     },
     create: {
       id: "default",
@@ -70,6 +73,7 @@ async function main() {
       tiktokUrl: "https://www.tiktok.com/@palletplugdeals",
       linkedinUrl: "",
       xUrl: "",
+      minOrderTotalCents: 15000,
     },
   });
 
@@ -90,6 +94,8 @@ async function main() {
       reserveMet: lot.reserveMet,
       bidCount: lot.bidCount,
       unitCount: lot.unitCount,
+      minQuantity: lot.minQuantity ?? 1,
+      sellByUnit: lot.sellByUnit ?? false,
       estimatedRetail: lot.estimatedRetail,
       location: lot.location,
       endsAt: new Date(lot.endsAt),

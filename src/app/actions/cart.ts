@@ -1,13 +1,21 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { addToCart, clearCart, readCart, removeFromCart } from "@/lib/cart";
+import {
+  addToCart,
+  clearCart,
+  readCart,
+  removeFromCart,
+  setCartQuantity,
+} from "@/lib/cart";
+import { clampOrderQuantity } from "@/lib/commerce";
 import { createEmailOrdersForSlugs } from "@/lib/orders";
 import { prisma } from "@/lib/prisma";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export async function addToCartAction(formData: FormData) {
   const slug = String(formData.get("slug") ?? "").trim();
+  const quantityRaw = Number(formData.get("quantity") ?? 1);
   if (!slug) return { ok: false as const, error: "Missing lot." };
 
   const lot = await prisma.lot.findFirst({
@@ -18,10 +26,52 @@ export async function addToCartAction(formData: FormData) {
     return { ok: false as const, error: "This listing has ended." };
   }
 
-  const items = await addToCart(slug);
+  const quantity = clampOrderQuantity(
+    {
+      buyNowPrice: lot.buyNowPrice,
+      currentBid: lot.currentBid,
+      unitCount: lot.unitCount,
+      minQuantity: lot.minQuantity ?? 1,
+      sellByUnit: Boolean(lot.sellByUnit),
+      title: lot.title,
+    },
+    quantityRaw,
+  );
+
+  const items = await addToCart(slug, quantity);
   revalidatePath("/cart");
   revalidatePath(`/lots/${slug}`);
   return { ok: true as const, count: items.length };
+}
+
+export async function updateCartQuantityAction(formData: FormData) {
+  const slug = String(formData.get("slug") ?? "").trim();
+  const quantityRaw = Number(formData.get("quantity") ?? 1);
+  if (!slug) return { ok: false as const, error: "Missing lot." };
+
+  const lot = await prisma.lot.findFirst({
+    where: { slug, published: true },
+  });
+  if (!lot) {
+    await removeFromCart(slug);
+    revalidatePath("/cart");
+    return { ok: false as const, error: "Lot not found." };
+  }
+
+  const quantity = clampOrderQuantity(
+    {
+      buyNowPrice: lot.buyNowPrice,
+      currentBid: lot.currentBid,
+      unitCount: lot.unitCount,
+      minQuantity: lot.minQuantity ?? 1,
+      sellByUnit: Boolean(lot.sellByUnit),
+      title: lot.title,
+    },
+    quantityRaw,
+  );
+  await setCartQuantity(slug, quantity);
+  revalidatePath("/cart");
+  return { ok: true as const, quantity };
 }
 
 export async function removeFromCartAction(formData: FormData) {
@@ -55,7 +105,7 @@ export async function checkoutCartAction(formData: FormData) {
   }
 
   const result = await createEmailOrdersForSlugs({
-    slugs: cart.map((item) => item.slug),
+    lines: cart.map((item) => ({ slug: item.slug, quantity: item.quantity })),
     userId: user.id,
     userEmail: user.email,
     termsAcceptedAt: new Date(),

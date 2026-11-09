@@ -6,6 +6,15 @@ import { useState, useTransition } from "react";
 import { addToCartAction } from "@/app/actions/cart";
 import { requestPurchaseAction } from "@/app/actions/orders";
 import { TermsAgree } from "@/components/TermsAgree";
+import {
+  clampOrderQuantity,
+  lineTotal,
+  maxOrderQuantity,
+  meetsMinOrder,
+  minOrderMessage,
+  minOrderTotalDollars,
+  unitLabel,
+} from "@/lib/commerce";
 import { formatCurrency } from "@/lib/format";
 import { lotPrice } from "@/lib/pricing";
 import type { Lot } from "@/lib/types";
@@ -13,23 +22,33 @@ import type { Lot } from "@/lib/types";
 export function BuyBox({
   lot,
   signedIn,
+  minOrderTotalCents,
 }: {
   lot: Lot;
   signedIn: boolean;
+  minOrderTotalCents: number;
 }) {
   const router = useRouter();
   const closed = lot.status === "sold" || new Date(lot.endsAt).getTime() <= Date.now();
   const price = lotPrice(lot);
+  const maxQty = maxOrderQuantity(lot);
+  const [quantity, setQuantity] = useState(lot.minQuantity || 1);
   const [message, setMessage] = useState<string | null>(null);
   const [orderDone, setOrderDone] = useState(false);
+  const [orderTotal, setOrderTotal] = useState(0);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
   const loginHref = `/login?next=${encodeURIComponent(`/lots/${lot.slug}`)}`;
   const freeShipping = /free/i.test(lot.shipping);
+  const qty = clampOrderQuantity(lot, quantity);
+  const total = lineTotal(lot, qty);
+  const canBuyNow = meetsMinOrder(total, minOrderTotalCents);
+  const minDollars = minOrderTotalDollars(minOrderTotalCents);
 
   function onAddToCart() {
     const formData = new FormData();
     formData.set("slug", lot.slug);
+    formData.set("quantity", String(qty));
     startTransition(async () => {
       const result = await addToCartAction(formData);
       if (!result.ok) {
@@ -46,12 +65,17 @@ export function BuyBox({
       setMessage("Sign in to place this order.");
       return;
     }
+    if (!canBuyNow) {
+      setMessage(minOrderMessage(total, minOrderTotalCents));
+      return;
+    }
     if (!termsAccepted) {
       setMessage("Please agree to the terms to continue.");
       return;
     }
     const formData = new FormData();
     formData.set("slug", lot.slug);
+    formData.set("quantity", String(qty));
     formData.set("termsAccepted", "true");
     startTransition(async () => {
       const result = await requestPurchaseAction(formData);
@@ -61,6 +85,7 @@ export function BuyBox({
         return;
       }
       setMessage(null);
+      setOrderTotal(result.amount);
       setOrderDone(true);
     });
   }
@@ -78,8 +103,8 @@ export function BuyBox({
         </p>
         <p className="mt-2 font-display text-2xl font-semibold text-ink">Thank you</p>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          We received your request for {lot.title} at {formatCurrency(price)}. Our team will email
-          next steps. No card charge until confirmed.
+          We received your request for {lot.title} at {formatCurrency(orderTotal || total)}. Our
+          team will email next steps. No card charge until confirmed.
         </p>
         <div className="mt-5 flex flex-col gap-2">
           <Link href="/account" className="btn btn-primary w-full">
@@ -100,9 +125,14 @@ export function BuyBox({
       </p>
       <p className="mt-2 font-display text-4xl font-bold text-ink">{formatCurrency(price)}</p>
       <p className="mt-2 text-sm text-steel">
-        {lot.unitCount.toLocaleString()} unit{lot.unitCount === 1 ? "" : "s"}
+        {lot.sellByUnit ? "Per unit" : unitLabel(lot)}
         {freeShipping ? " · Shipping free" : ""}
       </p>
+      {lot.sellByUnit ? (
+        <p className="mt-1 text-xs text-steel">
+          Min {lot.minQuantity} · {lot.unitCount.toLocaleString()} available
+        </p>
+      ) : null}
 
       {closed ? (
         <p className="mt-6 text-sm text-steel">
@@ -110,6 +140,22 @@ export function BuyBox({
         </p>
       ) : (
         <div className="mt-6 space-y-3">
+          {lot.sellByUnit && maxQty > 1 ? (
+            <label className="block text-sm">
+              <span className="mb-1.5 block font-medium text-ink">Quantity</span>
+              <input
+                type="number"
+                className="field"
+                min={lot.minQuantity}
+                max={maxQty}
+                value={qty}
+                onChange={(event) => setQuantity(Number(event.target.value))}
+              />
+            </label>
+          ) : null}
+          {qty > 1 ? (
+            <p className="text-sm text-ink-soft">Line total {formatCurrency(total)}</p>
+          ) : null}
           <button
             type="button"
             className="btn btn-primary w-full"
@@ -129,10 +175,21 @@ export function BuyBox({
                 type="button"
                 className="btn btn-secondary w-full"
                 onClick={onRequestPurchase}
-                disabled={pending || !termsAccepted}
+                disabled={pending || !termsAccepted || !canBuyNow}
+                data-testid="buy-now"
               >
-                {pending ? "Sending…" : "Request purchase"}
+                {pending
+                  ? "Sending…"
+                  : canBuyNow
+                    ? "Request purchase"
+                    : `Minimum ${formatCurrency(minDollars)}`}
               </button>
+              {!canBuyNow ? (
+                <p className="text-xs text-steel" data-testid="buy-now-min-hint">
+                  {minOrderMessage(total, minOrderTotalCents)} Mix items in your cart to reach the
+                  minimum.
+                </p>
+              ) : null}
             </>
           ) : (
             <Link href={loginHref} className="btn btn-secondary w-full">
@@ -145,7 +202,7 @@ export function BuyBox({
       {message ? (
         <div className="mt-4 space-y-2 border border-accent-soft bg-accent-soft/50 px-3 py-2 text-sm text-ink-soft">
           <p>{message}</p>
-          {message.toLowerCase().includes("cart") ? (
+          {message.toLowerCase().includes("cart") || message.toLowerCase().includes("minimum") ? (
             <Link href="/cart" className="block font-semibold text-accent-deep hover:underline">
               View cart
             </Link>

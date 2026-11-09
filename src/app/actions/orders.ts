@@ -23,8 +23,10 @@ export async function requestPurchaseAction(formData: FormData) {
   }
 
   const slug = String(formData.get("slug") ?? "");
+  const quantity = Number(formData.get("quantity") ?? 1);
   const result = await createEmailOrder({
     slug,
+    quantity,
     userId: user.id,
     userEmail: user.email,
     termsAcceptedAt: new Date(),

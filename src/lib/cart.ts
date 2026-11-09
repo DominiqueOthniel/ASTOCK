@@ -4,6 +4,7 @@ export const CART_COOKIE = "astock_cart";
 
 export type CartItem = {
   slug: string;
+  quantity: number;
 };
 
 function parseCart(raw: string | undefined): CartItem[] {
@@ -11,16 +12,25 @@ function parseCart(raw: string | undefined): CartItem[] {
   try {
     const parsed = JSON.parse(raw) as unknown;
     if (!Array.isArray(parsed)) return [];
-    const slugs = parsed
-      .map((item) => {
-        if (typeof item === "string") return item.trim();
-        if (item && typeof item === "object" && "slug" in item) {
-          return String((item as { slug: unknown }).slug ?? "").trim();
-        }
-        return "";
-      })
-      .filter(Boolean);
-    return [...new Set(slugs)].map((slug) => ({ slug }));
+    const bySlug = new Map<string, number>();
+    for (const item of parsed) {
+      if (typeof item === "string") {
+        const slug = item.trim();
+        if (slug) bySlug.set(slug, (bySlug.get(slug) ?? 0) + 1);
+        continue;
+      }
+      if (item && typeof item === "object" && "slug" in item) {
+        const slug = String((item as { slug: unknown }).slug ?? "").trim();
+        if (!slug) continue;
+        const qtyRaw = (item as { quantity?: unknown }).quantity;
+        const qty =
+          typeof qtyRaw === "number" && Number.isFinite(qtyRaw)
+            ? Math.max(1, Math.floor(qtyRaw))
+            : 1;
+        bySlug.set(slug, (bySlug.get(slug) ?? 0) + qty);
+      }
+    }
+    return [...bySlug.entries()].map(([slug, quantity]) => ({ slug, quantity }));
   } catch {
     return [];
   }
@@ -33,9 +43,14 @@ export async function readCart(): Promise<CartItem[]> {
 
 export async function writeCart(items: CartItem[]) {
   const store = await cookies();
-  const unique = [...new Set(items.map((item) => item.slug).filter(Boolean))].map(
-    (slug) => ({ slug }),
-  );
+  const bySlug = new Map<string, number>();
+  for (const item of items) {
+    const slug = item.slug.trim();
+    if (!slug) continue;
+    const qty = Math.max(1, Math.floor(item.quantity || 1));
+    bySlug.set(slug, (bySlug.get(slug) ?? 0) + qty);
+  }
+  const unique = [...bySlug.entries()].map(([slug, quantity]) => ({ slug, quantity }));
   store.set(CART_COOKIE, JSON.stringify(unique), {
     httpOnly: true,
     sameSite: "lax",
@@ -46,10 +61,34 @@ export async function writeCart(items: CartItem[]) {
   return unique;
 }
 
-export async function addToCart(slug: string) {
+export async function addToCart(slug: string, quantity = 1) {
   const current = await readCart();
-  if (current.some((item) => item.slug === slug)) return current;
-  return writeCart([...current, { slug }]);
+  const existing = current.find((item) => item.slug === slug);
+  if (existing) {
+    return writeCart(
+      current.map((item) =>
+        item.slug === slug
+          ? { ...item, quantity: item.quantity + Math.max(1, Math.floor(quantity)) }
+          : item,
+      ),
+    );
+  }
+  return writeCart([...current, { slug, quantity: Math.max(1, Math.floor(quantity)) }]);
+}
+
+export async function setCartQuantity(slug: string, quantity: number) {
+  const current = await readCart();
+  if (quantity <= 0) {
+    return writeCart(current.filter((item) => item.slug !== slug));
+  }
+  if (!current.some((item) => item.slug === slug)) {
+    return writeCart([...current, { slug, quantity: Math.max(1, Math.floor(quantity)) }]);
+  }
+  return writeCart(
+    current.map((item) =>
+      item.slug === slug ? { ...item, quantity: Math.max(1, Math.floor(quantity)) } : item,
+    ),
+  );
 }
 
 export async function removeFromCart(slug: string) {

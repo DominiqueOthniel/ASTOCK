@@ -30,6 +30,8 @@ export interface Lot {
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  minQuantity: number;
+  sellByUnit: boolean;
   estimatedRetail: number;
   location: string;
   endsAt: string;
