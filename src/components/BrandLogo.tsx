@@ -9,7 +9,10 @@ type BrandLogoProps = {
   onClick?: () => void;
 };
 
-/** Geometric PD monogram — blunt stems so it never reads as Rc. */
+/**
+ * PD mark using SVG text so the letters stay readable at small sizes
+ * (path monograms were misread as "Rc" on some screens).
+ */
 export function BrandMark({
   onDark = false,
   size = "md",
@@ -19,8 +22,7 @@ export function BrandMark({
 }) {
   const dim = size === "sm" ? 28 : size === "lg" ? 40 : 32;
   const bg = onDark ? "rgb(255 255 255 / 12%)" : "#124c3b";
-  const pFill = "#fffdfb";
-  const dFill = onDark ? "#d6ebe2" : "#d6ebe2";
+  const fg = "#fffdfb";
 
   return (
     <svg
@@ -46,14 +48,21 @@ export function BrandMark({
           fill="none"
         />
       ) : null}
-      <path
-        d="M9 11h8.2c3.05 0 5.05 1.7 5.05 4.35 0 2.55-1.9 4.25-5.05 4.25H12.4V29H9V11Zm3.4 3.05v3.5h4.55c1.45 0 2.2-.75 2.2-1.75s-.75-1.75-2.2-1.75H12.4Z"
-        fill={pFill}
-      />
-      <path
-        d="M23.2 11H28c4.55 0 7.55 3.05 7.55 9s-3 9-7.55 9h-4.8V11Zm3.4 3.05V25.9H28c2.7 0 4.35-2.05 4.35-5.9s-1.65-5.95-4.35-5.95h-1.4Z"
-        fill={dFill}
-      />
+      <text
+        x="20"
+        y="26.5"
+        textAnchor="middle"
+        fill={fg}
+        style={{
+          fontFamily:
+            "ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif",
+          fontSize: "15px",
+          fontWeight: 800,
+          letterSpacing: "0.5px",
+        }}
+      >
+        PD
+      </text>
     </svg>
   );
 }
