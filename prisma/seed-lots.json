@@ -30,7 +30,9 @@
     "published": true,
     "buyNowPrice": 1850,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 7,
+    "compareAtPrice": 2165
   },
   {
     "id": "ast-2402",
@@ -62,7 +64,9 @@
     "published": true,
     "buyNowPrice": 9200,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 8,
+    "compareAtPrice": 10855
   },
   {
     "id": "ast-2403",
@@ -94,7 +98,9 @@
     "startingBid": 448,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 29,
+    "compareAtPrice": 760
   },
   {
     "id": "ast-2404",
@@ -126,7 +132,9 @@
     "published": true,
     "buyNowPrice": 1100,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 2,
+    "compareAtPrice": 1320
   },
   {
     "id": "ast-2405",
@@ -157,7 +165,9 @@
     "published": true,
     "buyNowPrice": 14500,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 3,
+    "compareAtPrice": 17545
   },
   {
     "id": "ast-2406",
@@ -188,7 +198,9 @@
     "published": true,
     "buyNowPrice": 980,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 4,
+    "compareAtPrice": 1195
   },
   {
     "id": "ast-2407",
@@ -219,7 +231,9 @@
     "published": true,
     "buyNowPrice": 420,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 33,
+    "compareAtPrice": 515
   },
   {
     "id": "ast-2408",
@@ -250,7 +264,9 @@
     "published": true,
     "buyNowPrice": 1320,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 6,
+    "compareAtPrice": 1635
   },
   {
     "id": "ast-2409",
@@ -282,7 +298,9 @@
     "startingBid": 15400,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 7,
+    "compareAtPrice": 27500
   },
   {
     "id": "ast-2410",
@@ -313,7 +331,9 @@
     "published": true,
     "buyNowPrice": 760,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 17,
+    "compareAtPrice": 890
   },
   {
     "id": "ast-2411",
@@ -345,7 +365,9 @@
     "published": true,
     "buyNowPrice": 6800,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 6,
+    "compareAtPrice": 8025
   },
   {
     "id": "ast-2412",
@@ -376,7 +398,9 @@
     "startingBid": 336,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 7,
+    "compareAtPrice": 570
   },
   {
     "id": "ast-2413",
@@ -408,7 +432,9 @@
     "published": true,
     "buyNowPrice": 890,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 8,
+    "compareAtPrice": 1070
   },
   {
     "id": "ast-2414",
@@ -439,7 +465,9 @@
     "published": true,
     "buyNowPrice": 18500,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 21,
+    "compareAtPrice": 22385
   },
   {
     "id": "ast-2415",
@@ -470,7 +498,9 @@
     "published": true,
     "buyNowPrice": 2100,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 2,
+    "compareAtPrice": 2560
   },
   {
     "id": "ast-2416",
@@ -501,7 +531,9 @@
     "published": true,
     "buyNowPrice": 11200,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 3,
+    "compareAtPrice": 13775
   },
   {
     "id": "ast-2417",
@@ -532,7 +564,9 @@
     "startingBid": 504,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 4,
+    "compareAtPrice": 895
   },
   {
     "id": "ast-2418",
@@ -563,7 +597,9 @@
     "published": true,
     "buyNowPrice": 1540,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 25,
+    "compareAtPrice": null
   },
   {
     "id": "ast-2419",
@@ -594,7 +630,9 @@
     "published": true,
     "buyNowPrice": 390,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 6,
+    "compareAtPrice": 490
   },
   {
     "id": "ast-2420",
@@ -627,7 +665,9 @@
     "published": true,
     "buyNowPrice": 16800,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 4,
+    "compareAtPrice": 19825
   },
   {
     "id": "ast-2421",
@@ -658,7 +698,9 @@
     "published": true,
     "buyNowPrice": 1180,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 9,
+    "compareAtPrice": 1405
   },
   {
     "id": "ast-2422",
@@ -689,7 +731,9 @@
     "published": true,
     "buyNowPrice": 1420,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 6,
+    "compareAtPrice": null
   },
   {
     "id": "ast-2423",
@@ -721,7 +765,9 @@
     "published": true,
     "buyNowPrice": 980,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 7,
+    "compareAtPrice": 1185
   },
   {
     "id": "ast-2424",
@@ -753,7 +799,9 @@
     "published": true,
     "buyNowPrice": 12400,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 8,
+    "compareAtPrice": 15130
   },
   {
     "id": "ast-2425",
@@ -784,7 +832,9 @@
     "startingBid": 2100,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 13,
+    "compareAtPrice": 3015
   },
   {
     "id": "ast-2426",
@@ -815,7 +865,9 @@
     "published": true,
     "buyNowPrice": 760,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 2,
+    "compareAtPrice": 940
   },
   {
     "id": "ast-2427",
@@ -847,7 +899,9 @@
     "published": true,
     "buyNowPrice": 1650,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 3,
+    "compareAtPrice": 2065
   },
   {
     "id": "ast-2428",
@@ -878,7 +932,9 @@
     "published": true,
     "buyNowPrice": 890,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 4,
+    "compareAtPrice": 1120
   },
   {
     "id": "ast-2429",
@@ -909,7 +965,9 @@
     "startingBid": 3200,
     "published": true,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 17,
+    "compareAtPrice": 4765
   },
   {
     "id": "ast-2430",
@@ -940,7 +998,9 @@
     "published": true,
     "buyNowPrice": 5400,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 3,
+    "compareAtPrice": 6425
   },
   {
     "id": "ast-2431",
@@ -971,7 +1031,9 @@
     "published": true,
     "buyNowPrice": 640,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 4,
+    "compareAtPrice": null
   },
   {
     "id": "ast-2432",
@@ -1002,7 +1064,9 @@
     "published": true,
     "buyNowPrice": 1280,
     "minQuantity": 1,
-    "sellByUnit": false
+    "sellByUnit": false,
+    "quantitySold": 41,
+    "compareAtPrice": 1550
   },
   {
     "id": "ast-xt-01",
@@ -1034,7 +1098,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 15,
+    "compareAtPrice": 65
   },
   {
     "id": "ast-xt-02",
@@ -1066,7 +1132,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 16,
+    "compareAtPrice": 115
   },
   {
     "id": "ast-xt-03",
@@ -1081,7 +1149,7 @@
     "startingBid": 91,
     "reserveMet": true,
     "bidCount": 0,
-    "unitCount": 24,
+    "unitCount": 3,
     "estimatedRetail": 400,
     "location": "Allentown, PA",
     "endsAt": "2027-01-15T18:00:00.000Z",
@@ -1098,7 +1166,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 17,
+    "compareAtPrice": 170
   },
   {
     "id": "ast-xt-04",
@@ -1130,7 +1200,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 18,
+    "compareAtPrice": 95
   },
   {
     "id": "ast-xt-05",
@@ -1162,7 +1234,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 19,
+    "compareAtPrice": 150
   },
   {
     "id": "ast-xt-06",
@@ -1194,7 +1268,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 20,
+    "compareAtPrice": 230
   },
   {
     "id": "ast-xt-07",
@@ -1226,7 +1302,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 21,
+    "compareAtPrice": 105
   },
   {
     "id": "ast-xt-08",
@@ -1241,7 +1319,7 @@
     "startingBid": 81,
     "reserveMet": true,
     "bidCount": 0,
-    "unitCount": 24,
+    "unitCount": 3,
     "estimatedRetail": 360,
     "location": "Indianapolis, IN",
     "endsAt": "2027-01-15T18:00:00.000Z",
@@ -1258,7 +1336,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 22,
+    "compareAtPrice": 155
   },
   {
     "id": "ast-xt-09",
@@ -1290,7 +1370,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 23,
+    "compareAtPrice": 300
   },
   {
     "id": "ast-xt-10",
@@ -1322,7 +1404,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 45,
+    "compareAtPrice": 50
   },
   {
     "id": "ast-xt-11",
@@ -1354,7 +1438,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 46,
+    "compareAtPrice": 155
   },
   {
     "id": "ast-xt-12",
@@ -1369,7 +1455,7 @@
     "startingBid": 111,
     "reserveMet": true,
     "bidCount": 0,
-    "unitCount": 18,
+    "unitCount": 3,
     "estimatedRetail": 500,
     "location": "Dallas, TX",
     "endsAt": "2027-01-15T18:00:00.000Z",
@@ -1386,7 +1472,9 @@
     "shipping": "Shipping free on parcel orders. Tracked carrier. Larger multi-unit orders may ship LTL.",
     "pickup": "Warehouse appointment Mon through Fri. Dock and forklift on site. Bring BOL and photo ID.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 47,
+    "compareAtPrice": 215
   },
   {
     "id": "ast-ps5-01",
@@ -1401,7 +1489,7 @@
     "startingBid": 400,
     "reserveMet": true,
     "bidCount": 0,
-    "unitCount": 1,
+    "unitCount": 12,
     "estimatedRetail": 499,
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
@@ -1418,6 +1506,8 @@
     "shipping": "Shipping free. Parcel carrier, tracked. Packed in original carton with outer protective wrap.",
     "pickup": "Parcel ship only. No dock pickup required for this SKU.",
     "minQuantity": 1,
-    "sellByUnit": true
+    "sellByUnit": true,
+    "quantitySold": 47,
+    "compareAtPrice": 499
   }
 ]

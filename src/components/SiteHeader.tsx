@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { AccountMenu } from "@/components/AccountMenu";
 import { BrandLogo } from "@/components/BrandLogo";
 import { CartIcon } from "@/components/CartIcon";
-import { useSupportChat } from "@/components/SupportChat";
 
 const pageLinks = [
   { href: "/browse", label: "Browse" },
@@ -23,7 +22,6 @@ export function SiteHeader({
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const { openChat } = useSupportChat();
   const onHome = pathname === "/";
 
   useEffect(() => {
@@ -66,20 +64,6 @@ export function SiteHeader({
               {link.label}
             </Link>
           ))}
-          <a
-            href="mailto:uncledrewlegacy@gmail.com"
-            className="text-sm font-medium opacity-70 transition-opacity hover:opacity-100"
-          >
-            Email
-          </a>
-          <button
-            type="button"
-            className="text-sm font-medium opacity-70 transition-opacity hover:opacity-100"
-            onClick={openChat}
-            data-testid="header-chat"
-          >
-            Chat
-          </button>
           <CartIcon count={cartCount} onDark={onHome} />
           <AccountMenu email={email ?? null} onDark={onHome} />
         </nav>
@@ -132,24 +116,6 @@ export function SiteHeader({
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="mailto:uncledrewlegacy@gmail.com"
-                className="flex min-h-12 items-center text-base font-medium"
-                onClick={() => setOpen(false)}
-              >
-                Email
-              </a>
-              <button
-                type="button"
-                className="flex min-h-12 items-center text-left text-base font-medium"
-                onClick={() => {
-                  setOpen(false);
-                  openChat();
-                }}
-                data-testid="mobile-menu-chat"
-              >
-                Chat
-              </button>
               <Link
                 href="/cart"
                 className="flex min-h-12 items-center text-base font-medium"

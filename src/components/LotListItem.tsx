@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatCondition, formatCurrency } from "@/lib/format";
-import { lotPrice } from "@/lib/pricing";
+import { LotPrice } from "@/components/LotPrice";
+import { StockPressure } from "@/components/StockPressure";
+import { formatCondition } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
 export function LotListItem({ lot }: { lot: Lot }) {
@@ -28,19 +29,12 @@ export function LotListItem({ lot }: { lot: Lot }) {
         <h3 className="mt-1 break-words font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-accent-deep md:text-lg">
           {lot.title}
         </h3>
-        <p className="mt-0.5 text-sm text-steel">
-          {lot.sellByUnit
-            ? `From 1 unit · ${lot.unitCount.toLocaleString()} in stock`
-            : `${lot.unitCount.toLocaleString()} unit${lot.unitCount === 1 ? "" : "s"}`}
-        </p>
+        <div className="mt-1">
+          <StockPressure lot={lot} compact />
+        </div>
       </div>
       <div className="md:text-right">
-        <p className="text-[11px] uppercase tracking-[0.12em] text-steel">
-          {lot.sellByUnit ? "Each" : "Price"}
-        </p>
-        <p className="mt-0.5 font-display text-lg font-semibold text-ink md:text-xl">
-          {formatCurrency(lotPrice(lot))}
-        </p>
+        <LotPrice lot={lot} size="sm" />
       </div>
     </Link>
   );

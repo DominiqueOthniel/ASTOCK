@@ -15,10 +15,12 @@ type SeedLot = {
   saleType: string;
   currentBid: number;
   buyNowPrice?: number | null;
+  compareAtPrice?: number | null;
   startingBid: number;
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  quantitySold?: number;
   minQuantity?: number;
   sellByUnit?: boolean;
   estimatedRetail: number;
@@ -90,10 +92,12 @@ async function main() {
       saleType: lot.saleType,
       currentBid: lot.currentBid,
       buyNowPrice: lot.buyNowPrice ?? null,
+      compareAtPrice: lot.compareAtPrice ?? null,
       startingBid: lot.startingBid,
       reserveMet: lot.reserveMet,
       bidCount: lot.bidCount,
       unitCount: lot.unitCount,
+      quantitySold: lot.quantitySold ?? 0,
       minQuantity: lot.minQuantity ?? 1,
       sellByUnit: lot.sellByUnit ?? false,
       estimatedRetail: lot.estimatedRetail,

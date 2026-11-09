@@ -9,10 +9,12 @@ export type LotFormValues = {
   saleType: string;
   currentBid: number;
   buyNowPrice: number | null;
+  compareAtPrice: number | null;
   startingBid: number;
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  quantitySold: number;
   minQuantity: number;
   sellByUnit: boolean;
   estimatedRetail: number;
@@ -60,10 +62,15 @@ export function parseLotFormData(formData: FormData): LotFormValues {
     saleType: "Buy Now",
     currentBid: price,
     buyNowPrice: price > 0 ? price : null,
+    compareAtPrice: (() => {
+      const compare = num(formData.get("compareAtPrice"), 0);
+      return compare > price ? compare : null;
+    })(),
     startingBid: price,
     reserveMet: true,
     bidCount: 0,
     unitCount: Math.max(1, Math.floor(num(formData.get("unitCount"), 1))),
+    quantitySold: Math.max(0, Math.floor(num(formData.get("quantitySold"), 0))),
     minQuantity: Math.max(1, Math.floor(num(formData.get("minQuantity"), 1))),
     sellByUnit: bool(formData, "sellByUnit"),
     estimatedRetail: num(formData.get("estimatedRetail")),

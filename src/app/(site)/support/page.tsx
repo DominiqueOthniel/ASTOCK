@@ -40,20 +40,41 @@ export default function SupportPage() {
           Straight answers on ordering, minimums, and how to reach us.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a href="mailto:uncledrewlegacy@gmail.com" className="btn btn-primary">
-            Email support
-          </a>
-          <a
-            href="https://wa.me/12404009904"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-secondary"
-          >
-            WhatsApp +1 (240) 400-9904
-          </a>
-          <SupportChatButton className="btn btn-secondary" />
-        </div>
+        <section className="mt-8" data-testid="support-choose">
+          <h2 className="font-display text-xl font-semibold text-ink">How do you want to reach us?</h2>
+          <p className="mt-1 text-sm text-steel">Pick email or chat. WhatsApp is also available.</p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <a
+              href="mailto:uncledrewlegacy@gmail.com"
+              className="border border-line bg-surface p-5 shadow-[var(--shadow)] transition hover:border-accent"
+              data-testid="support-email"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">Email</p>
+              <p className="mt-2 font-display text-xl font-semibold text-ink">Write us</p>
+              <p className="mt-2 text-sm text-ink-soft">uncledrewlegacy@gmail.com</p>
+              <p className="mt-4 text-sm font-semibold text-accent-deep">Open mail →</p>
+            </a>
+            <div className="border border-line bg-surface p-5 shadow-[var(--shadow)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">Chat</p>
+              <p className="mt-2 font-display text-xl font-semibold text-ink">Ask in chat</p>
+              <p className="mt-2 text-sm text-ink-soft">
+                Quick FAQ answers, then WhatsApp or email if you need a person.
+              </p>
+              <SupportChatButton className="btn btn-primary mt-4 !min-h-10 text-sm" />
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-steel">
+            WhatsApp:{" "}
+            <a
+              href="https://wa.me/12404009904"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-accent-deep hover:underline"
+            >
+              +1 (240) 400-9904
+            </a>
+          </p>
+        </section>
 
         <section className="mt-12 space-y-0 divide-y divide-line border-y border-line">
           {faqs.map((item) => (
@@ -69,49 +90,13 @@ export default function SupportPage() {
           ))}
         </section>
 
-        <section className="mt-12 border border-line bg-surface p-5 shadow-[var(--shadow)]">
-          <h2 className="font-display text-xl font-semibold text-ink">Contact</h2>
-          <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-            <li>
-              Email:{" "}
-              <a
-                href="mailto:uncledrewlegacy@gmail.com"
-                className="font-medium text-accent-deep hover:underline"
-              >
-                uncledrewlegacy@gmail.com
-              </a>
-            </li>
-            <li>
-              WhatsApp:{" "}
-              <a
-                href="https://wa.me/12404009904"
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-accent-deep hover:underline"
-              >
-                +1 (240) 400-9904
-              </a>
-            </li>
-            <li>
-              Instagram:{" "}
-              <a
-                href="https://www.instagram.com/palletplugdeals"
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-accent-deep hover:underline"
-              >
-                @palletplugdeals
-              </a>
-            </li>
-          </ul>
-          <p className="mt-4 text-sm text-steel">
-            Prefer browsing?{" "}
-            <Link href="/browse" className="font-semibold text-accent-deep hover:underline">
-              See open lots
-            </Link>
-            .
-          </p>
-        </section>
+        <p className="mt-10 text-sm text-steel">
+          Prefer browsing?{" "}
+          <Link href="/browse" className="font-semibold text-accent-deep hover:underline">
+            See open lots
+          </Link>
+          .
+        </p>
       </div>
     </div>
   );

@@ -25,8 +25,10 @@ model Lot {
   reserveMet       Boolean   @default(false)
   bidCount         Int       @default(0)
   unitCount        Int
+  quantitySold     Int       @default(0)
   minQuantity      Int       @default(1)
   sellByUnit       Boolean   @default(false)
+  compareAtPrice   Float?
   estimatedRetail  Float
   location         String
   endsAt           DateTime

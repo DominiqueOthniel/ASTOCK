@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { addToCartAction } from "@/app/actions/cart";
 import { requestPurchaseAction } from "@/app/actions/orders";
+import { LotPrice } from "@/components/LotPrice";
+import { StockPressure } from "@/components/StockPressure";
 import { TermsAgree } from "@/components/TermsAgree";
 import {
   clampOrderQuantity,
@@ -123,15 +125,18 @@ export function BuyBox({
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">
         {lot.status === "sold" ? "Sold" : closed ? "Unavailable" : "Price"}
       </p>
-      <p className="mt-2 font-display text-4xl font-bold text-ink">{formatCurrency(price)}</p>
+      <div className="mt-2">
+        <LotPrice lot={lot} size="lg" />
+      </div>
       <p className="mt-2 text-sm text-steel">
         {lot.sellByUnit ? "Per unit" : unitLabel(lot)}
         {freeShipping ? " · Shipping free" : ""}
       </p>
+      <div className="mt-2">
+        <StockPressure lot={lot} />
+      </div>
       {lot.sellByUnit ? (
-        <p className="mt-1 text-xs text-steel">
-          Min {lot.minQuantity} · {lot.unitCount.toLocaleString()} available
-        </p>
+        <p className="mt-1 text-xs text-steel">Min order {lot.minQuantity}</p>
       ) : null}
 
       {closed ? (

@@ -71,8 +71,12 @@ export default async function LotDetailPage({ params }: LotPageProps) {
 
             <dl className="fact-grid mt-8 border-y border-line py-5">
               <div className="fact-item">
-                <dt>{lot.sellByUnit ? "Available" : "Units"}</dt>
+                <dt>Left</dt>
                 <dd>{lot.unitCount.toLocaleString()}</dd>
+              </div>
+              <div className="fact-item">
+                <dt>Sold</dt>
+                <dd>{lot.quantitySold.toLocaleString()}</dd>
               </div>
               {lot.sellByUnit ? (
                 <div className="fact-item">
@@ -132,7 +136,7 @@ export default async function LotDetailPage({ params }: LotPageProps) {
           </div>
         </div>
 
-        <LotReviews reviews={reviews} />
+        <LotReviews reviews={reviews} lotId={lot.id} slug={lot.slug} />
 
         {related.length > 0 ? (
           <section className="mt-14 border-t border-line pt-10">

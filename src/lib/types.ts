@@ -26,10 +26,12 @@ export interface Lot {
   saleType: SaleType;
   currentBid: number;
   buyNowPrice?: number;
+  compareAtPrice?: number;
   startingBid: number;
   reserveMet: boolean;
   bidCount: number;
   unitCount: number;
+  quantitySold: number;
   minQuantity: number;
   sellByUnit: boolean;
   estimatedRetail: number;

@@ -97,7 +97,19 @@ export function LotForm({
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1.5 block font-medium">Unit count / stock</span>
+            <span className="mb-1.5 block font-medium">Compare-at price (optional)</span>
+            <input
+              className="field"
+              name="compareAtPrice"
+              type="number"
+              step="1"
+              min="0"
+              defaultValue={lot?.compareAtPrice ?? ""}
+              placeholder="Was price"
+            />
+          </label>
+          <label className="block text-sm">
+            <span className="mb-1.5 block font-medium">Units left</span>
             <input
               className="field"
               name="unitCount"
@@ -106,6 +118,17 @@ export function LotForm({
               min="1"
               required
               defaultValue={lot?.unitCount ?? 100}
+            />
+          </label>
+          <label className="block text-sm">
+            <span className="mb-1.5 block font-medium">Units sold</span>
+            <input
+              className="field"
+              name="quantitySold"
+              type="number"
+              step="1"
+              min="0"
+              defaultValue={lot?.quantitySold ?? 0}
             />
           </label>
           <label className="block text-sm">

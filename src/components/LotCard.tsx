@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatCondition, formatCurrency } from "@/lib/format";
-import { lotPrice } from "@/lib/pricing";
+import { LotPrice } from "@/components/LotPrice";
+import { StockPressure } from "@/components/StockPressure";
+import { formatCondition } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
 export function LotCard({ lot }: { lot: Lot }) {
@@ -26,12 +27,12 @@ export function LotCard({ lot }: { lot: Lot }) {
           <span>{formatCondition(lot.condition)}</span>
         </div>
         <h3 className="lot-card-title">{lot.title}</h3>
-        <p className="mt-2 font-display text-base font-semibold leading-tight text-ink">
-          {formatCurrency(lotPrice(lot))}
-          {lot.sellByUnit ? (
-            <span className="ml-1 text-xs font-medium text-steel">each</span>
-          ) : null}
-        </p>
+        <div className="mt-2">
+          <LotPrice lot={lot} size="sm" />
+        </div>
+        <div className="mt-1.5">
+          <StockPressure lot={lot} compact />
+        </div>
       </div>
     </Link>
   );

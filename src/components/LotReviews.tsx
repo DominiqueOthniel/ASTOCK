@@ -1,4 +1,5 @@
 import { RelativeTime } from "@/components/RelativeTime";
+import { ReviewForm } from "@/components/ReviewForm";
 import { averageRating, type LotReview } from "@/lib/reviews";
 
 function Stars({ rating }: { rating: number }) {
@@ -21,9 +22,15 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export function LotReviews({ reviews }: { reviews: LotReview[] }) {
-  if (reviews.length === 0) return null;
-
+export function LotReviews({
+  reviews,
+  lotId,
+  slug,
+}: {
+  reviews: LotReview[];
+  lotId: string;
+  slug: string;
+}) {
   const avg = averageRating(reviews);
 
   return (
@@ -44,26 +51,32 @@ export function LotReviews({ reviews }: { reviews: LotReview[] }) {
         ) : null}
       </div>
 
-      <ul className="mt-6 space-y-0 divide-y divide-line border-y border-line">
-        {reviews.map((review) => (
-          <li key={review.id} className="py-5" data-testid="lot-review">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-              <Stars rating={review.rating} />
-              <p className="font-medium text-ink">{review.authorName}</p>
-              {review.verified ? (
-                <span className="text-[11px] uppercase tracking-[0.12em] text-steel">
-                  Buyer
-                </span>
-              ) : null}
-              <RelativeTime
-                date={review.createdAt}
-                className="text-sm text-steel sm:ml-auto"
-              />
-            </div>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">{review.body}</p>
-          </li>
-        ))}
-      </ul>
+      {reviews.length > 0 ? (
+        <ul className="mt-6 space-y-0 divide-y divide-line border-y border-line">
+          {reviews.map((review) => (
+            <li key={review.id} className="py-5" data-testid="lot-review">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <Stars rating={review.rating} />
+                <p className="font-medium text-ink">{review.authorName}</p>
+                {review.verified ? (
+                  <span className="text-[11px] uppercase tracking-[0.12em] text-steel">
+                    Buyer
+                  </span>
+                ) : null}
+                <RelativeTime
+                  date={review.createdAt}
+                  className="text-sm text-steel sm:ml-auto"
+                />
+              </div>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">{review.body}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-4 text-sm text-steel">No reviews yet. Be the first.</p>
+      )}
+
+      <ReviewForm lotId={lotId} slug={slug} />
     </section>
   );
 }

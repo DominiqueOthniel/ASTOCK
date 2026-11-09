@@ -214,5 +214,536 @@
     "verified": false,
     "hoursAgo": 500,
     "body": "Tools are Grade C so expect scuffs. Most powered on. Price was right if youre patient testing them."
+  },
+  {
+    "id": "rev-gen-ast-xt-04-0",
+    "lotId": "ast-xt-04",
+    "authorName": "Jasmine Cole",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 636,
+    "body": "Showed up like the listing. Packed ok, no weird surprises."
+  },
+  {
+    "id": "rev-gen-ast-xt-04-1",
+    "lotId": "ast-xt-04",
+    "authorName": "Evan T.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 637,
+    "body": "Good turn. Wish there were more of the top SKUs."
+  },
+  {
+    "id": "rev-gen-ast-xt-06-0",
+    "lotId": "ast-xt-06",
+    "authorName": "Isaiah B.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1158,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-xt-06-1",
+    "lotId": "ast-xt-06",
+    "authorName": "Camille H.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1159,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-xt-06-2",
+    "lotId": "ast-xt-06",
+    "authorName": "Brett K.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 1160,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-xt-06-3",
+    "lotId": "ast-xt-06",
+    "authorName": "Sofia D.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1161,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-xt-08-0",
+    "lotId": "ast-xt-08",
+    "authorName": "Heather L.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 280,
+    "body": "Would order again. Price was straight, no junk fees."
+  },
+  {
+    "id": "rev-gen-ast-xt-08-1",
+    "lotId": "ast-xt-08",
+    "authorName": "Mike Ortega",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 281,
+    "body": "Second order from them. Same vibe as last time."
+  },
+  {
+    "id": "rev-gen-ast-xt-08-2",
+    "lotId": "ast-xt-08",
+    "authorName": "Bree Collins",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 282,
+    "body": "Would order again. Price was straight, no junk fees."
+  },
+  {
+    "id": "rev-gen-ast-xt-10-0",
+    "lotId": "ast-xt-10",
+    "authorName": "Sam Rivera",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1383,
+    "body": "Fair wholesale. Im picky and this still passed."
+  },
+  {
+    "id": "rev-gen-ast-xt-10-1",
+    "lotId": "ast-xt-10",
+    "authorName": "Heather L.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 1384,
+    "body": "Grade matched. A couple scuffs like they said. Still sellable."
+  },
+  {
+    "id": "rev-gen-ast-xt-12-0",
+    "lotId": "ast-xt-12",
+    "authorName": "Derek M.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 505,
+    "body": "Low stock note was real. Grabbed what was left."
+  },
+  {
+    "id": "rev-gen-ast-xt-12-1",
+    "lotId": "ast-xt-12",
+    "authorName": "Paige Benton",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 506,
+    "body": "Manifest was close enough. Sorted in an afternoon."
+  },
+  {
+    "id": "rev-gen-ast-xt-12-2",
+    "lotId": "ast-xt-12",
+    "authorName": "Corey J.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 507,
+    "body": "Low stock note was real. Grabbed what was left."
+  },
+  {
+    "id": "rev-gen-ast-xt-12-3",
+    "lotId": "ast-xt-12",
+    "authorName": "Luis R.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 508,
+    "body": "Manifest was close enough. Sorted in an afternoon."
+  },
+  {
+    "id": "rev-gen-ast-2402-0",
+    "lotId": "ast-2402",
+    "authorName": "Derek M.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 297,
+    "body": "Manifest was close enough. Sorted in an afternoon."
+  },
+  {
+    "id": "rev-gen-ast-2402-1",
+    "lotId": "ast-2402",
+    "authorName": "Paige Benton",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 298,
+    "body": "Low stock note was real. Grabbed what was left."
+  },
+  {
+    "id": "rev-gen-ast-2404-0",
+    "lotId": "ast-2404",
+    "authorName": "Erin W.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 819,
+    "body": "Honest listing. Not perfect stock but workable."
+  },
+  {
+    "id": "rev-gen-ast-2404-1",
+    "lotId": "ast-2404",
+    "authorName": "Marcus J.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 820,
+    "body": "Not a home run pallet but we cleared it. Price helped."
+  },
+  {
+    "id": "rev-gen-ast-2404-2",
+    "lotId": "ast-2404",
+    "authorName": "Destiny R.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 821,
+    "body": "Honest listing. Not perfect stock but workable."
+  },
+  {
+    "id": "rev-gen-ast-2404-3",
+    "lotId": "ast-2404",
+    "authorName": "Tyler Brooks",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 822,
+    "body": "Not a home run pallet but we cleared it. Price helped."
+  },
+  {
+    "id": "rev-gen-ast-2411-0",
+    "lotId": "ast-2411",
+    "authorName": "Logan H.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1127,
+    "body": "Grade matched. A couple scuffs like they said. Still sellable."
+  },
+  {
+    "id": "rev-gen-ast-2411-1",
+    "lotId": "ast-2411",
+    "authorName": "Jasmine Cole",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1128,
+    "body": "Fair wholesale. Im picky and this still passed."
+  },
+  {
+    "id": "rev-gen-ast-2420-0",
+    "lotId": "ast-2420",
+    "authorName": "Mike Ortega",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 557,
+    "body": "Solid for the money. Took a day to get the confirm email but shipping was fine."
+  },
+  {
+    "id": "rev-gen-ast-2420-1",
+    "lotId": "ast-2420",
+    "authorName": "Bree Collins",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 558,
+    "body": "Support answered. Lot looked like the photos."
+  },
+  {
+    "id": "rev-gen-ast-2423-0",
+    "lotId": "ast-2423",
+    "authorName": "Katie S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 640,
+    "body": "Would order again. Price was straight, no junk fees."
+  },
+  {
+    "id": "rev-gen-ast-2423-1",
+    "lotId": "ast-2423",
+    "authorName": "Anthony G.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 641,
+    "body": "Second order from them. Same vibe as last time."
+  },
+  {
+    "id": "rev-gen-ast-2424-0",
+    "lotId": "ast-2424",
+    "authorName": "Destiny R.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 201,
+    "body": "Manifest was close enough. Sorted in an afternoon."
+  },
+  {
+    "id": "rev-gen-ast-2424-1",
+    "lotId": "ast-2424",
+    "authorName": "Tyler Brooks",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 202,
+    "body": "Low stock note was real. Grabbed what was left."
+  },
+  {
+    "id": "rev-gen-ast-2424-2",
+    "lotId": "ast-2424",
+    "authorName": "Alicia M.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 203,
+    "body": "Manifest was close enough. Sorted in an afternoon."
+  },
+  {
+    "id": "rev-gen-ast-2405-0",
+    "lotId": "ast-2405",
+    "authorName": "Luis R.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 380,
+    "body": "Good turn. Wish there were more of the top SKUs."
+  },
+  {
+    "id": "rev-gen-ast-2405-1",
+    "lotId": "ast-2405",
+    "authorName": "Megan F.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 381,
+    "body": "Showed up like the listing. Packed ok, no weird surprises."
+  },
+  {
+    "id": "rev-gen-ast-2406-0",
+    "lotId": "ast-2406",
+    "authorName": "Anthony G.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1341,
+    "body": "Support answered. Lot looked like the photos."
+  },
+  {
+    "id": "rev-gen-ast-2406-1",
+    "lotId": "ast-2406",
+    "authorName": "Priya N.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 1342,
+    "body": "Solid for the money. Took a day to get the confirm email but shipping was fine."
+  },
+  {
+    "id": "rev-gen-ast-2406-2",
+    "lotId": "ast-2406",
+    "authorName": "Logan H.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1343,
+    "body": "Support answered. Lot looked like the photos."
+  },
+  {
+    "id": "rev-gen-ast-2407-0",
+    "lotId": "ast-2407",
+    "authorName": "Tyler Brooks",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 902,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-2407-1",
+    "lotId": "ast-2407",
+    "authorName": "Alicia M.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 903,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-2407-2",
+    "lotId": "ast-2407",
+    "authorName": "Jordan P.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 904,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-2407-3",
+    "lotId": "ast-2407",
+    "authorName": "Nina K.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 905,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-2408-0",
+    "lotId": "ast-2408",
+    "authorName": "Whitney S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 463,
+    "body": "Fair wholesale. Im picky and this still passed."
+  },
+  {
+    "id": "rev-gen-ast-2408-1",
+    "lotId": "ast-2408",
+    "authorName": "Noah P.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 464,
+    "body": "Grade matched. A couple scuffs like they said. Still sellable."
+  },
+  {
+    "id": "rev-gen-ast-2410-0",
+    "lotId": "ast-2410",
+    "authorName": "Andre C.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 166,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-2410-1",
+    "lotId": "ast-2410",
+    "authorName": "Whitney S.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 167,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-2410-2",
+    "lotId": "ast-2410",
+    "authorName": "Noah P.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 168,
+    "body": "Bought for my booth. Moved most of it over the weekend."
+  },
+  {
+    "id": "rev-gen-ast-2410-3",
+    "lotId": "ast-2410",
+    "authorName": "Tara G.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 169,
+    "body": "Used this for a pop up. Customers liked the mix."
+  },
+  {
+    "id": "rev-gen-ast-2412-0",
+    "lotId": "ast-2412",
+    "authorName": "Jordan P.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 688,
+    "body": "Would order again. Price was straight, no junk fees."
+  },
+  {
+    "id": "rev-gen-ast-2412-1",
+    "lotId": "ast-2412",
+    "authorName": "Nina K.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 689,
+    "body": "Second order from them. Same vibe as last time."
+  },
+  {
+    "id": "rev-gen-ast-2412-2",
+    "lotId": "ast-2412",
+    "authorName": "Chris D.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 690,
+    "body": "Would order again. Price was straight, no junk fees."
+  },
+  {
+    "id": "rev-gen-ast-2414-0",
+    "lotId": "ast-2414",
+    "authorName": "Rachel V.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1210,
+    "body": "Came faster than I expected. Box had a ding, product was fine."
+  },
+  {
+    "id": "rev-gen-ast-2414-1",
+    "lotId": "ast-2414",
+    "authorName": "Omar F.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1211,
+    "body": "Clean enough for resale. Testing took an hour."
+  },
+  {
+    "id": "rev-gen-ast-2415-0",
+    "lotId": "ast-2415",
+    "authorName": "Sam Rivera",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 771,
+    "body": "Honest listing. Not perfect stock but workable."
+  },
+  {
+    "id": "rev-gen-ast-2415-1",
+    "lotId": "ast-2415",
+    "authorName": "Heather L.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 772,
+    "body": "Not a home run pallet but we cleared it. Price helped."
+  },
+  {
+    "id": "rev-gen-ast-2415-2",
+    "lotId": "ast-2415",
+    "authorName": "Mike Ortega",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 773,
+    "body": "Honest listing. Not perfect stock but workable."
+  },
+  {
+    "id": "rev-gen-ast-2416-0",
+    "lotId": "ast-2416",
+    "authorName": "Brett K.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 332,
+    "body": "Good turn. Wish there were more of the top SKUs."
+  },
+  {
+    "id": "rev-gen-ast-2416-1",
+    "lotId": "ast-2416",
+    "authorName": "Sofia D.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 333,
+    "body": "Showed up like the listing. Packed ok, no weird surprises."
+  },
+  {
+    "id": "rev-gen-ast-2416-2",
+    "lotId": "ast-2416",
+    "authorName": "Malik A.",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 334,
+    "body": "Good turn. Wish there were more of the top SKUs."
+  },
+  {
+    "id": "rev-gen-ast-2416-3",
+    "lotId": "ast-2416",
+    "authorName": "Erin W.",
+    "rating": 5,
+    "verified": true,
+    "hoursAgo": 335,
+    "body": "Showed up like the listing. Packed ok, no weird surprises."
+  },
+  {
+    "id": "rev-gen-ast-2417-0",
+    "lotId": "ast-2417",
+    "authorName": "Derek M.",
+    "rating": 3,
+    "verified": false,
+    "hoursAgo": 1293,
+    "body": "Support answered. Lot looked like the photos."
+  },
+  {
+    "id": "rev-gen-ast-2417-1",
+    "lotId": "ast-2417",
+    "authorName": "Paige Benton",
+    "rating": 4,
+    "verified": true,
+    "hoursAgo": 1294,
+    "body": "Solid for the money. Took a day to get the confirm email but shipping was fine."
   }
 ]

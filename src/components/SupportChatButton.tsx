@@ -4,7 +4,7 @@ import { useSupportChat } from "@/components/SupportChat";
 
 export function SupportChatButton({
   className,
-  children = "Open chat",
+  children = "Start chat",
 }: {
   className?: string;
   children?: React.ReactNode;
