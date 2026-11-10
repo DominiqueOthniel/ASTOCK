@@ -184,8 +184,9 @@
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
-      "/lots/consumer/ref-toys-box-2.jpg",
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=1600&q=80"
+      "/lots/fb-import/toys-02.jpg",
+      "/lots/fb-import/toys-01.jpg",
+      "/lots/consumer/ref-toys-box-2.jpg"
     ],
     "manifestSummary": "Liquidation mixed toys pallet. Board games, preschool, plurals, and building sets as packed. Contents vary by load. No itemized SKU list. Approx 210 units across a mixed category spread.",
     "conditionNotes": "Grade A overstock. Sealed cartons where applicable. Outer shippers may show warehouse labels and scuffs.",
@@ -317,8 +318,9 @@
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
-      "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80",
-      "/lots/consumer/ref-toys-box-4.jpg"
+      "/lots/fb-import/toys-truck.jpg",
+      "/lots/fb-import/toys-rc.jpg",
+      "/lots/fb-import/toys-firetruck.jpg"
     ],
     "manifestSummary": "Liquidation mixed outdoor toys and backyard play items. Ride-ons, water toys, and seasonal play goods as packed. Contents vary. No line-level SKU list.",
     "conditionNotes": "Grade A/B shelf pulls. Packaging intact on most units. Some assembly required on larger items.",
@@ -851,8 +853,8 @@
     "location": "",
     "endsAt": "2027-06-30T18:00:00.000Z",
     "images": [
-      "/lots/consumer/ref-toys-box-3.jpg",
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
+      "/lots/fb-import/toys-03.jpg",
+      "/lots/consumer/ref-toys-box-3.jpg"
     ],
     "manifestSummary": "Liquidation mixed holiday toys and plush. Seasonal aisle returns and overstock. Contents vary by wave. No itemized SKU list.",
     "conditionNotes": "Grade A/B. Most units new in box. Outer cartons may show holiday aisle stickers.",
@@ -2241,6 +2243,7 @@
     "quantitySold": 34,
     "featured": true,
     "images": [
+      "/lots/fb-import/household-01.jpg",
       "/lots/consumer/ref-pallet-household.jpg"
     ],
     "manifestSummary": "Case pack of Purex liquid laundry detergent from truckload overstock. Bottle count per case as labeled on blue Purex trays.",
@@ -2336,8 +2339,8 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "/lots/consumer/ref-toys-box-1.jpg",
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
+      "/lots/fb-import/toys-01.jpg",
+      "/lots/consumer/ref-toys-box-1.jpg"
     ],
     "manifestSummary": "Small liquidation mixed toys pallet / case mix. Preschool, plurals, and small boxed toys as packed. Contents vary. No itemized SKU list. Approx 85 units.",
     "conditionNotes": "Grade A overstock. Sealed retail packaging on sampled cartons. Outer cases show warehouse marks.",
@@ -2369,8 +2372,8 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "/lots/consumer/ref-toys-box-4.jpg",
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1600&q=80"
+      "/lots/fb-import/toys-04.jpg",
+      "/lots/fb-import/toys-firetruck.jpg"
     ],
     "manifestSummary": "Small mixed toys case from liquidation. Assorted boxed toys and soft goods as packed. Contents vary. No SKU-level list.",
     "conditionNotes": "Grade A. Retail sealed where applicable. Case may show shelf wear.",
@@ -2402,8 +2405,8 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "/lots/consumer/ref-toys-box-3.jpg",
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=1600&q=80"
+      "/lots/fb-import/toys-03.jpg",
+      "/lots/fb-import/toys-02.jpg"
     ],
     "manifestSummary": "Medium liquidation mixed toys pallet. Building sets, games, plurals, and preschool as packed from big-box returns. Contents vary by wave. No itemized SKU list. Approx 280 units.",
     "conditionNotes": "Grade B returns mix. Most units sellable as-is. Expect shelf-worn outer cartons and mixed age grades.",
@@ -2435,8 +2438,9 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "/lots/consumer/ref-toys-box-2.jpg",
-      "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1600&q=80"
+      "/lots/fb-import/toys-02.jpg",
+      "/lots/fb-import/toys-03.jpg",
+      "/lots/consumer/ref-toys-box-4.jpg"
     ],
     "manifestSummary": "Large mixed toys pallet from retailer overstock. Broad category mix: games, plurals, building, and seasonal toys as packed. Contents vary. No itemized SKU list. Approx 520 units.",
     "conditionNotes": "Grade A overstock dominant. Sealed cartons sampled. Outer wrap and labels may be scuffed.",
@@ -2501,12 +2505,181 @@
     "minQuantity": 1,
     "sellByUnit": false,
     "images": [
-      "/lots/consumer/ref-toys-box-4.jpg",
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80"
+      "/lots/fb-import/toys-04.jpg",
+      "/lots/fb-import/toys-01.jpg"
     ],
     "manifestSummary": "Liquidation mixed building-set toys pallet. Assorted sealed construction toys and related boxed toys as packed. Brand and set mix varies. No named SKU list.",
     "conditionNotes": "Grade A sealed cartons on sample. Outer shippers may show inventory stickers.",
     "sellerNotes": "Whole-pallet purchase. Buyers who need specific set numbers should skip this lot.",
+    "shipping": "LTL preferred.",
+    "pickup": "Dock pickup by appointment."
+  },
+  {
+    "id": "ast-fb-toys-brand",
+    "slug": "brand-name-mixed-toys-pallet",
+    "title": "Brand-Name Mixed Toys Pallet",
+    "category": "Toys",
+    "condition": "A",
+    "lotType": "Pallet",
+    "saleType": "Buy Now",
+    "currentBid": 1180,
+    "startingBid": 826,
+    "buyNowPrice": 1180,
+    "compareAtPrice": 1750,
+    "estimatedRetail": 9800,
+    "unitCount": 240,
+    "quantitySold": 7,
+    "reserveMet": true,
+    "bidCount": 0,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "published": true,
+    "featured": true,
+    "minQuantity": 1,
+    "sellByUnit": false,
+    "images": [
+      "/lots/fb-import/toys-01.jpg",
+      "/lots/fb-import/toys-02.jpg",
+      "/lots/fb-import/toys-03.jpg"
+    ],
+    "manifestSummary": "Liquidation mixed toys pallet pulled from big-box overstock. Brand-name boxed toys as packed. Contents vary by wave. No itemized SKU list. Approx 240 units.",
+    "conditionNotes": "Grade A new in box on sampled cartons. Outer shippers may show warehouse labels and shelf stickers.",
+    "sellerNotes": "Whole-pallet buy. Photo set from current warehouse stock. Manifest is a category summary only.",
+    "shipping": "LTL preferred. Liftgate optional at buyer cost.",
+    "pickup": "Dock pickup by appointment."
+  },
+  {
+    "id": "ast-fb-toys-action",
+    "slug": "action-figures-games-toys-pallet",
+    "title": "Action Figures and Games Toys Pallet",
+    "category": "Toys",
+    "condition": "A",
+    "lotType": "Pallet",
+    "saleType": "Buy Now",
+    "currentBid": 890,
+    "startingBid": 623,
+    "buyNowPrice": 890,
+    "compareAtPrice": 1320,
+    "estimatedRetail": 7200,
+    "unitCount": 175,
+    "quantitySold": 5,
+    "reserveMet": true,
+    "bidCount": 0,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "published": true,
+    "featured": false,
+    "minQuantity": 1,
+    "sellByUnit": false,
+    "images": [
+      "/lots/fb-import/toys-03.jpg",
+      "/lots/fb-import/toys-04.jpg",
+      "/lots/fb-import/toys-01.jpg"
+    ],
+    "manifestSummary": "Mixed toys pallet with action figures, building sets, and games as packed from liquidation. Contents vary. No line-level SKU list. Approx 175 units.",
+    "conditionNotes": "Grade A sealed packaging on sample. Some cartons carry clearance stickers.",
+    "sellerNotes": "Whole-lot purchase. Best for resellers who want mixed brand density without named SKUs.",
+    "shipping": "LTL. Keep upright where labeled.",
+    "pickup": "Dock level loading by appointment."
+  },
+  {
+    "id": "ast-fb-toys-vehicle",
+    "slug": "kids-vehicles-mixed-toys-case",
+    "title": "Kids Vehicles Mixed Toys Case",
+    "category": "Toys",
+    "condition": "A",
+    "lotType": "Mixed",
+    "saleType": "Buy Now",
+    "currentBid": 320,
+    "startingBid": 224,
+    "buyNowPrice": 320,
+    "compareAtPrice": 480,
+    "estimatedRetail": 2100,
+    "unitCount": 55,
+    "quantitySold": 12,
+    "reserveMet": true,
+    "bidCount": 0,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "published": true,
+    "featured": false,
+    "minQuantity": 1,
+    "sellByUnit": false,
+    "images": [
+      "/lots/fb-import/toys-truck.jpg",
+      "/lots/fb-import/toys-firetruck.jpg",
+      "/lots/fb-import/toys-rc.jpg"
+    ],
+    "manifestSummary": "Small mixed toys case focused on kids vehicles and related boxed toys as packed. Contents vary. No itemized SKU list. Approx 55 units.",
+    "conditionNotes": "Grade A retail packaging. Case may show shelf wear.",
+    "sellerNotes": "Whole-case buy. Entry size for mixed toy resale.",
+    "shipping": "Parcel or small LTL depending on weight.",
+    "pickup": "Parcel ship preferred."
+  },
+  {
+    "id": "ast-fb-hh-appliances",
+    "slug": "household-appliances-mixed-pallet",
+    "title": "Household Appliances Mixed Pallet",
+    "category": "Home Goods",
+    "condition": "A",
+    "lotType": "Pallet",
+    "saleType": "Buy Now",
+    "currentBid": 1450,
+    "startingBid": 1015,
+    "buyNowPrice": 1450,
+    "compareAtPrice": 2200,
+    "estimatedRetail": 9800,
+    "unitCount": 72,
+    "quantitySold": 4,
+    "reserveMet": true,
+    "bidCount": 0,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "published": true,
+    "featured": true,
+    "minQuantity": 1,
+    "sellByUnit": false,
+    "images": [
+      "/lots/fb-import/household-01.jpg",
+      "/lots/consumer/ref-pallet-household.jpg"
+    ],
+    "manifestSummary": "Shrink-wrapped mixed household appliances pallet from liquidation. Small kitchen and home comfort units as packed. Contents vary by load. No itemized SKU list. Approx 72 units.",
+    "conditionNotes": "Grade A new in box. Outer wrap and cartons may show warehouse scuffs. Energy labels and languages may mix by market source.",
+    "sellerNotes": "Whole-pallet only. Photo from current warehouse stock. Summary manifest on request.",
+    "shipping": "LTL. Buyer arranges outbound freight for full pallet.",
+    "pickup": "Dock pickup required. Appointment weekdays."
+  },
+  {
+    "id": "ast-fb-toys-dense",
+    "slug": "dense-mixed-toys-overstock-pallet",
+    "title": "Dense Mixed Toys Overstock Pallet",
+    "category": "Toys",
+    "condition": "B",
+    "lotType": "Pallet",
+    "saleType": "Buy Now",
+    "currentBid": 1560,
+    "startingBid": 1092,
+    "buyNowPrice": 1560,
+    "compareAtPrice": 2300,
+    "estimatedRetail": 14200,
+    "unitCount": 310,
+    "quantitySold": 3,
+    "reserveMet": true,
+    "bidCount": 0,
+    "location": "",
+    "endsAt": "2027-06-30T18:00:00.000Z",
+    "published": true,
+    "featured": true,
+    "minQuantity": 1,
+    "sellByUnit": false,
+    "images": [
+      "/lots/fb-import/toys-02.jpg",
+      "/lots/fb-import/toys-01.jpg",
+      "/lots/fb-import/toys-04.jpg"
+    ],
+    "manifestSummary": "Dense liquidation mixed toys pallet from retailer returns and overstock. Boxed toys across categories as packed. Contents vary heavily. No SKU-level list. Approx 310 units.",
+    "conditionNotes": "Grade B mix. Most units sellable as-is. Expect shelf-worn outer cartons.",
+    "sellerNotes": "Whole-pallet buy for processors. Not for buyers who need named sets.",
     "shipping": "LTL preferred.",
     "pickup": "Dock pickup by appointment."
   }
