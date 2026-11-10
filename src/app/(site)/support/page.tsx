@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { SupportChatButton } from "@/components/SupportChatButton";
+import { buildPageMetadata, faqPageJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Support",
-  description: "Order help, FAQ, and contact for PalletDeals.",
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Support and order help",
+  description:
+    "PalletDeals support for liquidation pallet orders: how checkout works, the $150 minimum, shipping, and how to reach us by email or WhatsApp.",
+  path: "/support",
+});
 
 const faqs = [
   {
@@ -33,11 +37,12 @@ const faqs = [
 export default function SupportPage() {
   return (
     <div className="pt-8 pb-16 md:pt-10 md:pb-20">
+      <JsonLd data={faqPageJsonLd(faqs)} />
       <div className="site-grid max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-steel">Help</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-ink md:text-5xl">Support</h1>
         <p className="mt-3 text-steel">
-          Straight answers on ordering, minimums, and how to reach us.
+          Straight answers on ordering liquidation lots, minimums, and how to reach PalletDeals.
         </p>
 
         <section className="mt-8" data-testid="support-choose">
@@ -94,6 +99,20 @@ export default function SupportPage() {
           Prefer browsing?{" "}
           <Link href="/browse" className="font-semibold text-accent-deep hover:underline">
             See open lots
+          </Link>
+          {" · "}
+          <Link
+            href="/browse?category=Toys"
+            className="font-semibold text-accent-deep hover:underline"
+          >
+            Toys pallets
+          </Link>
+          {" · "}
+          <Link
+            href="/browse?category=Christmas"
+            className="font-semibold text-accent-deep hover:underline"
+          >
+            Christmas trees
           </Link>
           .
         </p>

@@ -17,7 +17,8 @@ export async function SiteFooter() {
         <div>
           <BrandLogo onDark size="md" className="text-white" />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/65">
-            Bulk liquidation lots with clear prices.
+            Fixed-price liquidation pallets, toys, electronics, and Christmas trees at
+            palletdealsshop.com.
           </p>
         </div>
         <div>
@@ -25,12 +26,22 @@ export async function SiteFooter() {
           <ul className="mt-4 space-y-2 text-sm text-white/80">
             <li>
               <Link href="/browse" className="hover:text-white">
-                Browse
+                Browse lots
               </Link>
             </li>
             <li>
-              <Link href="/cart" className="hover:text-white">
-                Cart
+              <Link href="/browse?category=Toys" className="hover:text-white">
+                Toys pallets
+              </Link>
+            </li>
+            <li>
+              <Link href="/browse?category=Christmas" className="hover:text-white">
+                Christmas trees
+              </Link>
+            </li>
+            <li>
+              <Link href="/browse?category=Electronics" className="hover:text-white">
+                Electronics
               </Link>
             </li>
             <li>

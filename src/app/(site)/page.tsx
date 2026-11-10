@@ -9,19 +9,16 @@ import {
   getFeaturedPublishedLots,
   listPublishedLots,
 } from "@/lib/lot-service";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: `${brand.name} | Bulk liquidation marketplace`,
-  },
+export const metadata: Metadata = buildPageMetadata({
+  title: `${brand.name} | Liquidation pallets, toys, PS5 Slim, Christmas trees`,
   description: brand.description,
-  openGraph: {
-    title: `${brand.name} | Bulk liquidation marketplace`,
-    description: brand.description,
-  },
-};
+  path: "/",
+  absoluteTitle: true,
+});
 
 const heroImage =
   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80";
@@ -59,10 +56,10 @@ export default async function HomePage() {
             PalletDeals
           </p>
           <h1 className="mt-5 max-w-lg font-display text-2xl font-semibold leading-tight text-white/95 sm:text-3xl animate-rise-delay-1">
-            Bulk lots, clear prices
+            Liquidation pallets with clear prices
           </h1>
           <p className="mt-3 max-w-md text-base text-white/75 animate-rise-delay-1">
-            Graded pallets and truckloads ready to order.
+            Toys pallets, electronics, Christmas trees, and graded overstock ready to order.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 animate-rise-delay-2">
             <Link href="/browse" className="btn btn-primary">
@@ -122,8 +119,8 @@ export default async function HomePage() {
             </Reveal>
             <Reveal className="mt-7">
               <div className="lot-grid">
-                {christmasTrees.map((lot) => (
-                  <LotCard key={lot.id} lot={lot} />
+                {christmasTrees.map((lot, index) => (
+                  <LotCard key={lot.id} lot={lot} priority={index < 2} />
                 ))}
               </div>
             </Reveal>
@@ -142,8 +139,8 @@ export default async function HomePage() {
         </Reveal>
         <Reveal className="mt-7">
           <div className="lot-grid">
-            {sampleLots.map((lot) => (
-              <LotCard key={lot.id} lot={lot} />
+            {sampleLots.map((lot, index) => (
+              <LotCard key={lot.id} lot={lot} priority={christmasTrees.length === 0 && index < 2} />
             ))}
           </div>
         </Reveal>

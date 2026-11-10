@@ -10,7 +10,8 @@ import type { Lot, SortOption } from "@/lib/types";
 export function BrowseClient({ lots }: { lots: Lot[] }) {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category");
-  const [query, setQuery] = useState("");
+  const initialQuery = searchParams.get("q")?.trim() ?? "";
+  const [query, setQuery] = useState(initialQuery);
   const [category, setCategory] = useState(
     initialCategory && categories.includes(initialCategory as (typeof categories)[number])
       ? initialCategory

@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Astock collects and uses account and marketplace data.",
+  description: "How PalletDeals collects and uses account and marketplace data at palletdealsshop.com.",
+  alternates: { canonical: "https://palletdealsshop.com/privacy" },
 };
 
 export default function PrivacyPage() {

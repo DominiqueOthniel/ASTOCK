@@ -9,5 +9,5 @@ export const brand = {
     "https://palletdealsshop.com",
   tagline: "Bulk lots, clear prices",
   description:
-    "PalletDeals is a fixed-price marketplace for graded liquidation lots: retail returns, overstock, pallets, and truckloads.",
+    "Buy fixed-price liquidation pallets on PalletDeals at palletdealsshop.com: toys pallets, PS5 Slim, Christmas trees, household overstock, and graded retail returns.",
 } as const;

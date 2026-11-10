@@ -7,6 +7,7 @@ import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Account",
+  robots: { index: false, follow: false },
 };
 
 export const dynamic = "force-dynamic";

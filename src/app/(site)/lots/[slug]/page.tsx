@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BuyBox } from "@/components/BuyBox";
+import { JsonLd } from "@/components/JsonLd";
 import { LotCard } from "@/components/LotCard";
 import { LotGallery } from "@/components/LotGallery";
 import { LotReviews } from "@/components/LotReviews";
 import { formatCondition, formatCurrency } from "@/lib/format";
 import { getPublishedLotBySlug, getRelatedLots } from "@/lib/lot-service";
-import { lotPrice } from "@/lib/pricing";
+import { buildPageMetadata, lotDescription, productJsonLd } from "@/lib/seo";
 import { listReviewsForLot } from "@/lib/reviews";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getMarketplaceUser } from "@/lib/supabase/server";
@@ -21,17 +22,13 @@ type LotPageProps = {
 export async function generateMetadata({ params }: LotPageProps): Promise<Metadata> {
   const { slug } = await params;
   const lot = await getPublishedLotBySlug(slug);
-  if (!lot) return { title: "Lot not found" };
-  const description = `${lot.category} · ${formatCondition(lot.condition)} · ${formatCurrency(lotPrice(lot))}`;
-  return {
+  if (!lot) return { title: "Lot not found", robots: { index: false, follow: false } };
+  return buildPageMetadata({
     title: lot.title,
-    description,
-    openGraph: {
-      title: lot.title,
-      description,
-      images: lot.images[0] ? [{ url: lot.images[0] }] : undefined,
-    },
-  };
+    description: lotDescription(lot),
+    path: `/lots/${lot.slug}`,
+    images: lot.images.slice(0, 3),
+  });
 }
 
 export default async function LotDetailPage({ params }: LotPageProps) {
@@ -48,13 +45,20 @@ export default async function LotDetailPage({ params }: LotPageProps) {
 
   return (
     <div className="pt-8 pb-16 md:pt-10 md:pb-20">
+      <JsonLd data={productJsonLd(lot)} />
       <div className="site-grid">
-        <Link
-          href="/browse"
-          className="text-sm font-medium text-steel transition-colors hover:text-accent-deep"
-        >
-          ← Browse
-        </Link>
+        <nav className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-steel">
+          <Link href="/browse" className="font-medium transition-colors hover:text-accent-deep">
+            Browse lots
+          </Link>
+          <span aria-hidden="true">/</span>
+          <Link
+            href={`/browse?category=${encodeURIComponent(lot.category)}`}
+            className="font-medium transition-colors hover:text-accent-deep"
+          >
+            {lot.category}
+          </Link>
+        </nav>
 
         <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.75fr)] lg:gap-10">
           <div className="min-w-0">

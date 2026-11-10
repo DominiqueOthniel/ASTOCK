@@ -6,6 +6,7 @@ import { AuthForm } from "@/components/AuthForm";
 export const metadata: Metadata = {
   title: "Sign in",
   description: "Sign in to PalletDeals.",
+  robots: { index: false, follow: false },
 };
 
 export const dynamic = "force-dynamic";

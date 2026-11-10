@@ -10,6 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Cart",
   description: "Review lots and request an email order on PalletDeals.",
+  robots: { index: false, follow: false },
 };
 
 export default async function CartPage() {

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description: "Astock marketplace terms for buyers and sellers of bulk liquidation lots.",
+  title: "Terms and Conditions",
+  description: "PalletDeals marketplace terms for buyers and sellers of bulk liquidation lots.",
+  alternates: { canonical: "https://palletdealsshop.com/terms" },
 };
 
 export default function TermsPage() {

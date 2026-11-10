@@ -5,7 +5,7 @@ import { StockPressure } from "@/components/StockPressure";
 import { formatCondition } from "@/lib/format";
 import type { Lot } from "@/lib/types";
 
-export function LotCard({ lot }: { lot: Lot }) {
+export function LotCard({ lot, priority = false }: { lot: Lot; priority?: boolean }) {
   return (
     <Link href={`/lots/${lot.slug}`} className="lot-card group">
       <div className="lot-card-media lot-media">
@@ -14,10 +14,11 @@ export function LotCard({ lot }: { lot: Lot }) {
             lot.images[0] ??
             "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
           }
-          alt={`Photo of ${lot.title}`}
+          alt={`${lot.title} liquidation lot photo`}
           fill
           className="lot-media-img"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          priority={priority}
         />
       </div>
       <div className="lot-card-body">

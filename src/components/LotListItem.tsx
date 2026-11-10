@@ -14,7 +14,7 @@ export function LotListItem({ lot }: { lot: Lot }) {
             lot.images[0] ??
             "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
           }
-          alt={`Photo of ${lot.title}`}
+          alt={`${lot.title} liquidation lot photo`}
           fill
           className="lot-media-img"
           sizes="(max-width: 768px) 100vw, 96px"

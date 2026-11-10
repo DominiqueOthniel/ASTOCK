@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SellForm } from "@/components/SellForm";
+import { buildPageMetadata } from "@/lib/seo";
 import { getMarketplaceUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Sell with us",
-  description: "List retail returns, overstock, and liquidation lots on PalletDeals.",
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Sell liquidation lots",
+  description:
+    "List retail returns, overstock, and liquidation pallets on PalletDeals at palletdealsshop.com.",
+  path: "/sell",
+});
 
 export default async function SellPage() {
   const user = await getMarketplaceUser();

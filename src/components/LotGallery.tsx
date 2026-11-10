@@ -14,11 +14,12 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
       <div className="lot-media relative aspect-[4/3] w-full sm:aspect-[16/10]">
         <Image
           src={list[active]}
-          alt={`${title}, image ${active + 1} of ${list.length}`}
+          alt={`${title} liquidation lot photo ${active + 1} of ${list.length}`}
           fill
           className="lot-media-img"
           sizes="(max-width: 768px) 100vw, 60vw"
           priority={active === 0}
+          fetchPriority={active === 0 ? "high" : "auto"}
         />
       </div>
       {list.length > 1 ? (
@@ -31,11 +32,11 @@ export function LotGallery({ images, title }: { images: string[]; title: string 
               className={`lot-media relative h-16 w-[4.5rem] shrink-0 border transition-opacity sm:h-[4.5rem] sm:w-24 ${
                 index === active ? "border-accent opacity-100" : "border-line opacity-70 hover:opacity-100"
               }`}
-              aria-label={`Show image ${index + 1}`}
+              aria-label={`Show image ${index + 1} of ${title}`}
             >
               <Image
                 src={image}
-                alt=""
+                alt={`${title} thumbnail ${index + 1}`}
                 fill
                 className="lot-media-img !p-0.5"
                 sizes="96px"

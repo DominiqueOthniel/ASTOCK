@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import { brand } from "@/lib/brand";
+import { absoluteUrl, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -17,40 +19,45 @@ const body = Figtree({
   display: "swap",
 });
 
+const homeTitle = `${brand.name} | Liquidation pallets, toys, PS5 Slim, Christmas trees`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(brand.siteUrl),
+  metadataBase: new URL(absoluteUrl("/")),
   title: {
-    default: `${brand.name} | Bulk liquidation marketplace`,
+    default: homeTitle,
     template: `%s | ${brand.name}`,
   },
   description: brand.description,
   applicationName: brand.name,
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: brand.name,
-    title: `${brand.name} | Bulk liquidation marketplace`,
-    description: brand.description,
-    url: brand.siteUrl,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${brand.name} | Bulk liquidation marketplace`,
-    description: brand.description,
-  },
   alternates: {
-    canonical: "/",
+    canonical: absoluteUrl("/"),
   },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: brand.name,
+    title: homeTitle,
+    description: brand.description,
+    url: absoluteUrl("/"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: brand.description,
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        {children}
+      </body>
     </html>
   );
 }
