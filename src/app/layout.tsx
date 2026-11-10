@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     title: homeTitle,
     description: brand.description,
   },
+  verification: {
+    google: "wOaA-aSovXaGzsQGhl0rhuvTwZzm4dPlOx24g3QfsQw",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
