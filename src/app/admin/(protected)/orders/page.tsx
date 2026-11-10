@@ -54,6 +54,9 @@ export default async function AdminOrdersPage() {
                         order.buyerEmail,
                         order.buyerPhone,
                         typeof order.buyerAge === "number" ? `Age ${order.buyerAge}` : null,
+                        order.buyerPaymentMethod
+                          ? `Payment: ${order.buyerPaymentMethod}`
+                          : null,
                       ]
                         .filter(Boolean)
                         .join(" · ")}

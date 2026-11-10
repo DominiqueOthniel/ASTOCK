@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { PAYMENT_METHOD_LABELS, PAYMENT_METHOD_VALUES } from "@/lib/buyer-details";
+
 type BuyerDetailsFieldsProps = {
   idPrefix?: string;
   disabled?: boolean;
@@ -14,9 +17,13 @@ export function BuyerDetailsFields({
   defaultEmail = "",
 }: BuyerDetailsFieldsProps) {
   const gap = compact ? "gap-3" : "gap-4";
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   return (
-    <div className={`space-y-4 ${compact ? "" : "border border-line bg-mist/40 p-4"}`} data-testid="buyer-details">
+    <div
+      className={`space-y-4 ${compact ? "" : "border border-line bg-mist/40 p-4"}`}
+      data-testid="buyer-details"
+    >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel">Buyer details</p>
         <p className="mt-1 text-sm text-ink-soft">
@@ -86,6 +93,53 @@ export function BuyerDetailsFields({
               disabled={disabled}
             />
           </label>
+        </div>
+
+        <div className="space-y-3">
+          <label className="block text-sm">
+            <span className="mb-1.5 block font-medium text-ink">Preferred payment method</span>
+            <select
+              className="field"
+              name="paymentMethod"
+              id={`${idPrefix}-paymentMethod`}
+              required
+              value={paymentMethod}
+              onChange={(event) => setPaymentMethod(event.target.value)}
+              disabled={disabled}
+            >
+              <option value="" disabled>
+                Select one
+              </option>
+              {PAYMENT_METHOD_VALUES.map((value) => (
+                <option key={value} value={value}>
+                  {PAYMENT_METHOD_LABELS[value]}
+                </option>
+              ))}
+            </select>
+          </label>
+          {paymentMethod === "other" ? (
+            <label className="block text-sm">
+              <span className="mb-1.5 block font-medium text-ink">Payment method details</span>
+              <input
+                className="field"
+                name="paymentMethodOther"
+                id={`${idPrefix}-paymentMethodOther`}
+                required
+                minLength={2}
+                maxLength={80}
+                placeholder="How you would like to pay"
+                disabled={disabled}
+                autoComplete="off"
+              />
+              <p className="mt-1.5 text-xs text-steel">
+                We confirm payment steps by email after your request is reviewed.
+              </p>
+            </label>
+          ) : (
+            <p className="text-xs text-steel">
+              Zelle, Chime, Cash App, Venmo, and wire or ACH are common. Pick what works for you.
+            </p>
+          )}
         </div>
 
         <label className="block text-sm">

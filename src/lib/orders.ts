@@ -256,6 +256,7 @@ export async function createEmailOrdersForSlugs(opts: {
         buyerEmail: buyer.email,
         buyerPhone: buyer.phone,
         buyerAge: buyer.age,
+        buyerPaymentMethod: buyer.paymentMethodLabel,
         shipStreet: buyer.street,
         shipCity: buyer.city,
         shipState: buyer.state,

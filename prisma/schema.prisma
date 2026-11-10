@@ -95,6 +95,7 @@ model Order {
   buyerEmail            String?
   buyerPhone            String?
   buyerAge              Int?
+  buyerPaymentMethod    String?
   shipStreet            String?
   shipCity              String?
   shipState             String?

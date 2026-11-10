@@ -1,3 +1,23 @@
+export const PAYMENT_METHOD_VALUES = [
+  "zelle",
+  "chime",
+  "cash_app",
+  "venmo",
+  "wire_ach",
+  "other",
+] as const;
+
+export type PaymentMethodValue = (typeof PAYMENT_METHOD_VALUES)[number];
+
+export const PAYMENT_METHOD_LABELS: Record<PaymentMethodValue, string> = {
+  zelle: "Zelle",
+  chime: "Chime",
+  cash_app: "Cash App",
+  venmo: "Venmo",
+  wire_ach: "Wire/ACH",
+  other: "Other",
+};
+
 export type BuyerDetails = {
   fullName: string;
   email: string;
@@ -8,11 +28,21 @@ export type BuyerDetails = {
   state: string;
   postal: string;
   country: string;
+  paymentMethod: PaymentMethodValue;
+  paymentMethodLabel: string;
 };
 
 export type BuyerDetailsResult =
   | { ok: true; details: BuyerDetails }
-  | { ok: false; error: string; field?: keyof BuyerDetails | "age" };
+  | {
+      ok: false;
+      error: string;
+      field?:
+        | keyof BuyerDetails
+        | "age"
+        | "paymentMethod"
+        | "paymentMethodOther";
+    };
 
 const US_STATES =
   /^(A[LKZR]|C[AOT]|D[EC]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEHINOST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$/i;
@@ -21,6 +51,45 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 function read(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
+}
+
+function parsePaymentMethod(formData: FormData): {
+  ok: true;
+  value: PaymentMethodValue;
+  label: string;
+} | {
+  ok: false;
+  error: string;
+  field: "paymentMethod" | "paymentMethodOther";
+} {
+  const raw = read(formData, "paymentMethod").toLowerCase();
+  if (!raw) {
+    return {
+      ok: false,
+      error: "Choose your preferred payment method.",
+      field: "paymentMethod",
+    };
+  }
+  if (!PAYMENT_METHOD_VALUES.includes(raw as PaymentMethodValue)) {
+    return {
+      ok: false,
+      error: "Choose a valid payment method.",
+      field: "paymentMethod",
+    };
+  }
+  const value = raw as PaymentMethodValue;
+  if (value === "other") {
+    const detail = read(formData, "paymentMethodOther");
+    if (detail.length < 2 || detail.length > 80) {
+      return {
+        ok: false,
+        error: "Describe your preferred payment method (2 to 80 characters).",
+        field: "paymentMethodOther",
+      };
+    }
+    return { ok: true, value, label: `Other: ${detail}` };
+  }
+  return { ok: true, value, label: PAYMENT_METHOD_LABELS[value] };
 }
 
 export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
@@ -73,6 +142,15 @@ export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
     };
   }
 
+  const paymentParsed = parsePaymentMethod(formData);
+  if (!paymentParsed.ok) {
+    return {
+      ok: false,
+      error: paymentParsed.error,
+      field: paymentParsed.field,
+    };
+  }
+
   if (street.length < 5 || street.length > 120) {
     return { ok: false, error: "Enter a complete street address.", field: "street" };
   }
@@ -104,6 +182,8 @@ export function parseBuyerDetails(formData: FormData): BuyerDetailsResult {
       state,
       postal,
       country,
+      paymentMethod: paymentParsed.value,
+      paymentMethodLabel: paymentParsed.label,
     },
   };
 }
@@ -118,6 +198,7 @@ export function buyerDetailsEmailBlock(details: BuyerDetails) {
     `Email: ${details.email}`,
     `Phone: ${details.phone}`,
     `Age: ${details.age}`,
+    `Preferred payment: ${details.paymentMethodLabel}`,
     `Address: ${formatBuyerAddress(details)}`,
   ].join("\n");
 }
